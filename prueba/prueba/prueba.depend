@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1612517359 source:c:\users\administrador\documents\c_alexproyectos\prueba\prueba\main.cpp
+	<allegro.h>
+	"cEngine.h"
+
+1612517941 c:\users\administrador\documents\c_alexproyectos\prueba\prueba\include\cengine.h
+	"structures.h"
+	"cVideo.h"
+	<allegro.h>
+
+1612517950 source:c:\users\administrador\documents\c_alexproyectos\prueba\prueba\src\cengine.cpp
+	"cEngine.h"
+
+1612435894 c:\users\administrador\documents\c_alexproyectos\prueba\prueba\include\structures.h
+
+1612437284 c:\users\administrador\documents\c_alexproyectos\prueba\prueba\include\cvideo.h
+
