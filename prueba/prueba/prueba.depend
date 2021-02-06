@@ -15,3 +15,21 @@
 
 1612437284 c:\users\administrador\documents\c_alexproyectos\prueba\prueba\include\cvideo.h
 
+1612611670 source:c:\users\alex\documents\isometrico\prueba\prueba\main.cpp
+	<allegro.h>
+	"cEngine.h"
+
+1612625668 c:\users\alex\documents\isometrico\prueba\prueba\include\cengine.h
+	"structures.h"
+	"cVideo.h"
+	<allegro.h>
+	<string>
+	"math.h"
+
+1612609519 c:\users\alex\documents\isometrico\prueba\prueba\include\structures.h
+
+1612609519 c:\users\alex\documents\isometrico\prueba\prueba\include\cvideo.h
+
+1612644150 source:c:\users\alex\documents\isometrico\prueba\prueba\src\cengine.cpp
+	"cEngine.h"
+

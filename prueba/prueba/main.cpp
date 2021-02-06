@@ -13,6 +13,8 @@ int main(void)
     install_timer();
     /* set up the keyboard handler */
     install_keyboard();
+    install_mouse();
+     select_mouse_cursor(MOUSE_CURSOR_ARROW);
     set_color_depth(24);
     /* set a graphics mode sized 320x200 */
     set_gfx_mode(GFX_SAFE, 640, 480,0, 0);
@@ -22,6 +24,7 @@ int main(void)
 
         engine->Update();
         engine->Render();
+      show_mouse(screen);
     }
 
 

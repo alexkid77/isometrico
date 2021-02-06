@@ -35,6 +35,8 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/cEngine.h" />
+		<Unit filename="include/cVideo.h" />
+		<Unit filename="include/structures.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/cEngine.cpp" />
 		<Extensions />
