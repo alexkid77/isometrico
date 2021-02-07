@@ -6,7 +6,7 @@ cEngine::cEngine()
     this->tileH=64;
     this->tileW=64;
     this->tileGridH= this->tileH/2;
-    this->tileGridW=this->tileW/2;
+    this->tileGridW=this->tileW;
     this->orig.x=SCREEN_W/2-tileW/2;
     this->orig.y=SCREEN_H/4-tileH/4;
     BITMAP *tilesRaw=load_bmp("tiles.bmp", 0);
@@ -82,28 +82,31 @@ void cEngine::Render()
     Vec2D mousePos;
     mousePos.x=mouse_x-orig.x;
     mousePos.y=mouse_y-orig.y;
+
     for(int i=0; i<12; i++)
     {
         for(int j=0; j<12; j++)
         {
-            int x = j * tileGridH;
-            int y = i * tileGridW;
+            int x = (j-i) *(tileGridW/2);
+            int y = (i+j )* (tileGridH/2);
+         /*   int sx = (Tile->x - Tile->y) * (32); //64 is our width, multiply by half
+        int sy = (Tile->x + Tile->y) * (16); //32 is our height, multiply by half*/
             Vec2D v;
             v.x=x;
             v.y=y;
-            Vec2D vdest=twoDToIso(&v);
-            // vdest=setAltura(&vdest,20,0,32);
+            Vec2D vdest=v;
+
             Vec2D val=this->GetTileWithPos(mousePos.x,mousePos.y);
 
             if(mapa[j][i])
             {
                 if(val.x==j && val.y==i)
                 {
-                 mapa[j][i]=2;
+                 mapa[j][i]=0;
                 }
                  //   masked_blit(tiles[2], buffer, 0, 0, vdest.x+this->orig.x, vdest.y+this->orig.y, tileW,tileH);
                 //else
-                    masked_blit(tiles[mapa[j][i]], buffer, 0, 0, vdest.x+this->orig.x, vdest.y+this->orig.y, tileW,tileH);
+                    masked_blit(tiles[mapa[j][i]+1], buffer, 0, 0, vdest.x+this->orig.x, vdest.y+this->orig.y, tileW,tileH);
             }
 
         }
@@ -119,10 +122,20 @@ void cEngine::Render()
 
     snprintf ( tempStr, 100, "mouse x:%d mouse y:%d tile:%d,%d", mousePos.x,  mousePos.y,val.y,val.x );
 
-    masked_blit(tiles[2], buffer, 0, 0,  mousePos.x+this->orig.x,  mousePos.y+this->orig.y, tileW,tileH);
+   // masked_blit(tiles[2], buffer, 0, 0,  mousePos.x+this->orig.x-this->tileGridW/2,  mousePos.y+this->orig.y-this->tileGridH/2, tileW,tileH);
 
     textout_centre_ex(buffer, font, tempStr, SCREEN_W/2, 20, makecol(255,255,255), -1);
-
+ //twoDToIso(&v);
+            // vdest=setAltura(&vdest,20,0,32);
+           Vec2D v1;
+           v1.x=0;
+           v1.y=0;
+          // v1=this->twoDToIso(&v1);
+           Vec2D orig_proj=this->twoDToIso(&this->orig);
+           v1.x=v1.x;
+           v1.y=v1.y;
+//v1=this->twoDToIso(&v1);
+              putpixel(buffer, v1.x+this->orig.x+tileGridW/2, v1.y+this->orig.y+this->tileGridH, makecol(255,0,0));
     blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
 
 
@@ -165,9 +178,7 @@ Vec2D cEngine::twoDToIso(Vec2D *vec)
     val.x=vec->x-vec->y;
     val.y=(vec->x+vec->y)/2;
     return val;
-    int tileHeight=32;
-    int ScrollY=0;
-    int ScrollX=0;
+
     //int  isoX = ( ((ScreenY + scrollY) / tileHeight) + ((screenX + scrollX) - (isoMapMaxY * tileWidth/2)) / tileWidth )
 //int isoY = ( ((screenY + scrollY) / tileHeight) - ((screenX + scrollX) - (isoMapMaxY * tileWidth/2)) / tileWidth )
 }
@@ -175,8 +186,8 @@ Vec2D cEngine::GetTileWithPos(int x,int y)
 {
 
     Vec2D res;
-    int pixel_x=x;
-    int pixel_y=y;
+    int pixel_x=x-this->tileGridW/2;
+    int pixel_y=y-this->tileGridH;
     int tile_w=64;
     int tile_h=32;
     int tile_x = (pixel_x/(tile_w/2) + pixel_y/(tile_h/2)) / 2;
