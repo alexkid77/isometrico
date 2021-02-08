@@ -33,3 +33,21 @@
 1612709962 source:c:\users\alex\documents\isometrico\prueba\prueba\src\cengine.cpp
 	"cEngine.h"
 
+1612776280 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\main.cpp
+	<allegro.h>
+	"cEngine.h"
+
+1612775884 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cengine.h
+	"structures.h"
+	"cVideo.h"
+	<allegro.h>
+	<string>
+	"math.h"
+
+1612775704 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\structures.h
+
+1612773572 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cvideo.h
+
+1612784386 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cengine.cpp
+	"cEngine.h"
+

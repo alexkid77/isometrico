@@ -8,4 +8,8 @@ typedef struct Vec2D
     int y;
 
 };
+typedef struct Entidad
+{
+    Vec2D pos;
+};
 #endif // STRUCTURES_H_INCLUDED

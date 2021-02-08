@@ -24,7 +24,7 @@ private:
     int tileGridW;
     Vec2D orig;
     BITMAP **tiles;
-
+   Entidad player;
     BITMAP ** ExtraeTiles(BITMAP *tilesRaw,int tileW,int tileH);
     Vec2D isoTo2D(Vec2D *vec);
     Vec2D twoDToIso(Vec2D *vec);

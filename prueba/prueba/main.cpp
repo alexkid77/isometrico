@@ -19,12 +19,15 @@ int main(void)
     /* set a graphics mode sized 320x200 */
     set_gfx_mode(GFX_SAFE, 640, 480,0, 0);
   cEngine *engine=new cEngine();
-    while (!keypressed())
+    while (!key[KEY_ESC])
     {
+
 
         engine->Update();
         engine->Render();
       show_mouse(screen);
+
+
     }
 
 

@@ -11,6 +11,9 @@ cEngine::cEngine()
     this->orig.y=SCREEN_H/4-tileH/4;
     BITMAP *tilesRaw=load_bmp("tiles.bmp", 0);
     tiles=ExtraeTiles(tilesRaw,tileW,tileH);
+
+    this->player.pos.x=0;
+    this->player.pos.y=0;
     //ctor
 }
 
@@ -20,6 +23,15 @@ cEngine::~cEngine()
 }
 void cEngine::Update()
 {
+    if(key[KEY_UP])
+        this->player.pos.y-=1;
+    if(key[KEY_DOWN])
+        this->player.pos.y+=1;
+
+    if(key[KEY_LEFT])
+        this->player.pos.x-=1;
+    if(key[KEY_RIGHT])
+        this->player.pos.x+=1;
 }
 void cEngine::Render()
 {
@@ -36,10 +48,10 @@ void cEngine::Render()
         {1,1,1,1,1,1,1,1,1,1,1,1},
         {1,1,1,1,1,1,1,1,1,1,1,1},
         {1,1,1,1,1,1,1,1,1,1,1,1},
-          {1,1,1,1,1,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,1,1,1,1,1},
-              {1,1,1,1,1,1,1,1,1,1,1,1},
-                {1,1,1,1,1,1,1,1,1,1,1,1}
+        {1,1,1,1,1,1,1,1,1,1,1,1},
+        {1,1,1,1,1,1,1,1,1,1,1,1},
+        {1,1,1,1,1,1,1,1,1,1,1,1},
+        {1,1,1,1,1,1,1,1,1,1,1,1}
 
     };
 
@@ -89,8 +101,8 @@ void cEngine::Render()
         {
             int x = (j-i) *(tileGridW/2);
             int y = (i+j )* (tileGridH/2);
-         /*   int sx = (Tile->x - Tile->y) * (32); //64 is our width, multiply by half
-        int sy = (Tile->x + Tile->y) * (16); //32 is our height, multiply by half*/
+            /*   int sx = (Tile->x - Tile->y) * (32); //64 is our width, multiply by half
+            int sy = (Tile->x + Tile->y) * (16); //32 is our height, multiply by half*/
             Vec2D v;
             v.x=x;
             v.y=y;
@@ -102,11 +114,11 @@ void cEngine::Render()
             {
                 if(val.x==j && val.y==i)
                 {
-                 mapa[j][i]=0;
+                    mapa[j][i]=0;
                 }
-                 //   masked_blit(tiles[2], buffer, 0, 0, vdest.x+this->orig.x, vdest.y+this->orig.y, tileW,tileH);
+                //   masked_blit(tiles[2], buffer, 0, 0, vdest.x+this->orig.x, vdest.y+this->orig.y, tileW,tileH);
                 //else
-                    masked_blit(tiles[mapa[j][i]+1], buffer, 0, 0, vdest.x+this->orig.x, vdest.y+this->orig.y, tileW,tileH);
+                masked_blit(tiles[mapa[j][i]+1], buffer, 0, 0, vdest.x+this->orig.x, vdest.y+this->orig.y, tileW,tileH);
             }
 
         }
@@ -114,28 +126,34 @@ void cEngine::Render()
 
     char tempStr [100];
 
+Vec2D val;
 
-    //mousePos=this->twoDToIso(&mousePos);
 
 
-    Vec2D val=this->GetTileWithPos(mousePos.x,mousePos.y);
+    if( this->player.pos.x<=0)
+        this->player.pos.x=0;
+    if( this->player.pos.y<=0)
+        this->player.pos.y=0;
+         Vec2D v1;
 
-    snprintf ( tempStr, 100, "mouse x:%d mouse y:%d tile:%d,%d", mousePos.x,  mousePos.y,val.y,val.x );
+    v1.x=this->player.pos.x;
+    v1.y=this->player.pos.y;
+    v1=this->twoDToIso(&v1);
+     val=this->GetTileWithPos(v1.x,  v1.y);
+    Vec2D orig_proj=this->twoDToIso(&this->orig);
+    v1.x=v1.x;
+    v1.y=v1.y;
+    masked_blit(tiles[9], buffer, 0, 0, v1.x+this->orig.x, v1.y+this->orig.y, tileW,tileH);
 
-   // masked_blit(tiles[2], buffer, 0, 0,  mousePos.x+this->orig.x-this->tileGridW/2,  mousePos.y+this->orig.y-this->tileGridH/2, tileW,tileH);
+
+ snprintf ( tempStr, 100, "player x:%d player y:%d tile:%d,%d", this->player.pos.x,  this->player.pos.y,val.y,val.x );
+
+
+    //snprintf ( tempStr, 100, "player x:%d player y:%d tile:%d,%d", this->player.pos.x,  this->player.pos.y,val.y,val.x );
+
+    // masked_blit(tiles[2], buffer, 0, 0,  mousePos.x+this->orig.x-this->tileGridW/2,  mousePos.y+this->orig.y-this->tileGridH/2, tileW,tileH);
 
     textout_centre_ex(buffer, font, tempStr, SCREEN_W/2, 20, makecol(255,255,255), -1);
- //twoDToIso(&v);
-            // vdest=setAltura(&vdest,20,0,32);
-           Vec2D v1;
-           v1.x=0;
-           v1.y=0;
-          // v1=this->twoDToIso(&v1);
-           Vec2D orig_proj=this->twoDToIso(&this->orig);
-           v1.x=v1.x;
-           v1.y=v1.y;
-//v1=this->twoDToIso(&v1);
-              putpixel(buffer, v1.x+this->orig.x+tileGridW/2, v1.y+this->orig.y+this->tileGridH, makecol(255,0,0));
     blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
 
 
