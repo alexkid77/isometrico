@@ -80,8 +80,8 @@ void cEngine::Render()
 
     /* you must always release bitmaps before calling any input functions */
     Vec2D mousePos;
-    mousePos.x=mouse_x-orig.x;
-    mousePos.y=mouse_y-orig.y;
+    mousePos.x=mouse_x-orig.x-this->tileGridW/2;
+    mousePos.y=mouse_y-orig.y-this->tileGridH;
 
     for(int i=0; i<12; i++)
     {
@@ -186,8 +186,8 @@ Vec2D cEngine::GetTileWithPos(int x,int y)
 {
 
     Vec2D res;
-    int pixel_x=x-this->tileGridW/2;
-    int pixel_y=y-this->tileGridH;
+    int pixel_x=x;
+    int pixel_y=y;
     int tile_w=64;
     int tile_h=32;
     int tile_x = (pixel_x/(tile_w/2) + pixel_y/(tile_h/2)) / 2;
