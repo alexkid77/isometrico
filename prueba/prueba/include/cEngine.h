@@ -5,6 +5,8 @@
 #include <allegro.h>
 #include <string>
 #include "math.h"
+#include "Entidad.h"
+class cMap;
 using namespace std;
 class cEngine
 {
@@ -13,18 +15,27 @@ public:
     void Update();
     void Render();
     virtual ~cEngine();
-
+    void setDebug(bool n)
+    {
+        this->debug=n;
+    }
 protected:
 
 private:
+    friend class cMap;
+    cMap *mapa;
     BITMAP *buffer;
+
+
+    BITMAP **tiles;
+    Entidad player;
+    bool debug;
     int tileH;
     int tileW;
     int tileGridH;
     int tileGridW;
     Vec2D orig;
-    BITMAP **tiles;
-   Entidad player;
+
     BITMAP ** ExtraeTiles(BITMAP *tilesRaw,int tileW,int tileH);
     Vec2D isoTo2D(Vec2D *vec);
     Vec2D twoDToIso(Vec2D *vec);

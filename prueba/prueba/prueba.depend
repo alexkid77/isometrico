@@ -37,17 +37,37 @@
 	<allegro.h>
 	"cEngine.h"
 
-1612775884 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cengine.h
+1612947757 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cengine.h
 	"structures.h"
 	"cVideo.h"
 	<allegro.h>
 	<string>
 	"math.h"
+	"Entidad.h"
 
-1612775704 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\structures.h
+1612790431 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\structures.h
 
 1612773572 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cvideo.h
 
-1612784386 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cengine.cpp
+1612946580 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cengine.cpp
 	"cEngine.h"
+	"cMap.h"
+
+1612789630 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\entidad.h
+	"structures.h"
+
+1612789532 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\entidad.cpp
+	"Entidad.h"
+
+1612871612 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\utils.cpp
+	"utils.h"
+
+1612871612 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\utils.h
+
+1612875543 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cmap.h
+	"structures.h"
+	"cEngine.h"
+
+1612947776 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cmap.cpp
+	"cMap.h"
 
