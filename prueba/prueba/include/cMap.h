@@ -7,16 +7,16 @@
 #include "cEngine.h"
 class cMap
 {
-    public:
-        cMap(cEngine* engine);
-        virtual ~cMap();
-        void Update();
-        void Render();
+public:
+    cMap(cEngine* engine);
+    virtual ~cMap();
+    void Update();
+    void Render();
 
-    protected:
+protected:
 
-    private:
-  int tileGridH;
+private:
+    int tileGridH;
     int tileGridW;
     Vec2D orig;
     Vec2D GetTileWithPos(int x,int y);

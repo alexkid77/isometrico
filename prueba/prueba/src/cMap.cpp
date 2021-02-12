@@ -67,6 +67,8 @@ void cMap::Render()
     Vec2D val;
 
 
+    /*if(mapa[j][i]!=3)
+        this->engine->player.Pos=this->engine->player.PosAnt;*/
 
     if( this->engine->player.Pos.x<=0)
         this->engine->player.Pos.x=0;
@@ -83,9 +85,11 @@ void cMap::Render()
     playerProj.y=this->engine->player.Pos.y;
     playerProj=this->engine->twoDToIso(&playerProj);
     val=this->engine->GetTileWithPos(playerProj.x,  playerProj.y);
+    Vec2D tilePlayer=this->GetTileWithPos(playerProj.x,playerProj.y);
+//obtener si pisa tile
 
-
-
+    Vec2D tilePlayer2=this->GetTileWithPos(playerProj.x+64,playerProj.y);
+    Vec2D tilePlayer3=this->GetTileWithPos(playerProj.x,playerProj.y+32);
     clear_to_color(this->engine->buffer, makecol(0, 0, 0));
     acquire_screen();
     for(int i=0; i<2; i++)
@@ -96,11 +100,10 @@ void cMap::Render()
     Vec2D mousePos;
     mousePos.x=mouse_x-orig.x-this->tileGridW/2;
     mousePos.y=mouse_y-orig.y-this->tileGridH;
-    Vec2D tilePlayer=this->GetTileWithPos(playerProj.x,playerProj.y);
+
     mapa[0][1]=8;
     mapa[0][8]=8;
     for(int j=0; j<12; j++)
-
     {
         for(int i=0; i<12; i++)
         {
@@ -124,14 +127,21 @@ void cMap::Render()
                 masked_blit(this->engine->tiles[(mapa[j][i])], this->engine->buffer, 0, 0, vdest.x+this->orig.x, vdest.y+this->orig.y, this->engine->tileW,this->engine->tileH);
             }
 
-            if(tilePlayer.y==i && tilePlayer.x==j )
+            if((tilePlayer.y==i && tilePlayer.x==j)
+                    /* || ((tilePlayer.y+1)==(i) && tilePlayer.x==j)
+                     || ((tilePlayer.y-1)==(i) && tilePlayer.x==j)
+                     || (tilePlayer.y==i && (tilePlayer.x-1)==(j))
+                     ||(tilePlayer.y==i && (tilePlayer.x+1)==(j))*/
+
+              )
             {
                 masked_blit(this->engine->tiles[9], this->engine->buffer, 0, 0, playerProj.x+this->orig.x, playerProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
             }
-            if(this->engine->debug){
-            char tempStr2 [100];
-            snprintf ( tempStr2, 100, "(%d,%d)", j,  i );
-            textout_centre_ex(this->engine->buffer, font, tempStr2, vdest.x+this->orig.x+32,vdest.y+this->orig.y+32, makecol(255,255,255), -1);
+            if(this->engine->debug)
+            {
+                char tempStr2 [100];
+                snprintf ( tempStr2, 100, "(%d,%d)", j,  i );
+                textout_centre_ex(this->engine->buffer, font, tempStr2, vdest.x+this->orig.x+32,vdest.y+this->orig.y+32, makecol(255,255,255), -1);
             }
         }
     }
@@ -149,6 +159,13 @@ void cMap::Render()
 
 
     textout_centre_ex(this->engine->buffer, font, tempStr, SCREEN_W/2, 20, makecol(255,255,255), -1);
+
+    //tres posiciones
+    putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+64,playerProj.y+this->engine->orig.y+32+16,makecol(255,255,255));
+    putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x,playerProj.y+this->engine->orig.y+32+16,makecol(0,255,0));
+    putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+64,makecol(255,0,0));
+  putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+32,makecol(255,0,0));
+
     blit(this->engine->buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
 
 

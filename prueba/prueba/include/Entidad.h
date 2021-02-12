@@ -8,6 +8,7 @@ class Entidad
         Entidad();
         virtual ~Entidad();
         Vec2D Pos;
+        Vec2D PosAnt;
     protected:
 
     private:

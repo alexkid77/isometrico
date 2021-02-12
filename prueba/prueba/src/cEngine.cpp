@@ -12,8 +12,8 @@ cEngine::cEngine()
     BITMAP *tilesRaw=load_bmp("tiles.bmp", 0);
     tiles=ExtraeTiles(tilesRaw,tileW,tileH);
 
-    this->player.Pos.x=236;
-    this->player.Pos.y=2;
+    this->player.Pos.x=3;
+    this->player.Pos.y=18;
     this->mapa=new cMap(this);
     //ctor
 }
@@ -25,6 +25,7 @@ cEngine::~cEngine()
 void cEngine::Update()
 {
     int inc=1;
+    this->player.PosAnt=this->player.Pos;
     if(key[KEY_UP])
         this->player.Pos.y-=inc;
     if(key[KEY_DOWN])
