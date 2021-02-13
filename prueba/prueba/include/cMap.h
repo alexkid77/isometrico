@@ -19,7 +19,7 @@ private:
     int tileGridH;
     int tileGridW;
     Vec2D orig;
-    Vec2D GetTileWithPos(int x,int y);
+
     cEngine* engine;
 
 };

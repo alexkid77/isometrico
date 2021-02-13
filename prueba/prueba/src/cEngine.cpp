@@ -12,8 +12,9 @@ cEngine::cEngine()
     BITMAP *tilesRaw=load_bmp("tiles.bmp", 0);
     tiles=ExtraeTiles(tilesRaw,tileW,tileH);
 
-    this->player.Pos.x=3;
-    this->player.Pos.y=18;
+    this->player=Entidad(this->tileGridW,this->tileGridH);
+    this->player.Pos.x=33;
+    this->player.Pos.y=33;
     this->mapa=new cMap(this);
     //ctor
 }
@@ -70,25 +71,7 @@ BITMAP **cEngine::ExtraeTiles(BITMAP *tilesRaw,int tileW,int tileH)
     return tiles;
 }
 
-Vec2D cEngine::isoTo2D(Vec2D *vec)
-{
-    Vec2D val;
-    val.x = (2 * vec->y + vec->x) / 2;
-    val.y = (2 * vec->y - vec->x) / 2;
-    return val;
-}
 
-Vec2D cEngine::twoDToIso(Vec2D *vec)
-{
-
-    Vec2D val;
-    val.x=vec->x-vec->y;
-    val.y=(vec->x+vec->y)/2;
-    return val;
-
-    //int  isoX = ( ((ScreenY + scrollY) / tileHeight) + ((screenX + scrollX) - (isoMapMaxY * tileWidth/2)) / tileWidth )
-//int isoY = ( ((screenY + scrollY) / tileHeight) - ((screenX + scrollX) - (isoMapMaxY * tileWidth/2)) / tileWidth )
-}
 Vec2D cEngine::GetTileWithPos(int x,int y)
 {
 

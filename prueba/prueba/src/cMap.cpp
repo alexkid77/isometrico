@@ -79,17 +79,20 @@ void cMap::Render()
         this->engine->player.Pos.x=12*32-32;
     if( this->engine->player.Pos.y>((12*32)-32))
         this->engine->player.Pos.y=12*32-32;
-    Vec2D playerProj;
+    Vec2D playerProj=this->engine->player.getPosProj();
 
-    playerProj.x=this->engine->player.Pos.x;
+    vector<Vec2D> tilesOcupados=this->engine->player.getTilesOcupados();
+ /*   playerProj.x=this->engine->player.Pos.x;
     playerProj.y=this->engine->player.Pos.y;
-    playerProj=this->engine->twoDToIso(&playerProj);
-    val=this->engine->GetTileWithPos(playerProj.x,  playerProj.y);
-    Vec2D tilePlayer=this->GetTileWithPos(playerProj.x,playerProj.y);
+    playerProj=utils::twoDToIso(&playerProj);*/
+
+   // val=this->engine->GetTileWithPos(playerProj.x,  playerProj.y);
+   val.x=this->engine->player.Pos.x/32;
+    val.y=this->engine->player.Pos.y/32;
+    Vec2D tilePlayer=utils::GetTileWithPos(this->tileGridW,this->tileGridH,playerProj.x,playerProj.y);
 //obtener si pisa tile
 
-    Vec2D tilePlayer2=this->GetTileWithPos(playerProj.x+64,playerProj.y);
-    Vec2D tilePlayer3=this->GetTileWithPos(playerProj.x,playerProj.y+32);
+
     clear_to_color(this->engine->buffer, makecol(0, 0, 0));
     acquire_screen();
     for(int i=0; i<2; i++)
@@ -172,18 +175,3 @@ void cMap::Render()
     release_screen();
 }
 
-Vec2D cMap::GetTileWithPos(int x,int y)
-{
-
-    Vec2D res;
-    int pixel_x=x;
-    int pixel_y=y;
-    int tile_w=this->tileGridW;
-    int tile_h=this->tileGridH;
-    int tile_x = (pixel_x/(tile_w/2) + pixel_y/(tile_h/2)) / 2;
-    int tile_y = (pixel_y/(tile_h/2) - pixel_x/(tile_w/2)) / 2;
-    //convert back to integer
-    res.x =tile_x;
-    res.y =tile_y;
-    return res;
-}

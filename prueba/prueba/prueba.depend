@@ -15,23 +15,26 @@
 
 1612437284 c:\users\administrador\documents\c_alexproyectos\prueba\prueba\include\cvideo.h
 
-1612695303 source:c:\users\alex\documents\isometrico\prueba\prueba\main.cpp
+1613228231 source:c:\users\alex\documents\isometrico\prueba\prueba\main.cpp
 	<allegro.h>
 	"cEngine.h"
 
-1612625668 c:\users\alex\documents\isometrico\prueba\prueba\include\cengine.h
+1613230480 c:\users\alex\documents\isometrico\prueba\prueba\include\cengine.h
 	"structures.h"
 	"cVideo.h"
 	<allegro.h>
 	<string>
 	"math.h"
+	"Entidad.h"
+	"utils.h"
 
-1612609519 c:\users\alex\documents\isometrico\prueba\prueba\include\structures.h
+1613228231 c:\users\alex\documents\isometrico\prueba\prueba\include\structures.h
 
 1612609519 c:\users\alex\documents\isometrico\prueba\prueba\include\cvideo.h
 
-1612709962 source:c:\users\alex\documents\isometrico\prueba\prueba\src\cengine.cpp
+1613235281 source:c:\users\alex\documents\isometrico\prueba\prueba\src\cengine.cpp
 	"cEngine.h"
+	"cMap.h"
 
 1613131816 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\main.cpp
 	<allegro.h>
@@ -70,4 +73,34 @@
 
 1613134284 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cmap.cpp
 	"cMap.h"
+
+1613230673 c:\users\alex\documents\isometrico\prueba\prueba\include\entidad.h
+	"structures.h"
+	<vector>
+	<utils.h>
+
+1613229100 c:\users\alex\documents\isometrico\prueba\prueba\include\cmap.h
+	"structures.h"
+	"cEngine.h"
+
+1613235721 source:c:\users\alex\documents\isometrico\prueba\prueba\src\cmap.cpp
+	"cMap.h"
+
+1613235245 source:c:\users\alex\documents\isometrico\prueba\prueba\src\entidad.cpp
+	"Entidad.h"
+
+1613228231 source:c:\users\alex\documents\isometrico\prueba\prueba\src\utils.cpp
+	"utils.h"
+
+1613229083 c:\users\alex\documents\isometrico\prueba\prueba\include\utils.h
+	<vector>
+	"structures.h"
+
+1613229491 source:c:\users\alex\documents\isometrico\prueba\prueba\src\player.cpp
+	"Player.h"
+
+1613230082 c:\users\alex\documents\isometrico\prueba\prueba\include\player.h
+	<Entidad.h>
+	<utils.h>
+	<vector>
 
