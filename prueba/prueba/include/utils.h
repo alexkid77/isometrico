@@ -25,6 +25,7 @@ public:
         return val;
     }
 
+    /*obtiene el tile desde una coordenada projectada */
     static Vec2D GetTileWithPos(int tileGridW,int tileGridH,int x,int y)
     {
 

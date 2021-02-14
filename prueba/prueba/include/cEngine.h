@@ -43,7 +43,7 @@ private:
 
     Vec2D setAltura(Vec2D *pos,int tileSizeH,int altura,int tileHeight);
 
-    Vec2D GetTileWithPos(int x,int y);
+
 };
 
 #endif // CENGINE_H

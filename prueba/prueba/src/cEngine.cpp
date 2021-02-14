@@ -72,21 +72,7 @@ BITMAP **cEngine::ExtraeTiles(BITMAP *tilesRaw,int tileW,int tileH)
 }
 
 
-Vec2D cEngine::GetTileWithPos(int x,int y)
-{
 
-    Vec2D res;
-    int pixel_x=x;
-    int pixel_y=y;
-    int tile_w=64;
-    int tile_h=32;
-    int tile_x = (pixel_x/(tile_w/2) + pixel_y/(tile_h/2)) / 2;
-    int tile_y = (pixel_y/(tile_h/2) - pixel_x/(tile_w/2)) / 2;
-    //convert back to integer
-    res.x =tile_x;
-    res.y =tile_y;
-    return res;
-}
 Vec2D cEngine::setAltura(Vec2D *pos,int tileSizeH,int altura,int tileHeight)
 {
     Vec2D val;

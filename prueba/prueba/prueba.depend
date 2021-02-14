@@ -19,7 +19,7 @@
 	<allegro.h>
 	"cEngine.h"
 
-1613230480 c:\users\alex\documents\isometrico\prueba\prueba\include\cengine.h
+1613304609 c:\users\alex\documents\isometrico\prueba\prueba\include\cengine.h
 	"structures.h"
 	"cVideo.h"
 	<allegro.h>
@@ -92,7 +92,7 @@
 1613228231 source:c:\users\alex\documents\isometrico\prueba\prueba\src\utils.cpp
 	"utils.h"
 
-1613229083 c:\users\alex\documents\isometrico\prueba\prueba\include\utils.h
+1613304571 c:\users\alex\documents\isometrico\prueba\prueba\include\utils.h
 	<vector>
 	"structures.h"
 
