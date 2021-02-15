@@ -5,6 +5,9 @@
 
 #include "structures.h"
 #include "cEngine.h"
+#include "Tile.h"
+#include <vector>
+using namespace std;
 class cMap
 {
 public:

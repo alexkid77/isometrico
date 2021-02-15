@@ -6,19 +6,25 @@
 using namespace std;
 class Entidad
 {
-    public:
-        Entidad();
-        Entidad(int tileGridW,int tileGridH);
-        virtual ~Entidad();
-        Vec2D Pos;
-        Vec2D PosAnt;
+public:
+    Entidad();
+    Entidad(int tileGridW,int tileGridH);
+    virtual ~Entidad();
+    Vec2D Pos;
+    Vec2D PosAnt;
+    Vec2D PosProj;
+    int Depth;
+    vector<Vec2D> getTilesOcupados();
+    Vec2D getPosProj();
+    bool OcupaTile(int x,int y);
+    int getDepth()
+    {
+        this->Depth=this->Pos.x+this->Pos.y;
+    }
+protected:
 
-        vector<Vec2D> getTilesOcupados();
-        Vec2D getPosProj();
-    protected:
-
-    private:
-        int tileGridW,tileGridH;
+private:
+    int tileGridW,tileGridH;
 
 };
 

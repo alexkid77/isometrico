@@ -35,6 +35,7 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Entidad.h" />
+		<Unit filename="include/Tile.h" />
 		<Unit filename="include/cEngine.h" />
 		<Unit filename="include/cMap.h" />
 		<Unit filename="include/cVideo.h" />
@@ -42,6 +43,7 @@
 		<Unit filename="include/utils.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Entidad.cpp" />
+		<Unit filename="src/Tile.cpp" />
 		<Unit filename="src/cEngine.cpp" />
 		<Unit filename="src/cMap.cpp" />
 		<Unit filename="src/utils.cpp" />

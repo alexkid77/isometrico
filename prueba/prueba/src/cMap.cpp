@@ -1,5 +1,5 @@
 #include "cMap.h"
-
+#include <algorithm>
 cMap::cMap(cEngine *engine)
 {
     this->tileGridH= engine->tileGridH;
@@ -64,31 +64,31 @@ void cMap::Render()
 
 
 
-    Vec2D val;
+    Vec2D val2;
 
 
     /*if(mapa[j][i]!=3)
         this->engine->player.Pos=this->engine->player.PosAnt;*/
 
-    if( this->engine->player.Pos.x<=0)
-        this->engine->player.Pos.x=0;
-    if( this->engine->player.Pos.y<=0)
-        this->engine->player.Pos.y=0;
+    if( this->engine->player->Pos.x<=0)
+        this->engine->player->Pos.x=0;
+    if( this->engine->player->Pos.y<=0)
+        this->engine->player->Pos.y=0;
 
-    if( this->engine->player.Pos.x>((12*32)-32))
-        this->engine->player.Pos.x=12*32-32;
-    if( this->engine->player.Pos.y>((12*32)-32))
-        this->engine->player.Pos.y=12*32-32;
-    Vec2D playerProj=this->engine->player.getPosProj();
+    if( this->engine->player->Pos.x>((12*32)-32))
+        this->engine->player->Pos.x=12*32-32;
+    if( this->engine->player->Pos.y>((12*32)-32))
+        this->engine->player->Pos.y=12*32-32;
+    Vec2D playerProj=this->engine->player->getPosProj();
 
-    vector<Vec2D> tilesOcupados=this->engine->player.getTilesOcupados();
- /*   playerProj.x=this->engine->player.Pos.x;
-    playerProj.y=this->engine->player.Pos.y;
-    playerProj=utils::twoDToIso(&playerProj);*/
-
-   // val=this->engine->GetTileWithPos(playerProj.x,  playerProj.y);
-   val.x=this->engine->player.Pos.x/32;
-    val.y=this->engine->player.Pos.y/32;
+    vector<Vec2D> tilesOcupados=this->engine->player->getTilesOcupados();
+      playerProj.x=this->engine->player->Pos.x;
+       playerProj.y=this->engine->player->Pos.y;
+       playerProj=utils::twoDToIso(&playerProj);
+this->engine->player->PosProj=playerProj;
+    // val=this->engine->GetTileWithPos(playerProj.x,  playerProj.y);
+    val2.x=this->engine->player->Pos.x/32;
+    val2.y=this->engine->player->Pos.y/32;
     Vec2D tilePlayer=utils::GetTileWithPos(this->tileGridW,this->tileGridH,playerProj.x,playerProj.y);
 //obtener si pisa tile
 
@@ -104,50 +104,83 @@ void cMap::Render()
     mousePos.x=mouse_x-orig.x-this->tileGridW/2;
     mousePos.y=mouse_y-orig.y-this->tileGridH;
 
-    mapa[0][1]=8;
-    mapa[0][8]=8;
+    vector<Entidad*> vTiles;
+    this->engine->player->getDepth();
+    vTiles.push_back(this->engine->player);
     for(int j=0; j<12; j++)
-    {
         for(int i=0; i<12; i++)
         {
             //la i es Y
             //la j es X
             int x = (j-i) *(tileGridW/2);
             int y = (i+j )* (tileGridH/2);
-            /*   int sx = (Tile->x - Tile->y) * (32); //64 is our width, multiply by half
-            int sy = (Tile->x + Tile->y) * (16); //32 is our height, multiply by half*/
-            Vec2D v;
-            v.x=x;
-            v.y=y;
-            Vec2D vdest=v;
+            Tile *t=new Tile(32,32);
+            t->indiceTile=mapa[j][i];
+            t->Pos.x=i*32;
+            t->Pos.y=j*32;
+            t->getDepth();
+            t->PosProj.x=x;
+            t->PosProj.y=y;
+            vTiles.push_back(t);
+        }
+    sort( vTiles.begin( ), vTiles.end( ), [ ]( const Entidad* lhs, const Entidad* rhs )
+    {
+        return lhs->Depth < rhs->Depth;
+    });
 
-            // Vec2D val=this->GetTileWithPos(mousePos.x,mousePos.y);
+    for(int i=0; i<vTiles.size(); i++)
+    {
+        Tile *t=dynamic_cast<Tile*>(vTiles[i]);
+        if(t== nullptr)
+        {
+            Entidad * e=dynamic_cast<Entidad*>(vTiles[i]);
+            masked_blit(this->engine->tiles[9], this->engine->buffer, 0, 0,  e->PosProj.x+this->orig.x,  e->PosProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
+
+        }
+        else
+            masked_blit(this->engine->tiles[t->indiceTile], this->engine->buffer, 0, 0, t->PosProj.x+this->orig.x, t->PosProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
+
+    }
+
+    /*
+    mapa[0][1]=1;
+    mapa[0][8]=1;
+    vector<Vec2D> vTiles;
+    for(int j=0; j<12; j++)
+    {
+    for(int i=0; i<12; i++)
+    {
+        //la i es Y
+        //la j es X
+        int x = (j-i) *(tileGridW/2);
+        int y = (i+j )* (tileGridH/2);
+        int depth=x+y;
+        Vec2D v;
+        v.x=x;
+        v.y=y;
+        Vec2D vdest=v;
 
 
-            if(mapa[j][i])
-            {
 
-                masked_blit(this->engine->tiles[(mapa[j][i])], this->engine->buffer, 0, 0, vdest.x+this->orig.x, vdest.y+this->orig.y, this->engine->tileW,this->engine->tileH);
-            }
 
-            if((tilePlayer.y==i && tilePlayer.x==j)
-                    /* || ((tilePlayer.y+1)==(i) && tilePlayer.x==j)
-                     || ((tilePlayer.y-1)==(i) && tilePlayer.x==j)
-                     || (tilePlayer.y==i && (tilePlayer.x-1)==(j))
-                     ||(tilePlayer.y==i && (tilePlayer.x+1)==(j))*/
+        if(mapa[j][i])
+        {
 
-              )
-            {
-                masked_blit(this->engine->tiles[9], this->engine->buffer, 0, 0, playerProj.x+this->orig.x, playerProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
-            }
-            if(this->engine->debug)
-            {
-                char tempStr2 [100];
-                snprintf ( tempStr2, 100, "(%d,%d)", j,  i );
-                textout_centre_ex(this->engine->buffer, font, tempStr2, vdest.x+this->orig.x+32,vdest.y+this->orig.y+32, makecol(255,255,255), -1);
-            }
+            masked_blit(this->engine->tiles[(mapa[j][i])], this->engine->buffer, 0, 0, vdest.x+this->orig.x, vdest.y+this->orig.y, this->engine->tileW,this->engine->tileH);
+        }
+
+        if(this->engine->player.OcupaTile(j,i))
+        {
+            masked_blit(this->engine->tiles[9], this->engine->buffer, 0, 0, playerProj.x+this->orig.x, playerProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
+        }
+        if(this->engine->debug)
+        {
+            char tempStr2 [100];
+            snprintf ( tempStr2, 100, "(%d,%d)", j,  i );
+            textout_centre_ex(this->engine->buffer, font, tempStr2, vdest.x+this->orig.x+32,vdest.y+this->orig.y+32, makecol(255,255,255), -1);
         }
     }
+    }*/
 
     char tempStr [100];
 
@@ -156,7 +189,7 @@ void cMap::Render()
 
 
 
-    snprintf ( tempStr, 100, "player x:%d px:%d player y:%d py:%d tile:%d,%d val:%d", this->engine->player.Pos.x,playerProj.x,  this->engine->player.Pos.y,playerProj.y,tilePlayer.x,tilePlayer.y,mapa[val.x][val.y] );
+    snprintf ( tempStr, 100, "player x:%d px:%d player y:%d py:%d tile:%d,%d val:%d", this->engine->player->Pos.x,playerProj.x,  this->engine->player->Pos.y,playerProj.y,val2.x,val2.y,mapa[val2.x][val2.y] );
 
 
 
@@ -167,7 +200,7 @@ void cMap::Render()
     putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+64,playerProj.y+this->engine->orig.y+32+16,makecol(255,255,255));
     putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x,playerProj.y+this->engine->orig.y+32+16,makecol(0,255,0));
     putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+64,makecol(255,0,0));
-  putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+32,makecol(255,0,0));
+    putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+32,makecol(255,0,0));
 
     blit(this->engine->buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
 

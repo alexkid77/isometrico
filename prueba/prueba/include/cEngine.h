@@ -30,7 +30,7 @@ private:
 
 
     BITMAP **tiles;
-    Entidad player;
+    Entidad *player;
     bool debug;
     int tileH;
     int tileW;

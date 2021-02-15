@@ -12,9 +12,9 @@ cEngine::cEngine()
     BITMAP *tilesRaw=load_bmp("tiles.bmp", 0);
     tiles=ExtraeTiles(tilesRaw,tileW,tileH);
 
-    this->player=Entidad(this->tileGridW,this->tileGridH);
-    this->player.Pos.x=33;
-    this->player.Pos.y=33;
+    this->player= new Entidad(this->tileGridW,this->tileGridH);
+    this->player->Pos.x=20;
+    this->player->Pos.y=0;
     this->mapa=new cMap(this);
     //ctor
 }
@@ -26,16 +26,16 @@ cEngine::~cEngine()
 void cEngine::Update()
 {
     int inc=1;
-    this->player.PosAnt=this->player.Pos;
+    this->player->PosAnt=this->player->Pos;
     if(key[KEY_UP])
-        this->player.Pos.y-=inc;
+        this->player->Pos.y-=inc;
     if(key[KEY_DOWN])
-        this->player.Pos.y+=inc;
+        this->player->Pos.y+=inc;
 
     if(key[KEY_LEFT])
-        this->player.Pos.x-=inc;
+        this->player->Pos.x-=inc;
     if(key[KEY_RIGHT])
-        this->player.Pos.x+=inc;
+        this->player->Pos.x+=inc;
 
     if(key[KEY_SPACE])
         this->debug=!this->debug;
