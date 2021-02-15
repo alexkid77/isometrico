@@ -8,7 +8,8 @@ class Tile : public Entidad
 {
     public:
         int indiceTile;
-
+        int i;
+        int j;
         Tile(int tileGridW,int tileGridH);
         virtual ~Tile();
 

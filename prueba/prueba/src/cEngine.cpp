@@ -26,7 +26,7 @@ cEngine::~cEngine()
 void cEngine::Update()
 {
     int inc=1;
-    this->player->PosAnt=this->player->Pos;
+
     if(key[KEY_UP])
         this->player->Pos.y-=inc;
     if(key[KEY_DOWN])

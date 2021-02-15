@@ -82,10 +82,10 @@ void cMap::Render()
     Vec2D playerProj=this->engine->player->getPosProj();
 
     vector<Vec2D> tilesOcupados=this->engine->player->getTilesOcupados();
-      playerProj.x=this->engine->player->Pos.x;
-       playerProj.y=this->engine->player->Pos.y;
-       playerProj=utils::twoDToIso(&playerProj);
-this->engine->player->PosProj=playerProj;
+    playerProj.x=this->engine->player->Pos.x;
+    playerProj.y=this->engine->player->Pos.y;
+    playerProj=utils::twoDToIso(&playerProj);
+    this->engine->player->PosProj=playerProj;
     // val=this->engine->GetTileWithPos(playerProj.x,  playerProj.y);
     val2.x=this->engine->player->Pos.x/32;
     val2.y=this->engine->player->Pos.y/32;
@@ -107,8 +107,8 @@ this->engine->player->PosProj=playerProj;
     vector<Entidad*> vTiles;
     this->engine->player->getDepth();
     vTiles.push_back(this->engine->player);
-    for(int j=0; j<12; j++)
-        for(int i=0; i<12; i++)
+    for(int j=0; j<4; j++)
+        for(int i=0; i<4; i++)
         {
             //la i es Y
             //la j es X
@@ -121,6 +121,8 @@ this->engine->player->PosProj=playerProj;
             t->getDepth();
             t->PosProj.x=x;
             t->PosProj.y=y;
+            t->i=i;
+            t->j=j;
             vTiles.push_back(t);
         }
     sort( vTiles.begin( ), vTiles.end( ), [ ]( const Entidad* lhs, const Entidad* rhs )
@@ -136,10 +138,19 @@ this->engine->player->PosProj=playerProj;
             Entidad * e=dynamic_cast<Entidad*>(vTiles[i]);
             masked_blit(this->engine->tiles[9], this->engine->buffer, 0, 0,  e->PosProj.x+this->orig.x,  e->PosProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
 
+
         }
         else
-            masked_blit(this->engine->tiles[t->indiceTile], this->engine->buffer, 0, 0, t->PosProj.x+this->orig.x, t->PosProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
+        {
+        masked_blit(this->engine->tiles[t->indiceTile], this->engine->buffer, 0, 0, t->PosProj.x+this->orig.x, t->PosProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
+            if(this->engine->debug)
+            {
+                char tempStr2 [100];
+                snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
+                textout_centre_ex(this->engine->buffer, font, tempStr2, t->PosProj.x+this->orig.x+32,t->PosProj.y+this->orig.y+32, makecol(255,255,255), -1);
+            }
 
+        }
     }
 
     /*

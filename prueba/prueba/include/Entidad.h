@@ -11,7 +11,7 @@ public:
     Entidad(int tileGridW,int tileGridH);
     virtual ~Entidad();
     Vec2D Pos;
-    Vec2D PosAnt;
+
     Vec2D PosProj;
     int Depth;
     vector<Vec2D> getTilesOcupados();
