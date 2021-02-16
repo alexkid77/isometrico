@@ -130,13 +130,13 @@ void cMap::Render()
         }
 
     this->engine->player->id=777;
-    for(int i=0; i<vTiles.size(); i++)
-    {
-        Entidad *a=vTiles[i];//this->engine->player;
+  //  for(int i=0; i<vTiles.size(); i++)
+   // {
+        Entidad *a=this->engine->player;
         for(int j=0; j<vTiles.size(); j++)
         {
-            if(i==j)
-                continue;
+           /* if(i==j)
+                continue;*/
 
             Entidad *b=vTiles[j];
             if( a->SolapaEntidad(b))
@@ -145,7 +145,7 @@ void cMap::Render()
             }
         }
         a->visitado=false;
-    }
+   // }
     int sortDepth=0;
     for(int i=0; i<vTiles.size(); i++)
     {
@@ -179,40 +179,7 @@ void cMap::Render()
 
     }
 
-    /*
-    mapa[0][1]=1;
-    mapa[0][8]=1;
-    vector<Vec2D> vTiles;
-    for(int j=0; j<12; j++)
-    {
-    for(int i=0; i<12; i++)
-    {
-        //la i es Y
-        //la j es X
-        int x = (j-i) *(tileGridW/2);
-        int y = (i+j )* (tileGridH/2);
-        int depth=x+y;
-        Vec2D v;
-        v.x=x;
-        v.y=y;
-        Vec2D vdest=v;
 
-
-
-
-        if(mapa[j][i])
-        {
-
-            masked_blit(this->engine->tiles[(mapa[j][i])], this->engine->buffer, 0, 0, vdest.x+this->orig.x, vdest.y+this->orig.y, this->engine->tileW,this->engine->tileH);
-        }
-
-        if(this->engine->player.OcupaTile(j,i))
-        {
-            masked_blit(this->engine->tiles[9], this->engine->buffer, 0, 0, playerProj.x+this->orig.x, playerProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
-        }
-
-    }
-    }*/
 
     char tempStr [100];
 
@@ -229,10 +196,10 @@ void cMap::Render()
     textout_centre_ex(this->engine->buffer, font, tempStr, SCREEN_W/2, 20, makecol(255,255,255), -1);
 
     //tres posiciones
-    putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+64,playerProj.y+this->engine->orig.y+32+16,makecol(255,255,255));
+ /*   putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+64,playerProj.y+this->engine->orig.y+32+16,makecol(255,255,255));
     putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x,playerProj.y+this->engine->orig.y+32+16,makecol(0,255,0));
     putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+64,makecol(255,0,0));
-    putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+32,makecol(255,0,0));
+    putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+32,makecol(255,0,0));*/
 
     blit(this->engine->buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
 
