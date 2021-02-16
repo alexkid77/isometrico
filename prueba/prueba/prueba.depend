@@ -40,7 +40,7 @@
 	<allegro.h>
 	"cEngine.h"
 
-1613397294 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cengine.h
+1613464370 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cengine.h
 	"structures.h"
 	"cVideo.h"
 	<allegro.h>
@@ -49,7 +49,7 @@
 	"Entidad.h"
 	"utils.h"
 
-1613379254 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\structures.h
+1613463781 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\structures.h
 
 1612773572 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cvideo.h
 
@@ -57,28 +57,29 @@
 	"cEngine.h"
 	"cMap.h"
 
-1613394727 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\entidad.h
+1613476304 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\entidad.h
 	"structures.h"
 	<vector>
 	<utils.h>
 
-1613392852 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\entidad.cpp
+1613480376 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\entidad.cpp
 	"Entidad.h"
 
-1612871612 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\utils.cpp
+1613464490 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\utils.cpp
 	"utils.h"
 
-1613373927 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\utils.h
+1613465473 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\utils.h
 	<vector>
 	"structures.h"
+	"Entidad.h"
 
-1613394794 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cmap.h
+1613471036 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cmap.h
 	"structures.h"
 	"cEngine.h"
 	"Tile.h"
 	<vector>
 
-1613397584 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cmap.cpp
+1613480607 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cmap.cpp
 	"cMap.h"
 	<algorithm>
 

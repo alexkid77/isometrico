@@ -22,7 +22,7 @@ void cMap::Render()
     {
         {3,1,3,3,3,3,3,3,3,3,3,3},
         {3,3,3,3,3,3,3,3,3,3,3,3},
-        {3,3,3,3,3,3,3,3,3,3,3,3},
+        {3,3,3,3,3,3,3,3,3,1,3,3},
         {3,3,3,3,3,3,3,3,3,3,3,3},
         {3,3,3,3,3,3,3,3,3,3,3,3},
         {3,3,3,3,3,3,3,3,3,3,3,3},
@@ -30,7 +30,7 @@ void cMap::Render()
         {3,3,3,3,3,3,3,3,3,3,3,3},
         {3,3,3,3,3,3,3,3,3,3,3,3},
         {3,3,3,3,3,3,3,3,3,3,3,3},
-        {3,3,3,3,3,3,3,3,3,3,3,3},
+        {3,1,3,3,3,3,3,3,3,3,1,3},
         {3,3,3,3,3,3,3,3,3,3,3,3}
 
     };
@@ -82,10 +82,10 @@ void cMap::Render()
     Vec2D playerProj=this->engine->player->getPosProj();
 
     vector<Vec2D> tilesOcupados=this->engine->player->getTilesOcupados();
-      playerProj.x=this->engine->player->Pos.x;
-       playerProj.y=this->engine->player->Pos.y;
-       playerProj=utils::twoDToIso(&playerProj);
-this->engine->player->PosProj=playerProj;
+    playerProj.x=this->engine->player->Pos.x;
+    playerProj.y=this->engine->player->Pos.y;
+    playerProj=utils::twoDToIso(&playerProj);
+    this->engine->player->PosProj=playerProj;
     // val=this->engine->GetTileWithPos(playerProj.x,  playerProj.y);
     val2.x=this->engine->player->Pos.x/32;
     val2.y=this->engine->player->Pos.y/32;
@@ -105,8 +105,11 @@ this->engine->player->PosProj=playerProj;
     mousePos.y=mouse_y-orig.y-this->tileGridH;
 
     vector<Entidad*> vTiles;
-    this->engine->player->getDepth();
-    vTiles.push_back(this->engine->player);
+    this->engine->player->Depth=0;
+    this->engine->player->visitado=false;
+    this->engine->player->entidadesDebajo.clear();
+    //this->engine->player->getDepth();
+ vTiles.push_back(this->engine->player);
     for(int j=0; j<12; j++)
         for(int i=0; i<12; i++)
         {
@@ -116,13 +119,38 @@ this->engine->player->PosProj=playerProj;
             int y = (i+j )* (tileGridH/2);
             Tile *t=new Tile(32,32);
             t->indiceTile=mapa[j][i];
-            t->Pos.x=i*32;
-            t->Pos.y=j*32;
-            t->getDepth();
+            t->Pos.x=j*32;
+            t->Pos.y=i*32;
+
             t->PosProj.x=x;
             t->PosProj.y=y;
             vTiles.push_back(t);
+
+
         }
+
+    this->engine->player->id=777;
+    for(int i=0; i<vTiles.size(); i++)
+    {
+        Entidad *a=vTiles[i];//this->engine->player;
+        for(int j=0; j<vTiles.size(); j++)
+        {
+            if(i==j)
+                continue;
+
+            Entidad *b=vTiles[j];
+            if( a->SolapaEntidad(b))
+            {
+                a->entidadesDebajo.push_back(b);
+            }
+        }
+        a->visitado=false;
+    }
+    int sortDepth=0;
+    for(int i=0; i<vTiles.size(); i++)
+    {
+        this->VisitNode(vTiles[i],&sortDepth);
+    }
     sort( vTiles.begin( ), vTiles.end( ), [ ]( const Entidad* lhs, const Entidad* rhs )
     {
         return lhs->Depth < rhs->Depth;
@@ -131,14 +159,23 @@ this->engine->player->PosProj=playerProj;
     for(int i=0; i<vTiles.size(); i++)
     {
         Tile *t=dynamic_cast<Tile*>(vTiles[i]);
+        Entidad * e=dynamic_cast<Entidad*>(vTiles[i]);
+        int sortTam=e->Depth;
         if(t== nullptr)
         {
-            Entidad * e=dynamic_cast<Entidad*>(vTiles[i]);
+
             masked_blit(this->engine->tiles[9], this->engine->buffer, 0, 0,  e->PosProj.x+this->orig.x,  e->PosProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
 
         }
         else
+        {
             masked_blit(this->engine->tiles[t->indiceTile], this->engine->buffer, 0, 0, t->PosProj.x+this->orig.x, t->PosProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
+
+        }
+        char tempStr2 [100];
+        // snprintf ( tempStr2, 100, "(%d,%d)", j,  i );
+        snprintf ( tempStr2, 100, "(%d)", e->Depth );
+        textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x+32,e->PosProj.y+this->orig.y+32, makecol(255,255,255), -1);
 
     }
 
@@ -173,12 +210,7 @@ this->engine->player->PosProj=playerProj;
         {
             masked_blit(this->engine->tiles[9], this->engine->buffer, 0, 0, playerProj.x+this->orig.x, playerProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
         }
-        if(this->engine->debug)
-        {
-            char tempStr2 [100];
-            snprintf ( tempStr2, 100, "(%d,%d)", j,  i );
-            textout_centre_ex(this->engine->buffer, font, tempStr2, vdest.x+this->orig.x+32,vdest.y+this->orig.y+32, makecol(255,255,255), -1);
-        }
+
     }
     }*/
 
@@ -206,5 +238,32 @@ this->engine->player->PosProj=playerProj;
 
 
     release_screen();
+}
+
+void cMap::VisitNode(Entidad *ent,int *sortDepth)
+{
+    if(ent->id==777)
+    {
+        int kk=0;
+        kk++;
+    }
+    if(!ent->visitado)
+    {
+        ent->visitado=true;
+        int hijos=ent->entidadesDebajo.size();
+        for(int i=0; i<hijos; i++)
+        {
+            if(ent->entidadesDebajo[i]==0)
+                break;
+            else
+            {
+
+                VisitNode(ent->entidadesDebajo[i],sortDepth);
+                ent->entidadesDebajo[i]=0;
+            }
+        }
+        (*sortDepth)++;
+        ent->Depth=(*sortDepth);
+    }
 }
 

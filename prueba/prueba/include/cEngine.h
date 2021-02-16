@@ -9,6 +9,7 @@
 #include "utils.h"
 class cMap;
 using namespace std;
+
 class cEngine
 {
 public:

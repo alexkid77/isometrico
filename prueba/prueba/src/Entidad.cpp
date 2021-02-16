@@ -69,3 +69,15 @@ Vec2D Entidad::getPosProj()
     playerProj=utils::twoDToIso(&playerProj);
     return playerProj;
 }
+
+bool Entidad::SolapaEntidad(Entidad *b)
+{
+    int offset=32;
+    int xa=this->Pos.x;
+    int ya=this->Pos.y;
+    int xb=b->Pos.x;
+    int yb=b->Pos.y;
+    if((b->Pos.x<(this->Pos.x+32)) && (b->Pos.y<(this->Pos.y+32)))
+        return true;
+    return false;
+}

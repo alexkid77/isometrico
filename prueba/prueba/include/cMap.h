@@ -24,7 +24,7 @@ private:
     Vec2D orig;
 
     cEngine* engine;
-
+    void VisitNode(Entidad *ent,int *sortDepth);
 };
 
 #endif // CMAP_H

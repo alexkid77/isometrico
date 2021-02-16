@@ -17,9 +17,14 @@ public:
     vector<Vec2D> getTilesOcupados();
     Vec2D getPosProj();
     bool OcupaTile(int x,int y);
+
+    bool SolapaEntidad(Entidad *b);
+    vector<Entidad*> entidadesDebajo;
+    bool visitado;
+    int id;
     int getDepth()
     {
-        this->Depth=this->Pos.x+this->Pos.y;
+        return this->Depth;
     }
 protected:
 

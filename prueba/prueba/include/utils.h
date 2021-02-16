@@ -2,6 +2,8 @@
 #define UTILS_H
 #include <vector>
 #include "structures.h"
+#include "Entidad.h"
+
 class utils
 {
 public:
@@ -41,6 +43,9 @@ public:
         res.y =tile_y;
         return res;
     }
+
+
+
 };
 
 #endif // UTILS_H
