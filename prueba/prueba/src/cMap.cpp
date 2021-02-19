@@ -82,6 +82,15 @@ void cMap::Render()
     Vec2D playerProj=this->engine->player->getPosProj();
 
     vector<Vec2D> tilesOcupados=this->engine->player->getTilesOcupados();
+    for(int i=0;i<tilesOcupados.size();i++)
+    {
+        Vec2D tile=tilesOcupados[i];
+        if(mapa[tile.x][tile.y]!=3)
+        {
+            this->engine->player->Pos=this->engine->player->PosAnt;
+        }
+    }
+
     playerProj.x=this->engine->player->Pos.x;
     playerProj.y=this->engine->player->Pos.y;
     playerProj=utils::twoDToIso(&playerProj);
@@ -109,7 +118,7 @@ void cMap::Render()
     this->engine->player->visitado=false;
     this->engine->player->entidadesDebajo.clear();
     //this->engine->player->getDepth();
- vTiles.push_back(this->engine->player);
+    vTiles.push_back(this->engine->player);
     for(int j=0; j<12; j++)
         for(int i=0; i<12; i++)
         {
@@ -121,7 +130,8 @@ void cMap::Render()
             t->indiceTile=mapa[j][i];
             t->Pos.x=j*32;
             t->Pos.y=i*32;
-
+            t->i=i;
+            t->j=j;
             t->PosProj.x=x;
             t->PosProj.y=y;
             vTiles.push_back(t);
@@ -130,22 +140,23 @@ void cMap::Render()
         }
 
     this->engine->player->id=777;
-  //  for(int i=0; i<vTiles.size(); i++)
-   // {
-        Entidad *a=this->engine->player;
-        for(int j=0; j<vTiles.size(); j++)
-        {
-           /* if(i==j)
-                continue;*/
+    this->engine->player->getTilesOcupados();
+    //  for(int i=0; i<vTiles.size(); i++)
+    // {
+    Entidad *a=this->engine->player;
+    for(int j=0; j<vTiles.size(); j++)
+    {
+        /* if(i==j)
+             continue;*/
 
-            Entidad *b=vTiles[j];
-            if( a->SolapaEntidad(b))
-            {
-                a->entidadesDebajo.push_back(b);
-            }
+        Entidad *b=vTiles[j];
+        if( a->SolapaEntidad(b))
+        {
+            a->entidadesDebajo.push_back(b);
         }
-        a->visitado=false;
-   // }
+    }
+    a->visitado=false;
+    // }
     int sortDepth=0;
     for(int i=0; i<vTiles.size(); i++)
     {
@@ -170,12 +181,13 @@ void cMap::Render()
         else
         {
             masked_blit(this->engine->tiles[t->indiceTile], this->engine->buffer, 0, 0, t->PosProj.x+this->orig.x, t->PosProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
+            char tempStr2 [100];
+            snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
+            //  snprintf ( tempStr2, 100, "(%d)", e->Depth );
+            textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x+32,e->PosProj.y+this->orig.y+32, makecol(255,255,255), -1);
 
         }
-        char tempStr2 [100];
-        // snprintf ( tempStr2, 100, "(%d,%d)", j,  i );
-        snprintf ( tempStr2, 100, "(%d)", e->Depth );
-        textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x+32,e->PosProj.y+this->orig.y+32, makecol(255,255,255), -1);
+
 
     }
 
@@ -196,10 +208,10 @@ void cMap::Render()
     textout_centre_ex(this->engine->buffer, font, tempStr, SCREEN_W/2, 20, makecol(255,255,255), -1);
 
     //tres posiciones
- /*   putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+64,playerProj.y+this->engine->orig.y+32+16,makecol(255,255,255));
-    putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x,playerProj.y+this->engine->orig.y+32+16,makecol(0,255,0));
-    putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+64,makecol(255,0,0));
-    putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+32,makecol(255,0,0));*/
+    /*   putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+64,playerProj.y+this->engine->orig.y+32+16,makecol(255,255,255));
+       putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x,playerProj.y+this->engine->orig.y+32+16,makecol(0,255,0));
+       putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+64,makecol(255,0,0));
+       putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+32,makecol(255,0,0));*/
 
     blit(this->engine->buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
 

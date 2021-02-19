@@ -18,48 +18,39 @@ Entidad::~Entidad()
 vector<Vec2D> Entidad::getTilesOcupados()
 {
 
-    vector<Vec2D> res;
-    Vec2D p0;
+    vector<Vec2D> vec;
+    Vec2D p0,p1,p2,p3;
     p0.x=(this->Pos.x)/32;
     p0.y=(this->Pos.y)/32;
 
-    Vec2D p1;
-    p1.x=p0.x+((this->Pos.x%32)>0?1:0);
-    p1.y=p0.y+((this->Pos.y%32)>0?1:0);
+    p1.x=(this->Pos.x+31)/32;
+    p1.y=(this->Pos.y)/32;
 
-    res.push_back(p0);
+    p2.x=(this->Pos.x)/32;
+    p2.y=(this->Pos.y+31)/32;
 
-    if(p1!=p0)
-    {
-        res.push_back(p1);
+    p3.x=(this->Pos.x+31)/32;
+    p3.y=(this->Pos.y+31)/32;
+    vec.push_back(p0);
+    vec.push_back(p1);
+    vec.push_back(p2);
+    vec.push_back(p3);
 
-        if(p1.x==p1.y)
-        {
-            Vec2D p2;
-            p2.x=p0.x;
-            p2.y=p1.y;
-
-            Vec2D p3;
-            p3.x=p1.x;
-            p3.y=p0.y;
-            res.push_back(p2);
-            res.push_back(p3);
-        }
-
-    }
-    return res;
+    vec.erase( unique( vec.begin(), vec.end() ), vec.end() );
+    int tam=vec.size();
+    return vec;
 }
 bool Entidad::OcupaTile(int x,int y)
 {
-   vector<Vec2D> v= this->getTilesOcupados();
-   Vec2D Comp;
-   Comp.x=x;
-   Comp.y=y;
-   for(int i=0;i<v.size();i++)
-    if(Comp==v[i])
-        return true;
+    vector<Vec2D> v= this->getTilesOcupados();
+    Vec2D Comp;
+    Comp.x=x;
+    Comp.y=y;
+    for(int i=0; i<v.size(); i++)
+        if(Comp==v[i])
+            return true;
 
-   return false;
+    return false;
 }
 Vec2D Entidad::getPosProj()
 {

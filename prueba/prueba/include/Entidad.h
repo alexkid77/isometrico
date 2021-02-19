@@ -3,6 +3,7 @@
 #include "structures.h"
 #include <vector>
 #include <utils.h>
+#include <algorithm>
 using namespace std;
 class Entidad
 {
@@ -11,7 +12,7 @@ public:
     Entidad(int tileGridW,int tileGridH);
     virtual ~Entidad();
     Vec2D Pos;
-
+  Vec2D PosAnt;
     Vec2D PosProj;
     int Depth;
     vector<Vec2D> getTilesOcupados();
@@ -22,6 +23,7 @@ public:
     vector<Entidad*> entidadesDebajo;
     bool visitado;
     int id;
+    int i,j;
     int getDepth()
     {
         return this->Depth;
