@@ -40,7 +40,7 @@ void CWorld::Update()
     for(uint16_t i=0; i<tilesOcupados.size(); i++)
     {
         Vec2D tile=tilesOcupados[i];
-        if(mapa[tile.x][tile.y]!=3)
+        if(mapa[tile.x][tile.y]==2)
         {
             this->engine->player->Pos=this->engine->player->PosAnt;
         }
@@ -81,7 +81,7 @@ void CWorld::Render()
         if(t== nullptr)
         {
 
-            masked_blit(this->engine->tiles[9], this->engine->buffer, 0, 0,  e->PosProj.x+this->orig.x,  e->PosProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
+            masked_blit(this->engine->tiles[0], this->engine->buffer, 0, 0,  e->PosProj.x+this->orig.x,  e->PosProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
 
         }
         else
@@ -90,7 +90,7 @@ void CWorld::Render()
             char tempStr2 [100];
             // snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
             snprintf ( tempStr2, 100, "(%d)", e->Depth );
-            textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x+32,e->PosProj.y+this->orig.y+32, makecol(255,255,255), -1);
+    //        textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x+32,e->PosProj.y+this->orig.y+32, makecol(255,255,255), -1);
 
         }
 
@@ -169,8 +169,12 @@ void CWorld::InitSprites()
         {
             //la i es Y
             //la j es X
-            int x = (j-i) *(tileGridW/2);
-            int y = (i+j )* (tileGridH/2);
+            Vec2D vtemp;
+            vtemp.y=i*32;
+            vtemp.x=j*32;
+            vtemp=utils::twoDToIso(&vtemp);
+            int x = vtemp.x;//(j-i) *(tileGridW/2);
+            int y = vtemp.y;//(i+j )* (tileGridH/2);
             Tile *t=new Tile(this->engine->tileSize,this->engine->tileSize,this->engine->tileSize);
             t->indiceTile=mapa[j][i];
             t->Pos.x=j*this->engine->tileSize;

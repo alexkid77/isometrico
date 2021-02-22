@@ -3,14 +3,14 @@
 cEngine::cEngine()
 {
     this->buffer=create_bitmap(SCREEN_W,SCREEN_H);
-    this->tileH=64;
+    this->tileH=80;
     this->tileW=64;
     this->tileSize=32;
     this->tileGridH= this->tileH/2;
     this->tileGridW=this->tileW;
     this->orig.x=SCREEN_W/2-tileW/2;
     this->orig.y=SCREEN_H/4-tileH/4;
-    BITMAP *tilesRaw=load_bmp("tiles.bmp", 0);
+    BITMAP *tilesRaw=load_bmp("tile2.bmp", 0);
     tiles=ExtraeTiles(tilesRaw,tileW,tileH);
 
     this->player= new CSprite(this->tileGridW,this->tileGridH,this->tileSize);
@@ -60,11 +60,11 @@ void cEngine::Render()
 
 BITMAP **cEngine::ExtraeTiles(BITMAP *tilesRaw,int tileW,int tileH)
 {
-    BITMAP **tiles=new BITMAP*[8*10];
+    BITMAP **tiles=new BITMAP*[5];
     int c=0;
-    for( int y=0; y<8; y++)
+    for( int y=0; y<1; y++)
     {
-        for(int x=0; x<10; x++)
+        for(int x=0; x<5; x++)
         {
             tiles[c]= create_bitmap(tileW, tileH);
             BITMAP *tile=tiles[c];
