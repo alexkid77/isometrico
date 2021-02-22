@@ -21,6 +21,7 @@ public:
     {
         this->debug=n;
     }
+    static void onPlayerCollision();
 protected:
 
 private:

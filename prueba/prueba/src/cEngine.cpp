@@ -18,6 +18,7 @@ cEngine::cEngine()
     //this->player->Pos.y=142;
     this->player->Pos.x=0;
     this->player->Pos.y=0;
+    this->player->onCollision=this->onPlayerCollision;
     this->mapa=new CWorld(this);
     //ctor
 }
@@ -25,6 +26,10 @@ cEngine::cEngine()
 cEngine::~cEngine()
 {
     //dtor
+}
+void cEngine::onPlayerCollision()
+{
+   printf("Colision\n");
 }
 void cEngine::Update()
 {
@@ -48,6 +53,7 @@ void cEngine::Update()
     this->mapa->Update();
 
 }
+
 void cEngine::Render()
 {
 

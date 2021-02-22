@@ -40,9 +40,9 @@ void CWorld::Update()
     for(uint16_t i=0; i<tilesOcupados.size(); i++)
     {
         Vec2D tile=tilesOcupados[i];
-        if(mapa[tile.x][tile.y]==2)
-        {
+        if(mapa[tile.x][tile.y]==2){
             this->engine->player->Pos=this->engine->player->PosAnt;
+            this->engine->player->onCollision();
         }
     }
 
@@ -60,7 +60,7 @@ void CWorld::Render()
     val2.y=this->engine->player->Pos.y/32;
 
 
-
+    /*Se procesa los sprites para establecer el orden de renderizado */
     vector<CSprite*> vOrder =this->ProcesaDepthSprites();
 
     clear_to_color(this->engine->buffer, makecol(0, 0, 0));
@@ -127,12 +127,6 @@ void CWorld::Render()
 
 void CWorld::VisitNode(CSprite *ent,int *sortDepth)
 {
-
-    if(ent->id==777)
-    {
-        int kk=0;
-        kk++;
-    }
     if(!ent->visitado)
     {
         ent->visitado=true;
@@ -143,7 +137,6 @@ void CWorld::VisitNode(CSprite *ent,int *sortDepth)
                 break;
             else
             {
-
                 VisitNode(ent->entidadesDebajo[i],sortDepth);
                 ent->entidadesDebajo[i]=0;
             }
@@ -155,8 +148,6 @@ void CWorld::VisitNode(CSprite *ent,int *sortDepth)
 
 void CWorld::InitSprites()
 {
-
-
     this->engine->player->Depth=0;
     this->engine->player->visitado=false;
     this->engine->player->entidadesDebajo.clear();
@@ -164,7 +155,6 @@ void CWorld::InitSprites()
     this->vSprites.push_back(this->engine->player);
 
     for(int j=0; j<12; j++)
-    {
         for(int i=0; i<12; i++)
         {
             //la i es Y
@@ -189,7 +179,7 @@ void CWorld::InitSprites()
 
         }
 
-    }
+
 }
 
 vector<CSprite*> CWorld::ProcesaDepthSprites()
@@ -210,15 +200,19 @@ vector<CSprite*> CWorld::ProcesaDepthSprites()
     }
     a->visitado=false;
     // }
+
+
     int sortDepth=0;
     for(uint16_t  i=0; i<this->vSprites.size(); i++)
-    {
         this->VisitNode(this->vSprites[i],&sortDepth);
-    }
+
+
     vector<CSprite*> vOrder=vector<CSprite*>(this->vSprites);
     sort( vOrder.begin( ), vOrder.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
     {
         return lhs->Depth < rhs->Depth;
     });
+
     return vOrder;
 }
+

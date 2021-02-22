@@ -1,10 +1,7 @@
 #include <allegro.h>
 #include "cEngine.h"
 
-BITMAP **ExtraeTiles(BITMAP *tileRaw,int tileW,int tileH);
-Vec2D isoTo2D(Vec2D *vec);
-Vec2D twoDToIso(Vec2D *vec);
-Vec2D setAltura(Vec2D *pos,int tileSizeH,int altura,int tileHeight);
+
 int main(void)
 {
     /* you should always do this at the start of Allegro programs */

@@ -8,7 +8,7 @@ public:
     int id;
     CEntity();
     virtual ~CEntity();
-
+    void(*onCollision)(void);
 protected:
 
 private:
