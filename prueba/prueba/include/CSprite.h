@@ -4,32 +4,40 @@
 #include <vector>
 #include <utils.h>
 #include <algorithm>
+#include <CEntity.h>
 using namespace std;
-class Entidad
+class CSprite:public CEntity
 {
 public:
-    Entidad();
-    Entidad(int tileGridW,int tileGridH);
-    virtual ~Entidad();
+
     Vec2D Pos;
-  Vec2D PosAnt;
+    Vec2D PosAnt;
     Vec2D PosProj;
     int Depth;
+    vector<CSprite*> entidadesDebajo;
+    bool visitado;
+
+    int i,j;
+
     vector<Vec2D> getTilesOcupados();
     Vec2D getPosProj();
     bool OcupaTile(int x,int y);
 
-    bool SolapaEntidad(Entidad *b);
-    vector<Entidad*> entidadesDebajo;
-    bool visitado;
-    int id;
-    int i,j;
+    bool SolapaEntidad(CSprite *b);
+    CSprite();
+    CSprite(int tileGridW,int tileGridH,int tileSize);
+
+    void ClearDepth();
+
+    virtual ~CSprite();
+
     int getDepth()
     {
         return this->Depth;
     }
-protected:
 
+protected:
+    int tileSize;
 private:
     int tileGridW,tileGridH;
 

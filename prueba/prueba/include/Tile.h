@@ -1,21 +1,22 @@
 #ifndef TILE_H
 #define TILE_H
 
-#include <Entidad.h>
+#include <CSprite.h>
 
 
-class Tile : public Entidad
+class Tile : public CSprite
 {
-    public:
-        int indiceTile;
-        int i;
-        int j;
-        Tile(int tileGridW,int tileGridH);
-        virtual ~Tile();
+public:
+    int indiceTile;
+    int i;
+    int j;
 
-    protected:
+    Tile(int tileGridW,int tileGridH,int tileSize);
+    virtual ~Tile();
 
-    private:
+protected:
+
+private:
 };
 
 #endif // TILE_H

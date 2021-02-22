@@ -4,12 +4,12 @@
 
 class cVideo
 {
-    public:
-       virtual  void Render()=0;
-       virtual void LoadTiles()=0;
-    protected:
+public:
+    virtual  void Render()=0;
+    virtual void LoadTiles()=0;
+protected:
 
-    private:
+private:
 };
 
 #endif // CVIDEO_H

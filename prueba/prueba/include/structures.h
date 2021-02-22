@@ -2,7 +2,7 @@
 #define STRUCTURES_H_INCLUDED
 
 
-typedef struct Vec2D
+struct Vec2D
 {
     int x;
     int y;

@@ -40,22 +40,22 @@
 	<allegro.h>
 	"cEngine.h"
 
-1613653083 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cengine.h
+1613984607 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cengine.h
 	"structures.h"
 	"cVideo.h"
 	<allegro.h>
 	<string>
 	"math.h"
-	"Entidad.h"
+	"CSprite.h"
 	"utils.h"
 
-1613653083 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\structures.h
+1613981506 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\structures.h
 
-1613653083 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cvideo.h
+1613983907 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cvideo.h
 
-1613730815 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cengine.cpp
+1613984734 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cengine.cpp
 	"cEngine.h"
-	"cMap.h"
+	"CWorld.h"
 
 1613728930 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\entidad.h
 	"structures.h"
@@ -69,18 +69,18 @@
 1613653083 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\utils.cpp
 	"utils.h"
 
-1613653083 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\utils.h
+1613984607 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\utils.h
 	<vector>
 	"structures.h"
-	"Entidad.h"
+	"CSprite.h"
 
-1613653083 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cmap.h
+1613980031 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cmap.h
 	"structures.h"
 	"cEngine.h"
 	"Tile.h"
 	<vector>
 
-1613730750 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cmap.cpp
+1613981837 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cmap.cpp
 	"cMap.h"
 	<algorithm>
 
@@ -117,15 +117,40 @@
 	<utils.h>
 	<vector>
 
-1613653083 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\tile.cpp
+1613984699 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\tile.cpp
 	"Tile.h"
 
-1613653083 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\tile.h
-	<Entidad.h>
+1613984699 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\tile.h
+	<CSprite.h>
 
 1613401968 c:\users\alex\documents\isometrico\prueba\prueba\include\tile.h
 	<Entidad.h>
 
 1613401720 source:c:\users\alex\documents\isometrico\prueba\prueba\src\tile.cpp
 	"Tile.h"
+
+1613984828 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\csprite.h
+	"structures.h"
+	<vector>
+	<utils.h>
+	<algorithm>
+	<CEntity.h>
+
+1613984914 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\csprite.cpp
+	"CSprite.h"
+
+1613983907 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cworld.h
+	"structures.h"
+	"cEngine.h"
+	"Tile.h"
+	<vector>
+
+1613984770 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
+	"CWorld.h"
+	<algorithm>
+
+1613983907 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\centity.h
+
+1613983362 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\centity.cpp
+	"CEntity.h"
 

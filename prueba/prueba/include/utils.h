@@ -2,8 +2,8 @@
 #define UTILS_H
 #include <vector>
 #include "structures.h"
-#include "Entidad.h"
-
+#include "CSprite.h"
+#define REJILLA 32
 class utils
 {
 public:

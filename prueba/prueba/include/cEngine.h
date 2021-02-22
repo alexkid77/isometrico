@@ -5,9 +5,9 @@
 #include <allegro.h>
 #include <string>
 #include "math.h"
-#include "Entidad.h"
+#include "CSprite.h"
 #include "utils.h"
-class cMap;
+class CWorld;
 using namespace std;
 
 class cEngine
@@ -24,19 +24,20 @@ public:
 protected:
 
 private:
-    friend class cMap;
-    friend class Entidad;
-    cMap *mapa;
+    friend class CWorld;
+    friend class CSprite;
+    CWorld *mapa;
     BITMAP *buffer;
 
 
     BITMAP **tiles;
-    Entidad *player;
+    CSprite *player;
     bool debug;
     int tileH;
     int tileW;
     int tileGridH;
     int tileGridW;
+    int tileSize;
     Vec2D orig;
 
     BITMAP ** ExtraeTiles(BITMAP *tilesRaw,int tileW,int tileH);

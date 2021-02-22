@@ -1,10 +1,11 @@
 #include "cEngine.h"
-#include "cMap.h";
+#include "CWorld.h";
 cEngine::cEngine()
 {
     this->buffer=create_bitmap(SCREEN_W,SCREEN_H);
     this->tileH=64;
     this->tileW=64;
+    this->tileSize=32;
     this->tileGridH= this->tileH/2;
     this->tileGridW=this->tileW;
     this->orig.x=SCREEN_W/2-tileW/2;
@@ -12,12 +13,12 @@ cEngine::cEngine()
     BITMAP *tilesRaw=load_bmp("tiles.bmp", 0);
     tiles=ExtraeTiles(tilesRaw,tileW,tileH);
 
-    this->player= new Entidad(this->tileGridW,this->tileGridH);
+    this->player= new CSprite(this->tileGridW,this->tileGridH,this->tileSize);
     //this->player->Pos.x=213;
     //this->player->Pos.y=142;
     this->player->Pos.x=0;
     this->player->Pos.y=0;
-    this->mapa=new cMap(this);
+    this->mapa=new CWorld(this);
     //ctor
 }
 
@@ -27,8 +28,9 @@ cEngine::~cEngine()
 }
 void cEngine::Update()
 {
+
     int inc=1;
-  this->player->PosAnt=this->player->Pos;
+    this->player->PosAnt=this->player->Pos;
     if(key[KEY_UP])
         this->player->Pos.y-=inc;
     if(key[KEY_DOWN])
@@ -42,6 +44,8 @@ void cEngine::Update()
     if(key[KEY_SPACE])
         this->debug=!this->debug;
 
+
+    this->mapa->Update();
 
 }
 void cEngine::Render()

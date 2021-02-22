@@ -29,7 +29,7 @@ private:
     vector<CSprite*> vSprites;
     void VisitNode(CSprite *ent,int *sortDepth);
     void InitSprites();
-     vector<CSprite*> ProcesaDepthSprites();
+    vector<CSprite*> ProcesaDepthSprites();
 
     unsigned char mapa[12][12]=
     {
