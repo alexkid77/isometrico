@@ -1,6 +1,6 @@
 #ifndef ENTIDAD_H
 #define ENTIDAD_H
-#include "structures.h"
+#include "comun.h"
 #include <vector>
 #include <utils.h>
 #include <algorithm>

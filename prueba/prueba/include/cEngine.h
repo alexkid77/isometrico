@@ -1,6 +1,6 @@
 #ifndef CENGINE_H
 #define CENGINE_H
-#include "structures.h"
+#include "comun.h"
 #include "cVideo.h"
 #include <allegro.h>
 #include <string>

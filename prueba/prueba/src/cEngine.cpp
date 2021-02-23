@@ -29,7 +29,7 @@ cEngine::~cEngine()
 }
 void cEngine::onPlayerCollision()
 {
-   printf("Colision\n");
+//   printf("Colision\n");
 }
 void cEngine::Update()
 {

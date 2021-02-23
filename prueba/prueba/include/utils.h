@@ -1,7 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 #include <vector>
-#include "structures.h"
+#include "comun.h"
 #include "CSprite.h"
 #define REJILLA 32
 class utils

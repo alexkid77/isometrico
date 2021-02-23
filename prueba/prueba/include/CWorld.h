@@ -3,7 +3,7 @@
 #ifndef CMAP_H
 #define CMAP_H
 
-#include "structures.h"
+#include "comun.h"
 #include "cEngine.h"
 #include "Tile.h"
 #include <vector>

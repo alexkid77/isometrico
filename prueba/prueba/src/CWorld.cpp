@@ -1,5 +1,12 @@
 #include "CWorld.h"
 #include <algorithm>
+#include <cstdio>
+bool ComparadorProfundidad( CSprite* p1,  CSprite* p2)
+{
+
+  return p1->Depth < p2->Depth;
+
+}
 CWorld::CWorld(cEngine *engine)
 {
     this->tileGridH= engine->tileGridH;
@@ -40,7 +47,8 @@ void CWorld::Update()
     for(uint16_t i=0; i<tilesOcupados.size(); i++)
     {
         Vec2D tile=tilesOcupados[i];
-        if(mapa[tile.x][tile.y]==2){
+        if(mapa[tile.x][tile.y]==2)
+        {
             this->engine->player->Pos=this->engine->player->PosAnt;
             this->engine->player->onCollision();
         }
@@ -78,7 +86,7 @@ void CWorld::Render()
         Tile *t=dynamic_cast<Tile*>(vOrder[i]);
         CSprite * e=dynamic_cast<CSprite*>(vOrder[i]);
         int sortTam=e->Depth;
-        if(t== nullptr)
+        if(t== 0)
         {
 
             masked_blit(this->engine->tiles[0], this->engine->buffer, 0, 0,  e->PosProj.x+this->orig.x,  e->PosProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
@@ -89,8 +97,8 @@ void CWorld::Render()
             masked_blit(this->engine->tiles[t->indiceTile], this->engine->buffer, 0, 0, t->PosProj.x+this->orig.x, t->PosProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
             char tempStr2 [100];
             // snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
-            snprintf ( tempStr2, 100, "(%d)", e->Depth );
-    //        textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x+32,e->PosProj.y+this->orig.y+32, makecol(255,255,255), -1);
+            sprintf ( tempStr2,  "(%d)", e->Depth );
+                  //  textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x+32,e->PosProj.y+this->orig.y+32, makecol(255,255,255), -1);
 
         }
 
@@ -208,11 +216,12 @@ vector<CSprite*> CWorld::ProcesaDepthSprites()
 
 
     vector<CSprite*> vOrder=vector<CSprite*>(this->vSprites);
-    sort( vOrder.begin( ), vOrder.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
+   /* sort( vOrder.begin( ), vOrder.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
     {
         return lhs->Depth < rhs->Depth;
-    });
+    });*/
 
+    sort( vOrder.begin( ), vOrder.end( ),ComparadorProfundidad);
     return vOrder;
 }
 
