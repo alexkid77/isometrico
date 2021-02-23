@@ -157,3 +157,30 @@
 
 1613981506 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\comun.h
 
+1502456737 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\tsxparser.cpp
+	"TSXParser.h"
+	<cstdlib>
+	<iostream>
+	<sstream>
+
+1502456737 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\tsxparser.h
+	<string>
+	<vector>
+	<utility>
+	<map>
+	<rapidxml/rapidxml.hpp>
+	<rapidxml/rapidxml_utils.hpp>
+
+1502456737 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\rapidxml\rapidxml.hpp
+	<cstdlib>
+	<cassert>
+	<new>
+	<exception>
+
+1502456737 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\rapidxml\rapidxml_utils.hpp
+	"rapidxml.hpp"
+	<vector>
+	<string>
+	<fstream>
+	<stdexcept>
+
