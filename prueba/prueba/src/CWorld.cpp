@@ -5,7 +5,7 @@
 CWorld::CWorld(cEngine *engine)
 {
 
-    this->tilemap=this->LoadTmx("mapa2.tmx");
+    this->tilemap=this->LoadTmx("mapa3.tmx");
     this->tileGridH= engine->tileGridH;
     this->tileGridW= engine->tileGridW;
     this->orig=engine->orig;
@@ -31,7 +31,10 @@ void CWorld::Update()
         this->vSprites[i]->ClearDepth();
 
 
-
+ sort(  this->vSprites.begin( ),  this->vSprites.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
+    {
+        return ((lhs->Pos.x+lhs->Pos.y) < (rhs->Pos.x+rhs->Pos.y));
+    });
 
     CLayer *capa=this->tilemap->Layers[0];
 
@@ -152,12 +155,8 @@ void CWorld::VisitNode(CSprite *ent,int *sortDepth)
 
 void CWorld::InitSprites()
 {
+   this->vSprites.clear();
 
-    this->engine->player->Depth=0;
-    this->engine->player->visitado=false;
-    this->engine->player->entidadesDebajo.clear();
-    this->vSprites.clear();
-    this->vSprites.push_back(this->engine->player);
 
     CLayer *capa=this->tilemap->Layers[0];
     for(int j=0; j<capa->height; j++)
@@ -168,6 +167,11 @@ void CWorld::InitSprites()
             CTile *t= capa->GetTile(i,j);
             this->vSprites.push_back(t);
         }
+    this->engine->player->Depth=0;
+    this->engine->player->visitado=false;
+    this->engine->player->entidadesDebajo.clear();
+
+    this->vSprites.push_back(this->engine->player);
 
 }
 
