@@ -35,25 +35,29 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/CEntity.h" />
+		<Unit filename="include/CLayer.h" />
 		<Unit filename="include/CSprite.h" />
 		<Unit filename="include/CTile.h" />
+		<Unit filename="include/CTileMap.h" />
 		<Unit filename="include/CWorld.h" />
-		<Unit filename="include/TSXParser.h" />
 		<Unit filename="include/cEngine.h" />
 		<Unit filename="include/cVideo.h" />
 		<Unit filename="include/comun.h" />
-		<Unit filename="include/rapidxml/rapidxml.hpp" />
-		<Unit filename="include/rapidxml/rapidxml_iterators.hpp" />
-		<Unit filename="include/rapidxml/rapidxml_print.hpp" />
-		<Unit filename="include/rapidxml/rapidxml_utils.hpp" />
+		<Unit filename="include/tmxparser/base64.h" />
+		<Unit filename="include/tmxparser/tinyxml2.h" />
+		<Unit filename="include/tmxparser/tmxparser.h" />
 		<Unit filename="include/utils.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/CEntity.cpp" />
+		<Unit filename="src/CLayer.cpp" />
 		<Unit filename="src/CSprite.cpp" />
 		<Unit filename="src/CTile.cpp" />
+		<Unit filename="src/CTileMap.cpp" />
 		<Unit filename="src/CWorld.cpp" />
-		<Unit filename="src/TSXParser.cpp" />
 		<Unit filename="src/cEngine.cpp" />
+		<Unit filename="src/tmxparser/base64.cpp" />
+		<Unit filename="src/tmxparser/tinyxml2.cpp" />
+		<Unit filename="src/tmxparser/tmxparser.cpp" />
 		<Unit filename="src/utils.cpp" />
 		<Extensions />
 	</Project>

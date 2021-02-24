@@ -1,14 +1,11 @@
 #include "CWorld.h"
 #include <algorithm>
 #include <cstdio>
-bool ComparadorProfundidad( CSprite* p1,  CSprite* p2)
-{
 
-  return p1->Depth < p2->Depth;
-
-}
 CWorld::CWorld(cEngine *engine)
 {
+
+    this->tilemap=this->LoadTmx("mapa.tmx");
     this->tileGridH= engine->tileGridH;
     this->tileGridW= engine->tileGridW;
     this->orig=engine->orig;
@@ -16,7 +13,12 @@ CWorld::CWorld(cEngine *engine)
     this->InitSprites();
 
 }
-
+CTileMap * CWorld::LoadTmx(string file)
+{
+    CTileMap *tilemap=new CTileMap(file);
+    return tilemap;
+    // map.layerCollection
+}
 CWorld::~CWorld()
 {
     //dtor
@@ -31,23 +33,26 @@ void CWorld::Update()
 
 
 
-
+    CLayer *capa=this->tilemap->Layers[0];
 
     if( this->engine->player->Pos.x<=0)
         this->engine->player->Pos.x=0;
     if( this->engine->player->Pos.y<=0)
         this->engine->player->Pos.y=0;
 
-    if( this->engine->player->Pos.x>((12*32)-32))
-        this->engine->player->Pos.x=12*32-32;
-    if( this->engine->player->Pos.y>((12*32)-32))
-        this->engine->player->Pos.y=12*32-32;
+    if( this->engine->player->Pos.x>((capa->width*32)-32))
+        this->engine->player->Pos.x=capa->width*32-32;
+    if( this->engine->player->Pos.y>((capa->height*32)-32))
+        this->engine->player->Pos.y=capa->height*32-32;
+
     //mirar que tiles pisa
     vector<Vec2D> tilesOcupados=this->engine->player->getTilesOcupados();
+
     for(uint16_t i=0; i<tilesOcupados.size(); i++)
     {
         Vec2D tile=tilesOcupados[i];
-        if(mapa[tile.x][tile.y]==2)
+        CTile *t=capa->tiles[tile.x+tile.y*capa->width];
+        if(t->indiceTile==2)
         {
             this->engine->player->Pos=this->engine->player->PosAnt;
             this->engine->player->onCollision();
@@ -76,16 +81,16 @@ void CWorld::Render()
 
 
     /* you must always release bitmaps before calling any input functions */
-    Vec2D mousePos;
-    mousePos.x=mouse_x-orig.x-this->tileGridW/2;
-    mousePos.y=mouse_y-orig.y-this->tileGridH;
+    /*    Vec2D mousePos;
+        mousePos.x=mouse_x-orig.x-this->tileGridW/2;
+        mousePos.y=mouse_y-orig.y-this->tileGridH;*/
 
 
     for(uint16_t  i=0; i<vOrder.size(); i++)
     {
         CTile *t=dynamic_cast<CTile*>(vOrder[i]);
         CSprite * e=dynamic_cast<CSprite*>(vOrder[i]);
-        int sortTam=e->Depth;
+
         if(t== 0)
         {
 
@@ -98,7 +103,7 @@ void CWorld::Render()
             char tempStr2 [100];
             // snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
             sprintf ( tempStr2,  "(%d)", e->Depth );
-                  //  textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x+32,e->PosProj.y+this->orig.y+32, makecol(255,255,255), -1);
+            //  textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x+32,e->PosProj.y+this->orig.y+32, makecol(255,255,255), -1);
 
         }
 
@@ -110,11 +115,11 @@ void CWorld::Render()
     char tempStr [100];
 
 
+    CLayer *capa=this->tilemap->Layers[0];
+    CTile *t=capa->tiles[val2.x+val2.y*capa->width];
 
 
-
-
-    snprintf ( tempStr, 100, "player x:%d px:%d player y:%d py:%d tile:%d,%d val:%d", this->engine->player->Pos.x,this->engine->player->PosProj.x,  this->engine->player->Pos.y,this->engine->player->PosProj.y,val2.x,val2.y,mapa[val2.x][val2.y] );
+    snprintf ( tempStr, 100, "player x:%d px:%d player y:%d py:%d tile:%d,%d val:%d", this->engine->player->Pos.x,this->engine->player->PosProj.x,  this->engine->player->Pos.y,this->engine->player->PosProj.y,val2.x,val2.y,t->indiceTile );
 
 
 
@@ -156,37 +161,22 @@ void CWorld::VisitNode(CSprite *ent,int *sortDepth)
 
 void CWorld::InitSprites()
 {
+
     this->engine->player->Depth=0;
     this->engine->player->visitado=false;
     this->engine->player->entidadesDebajo.clear();
     this->vSprites.clear();
     this->vSprites.push_back(this->engine->player);
 
-    for(int j=0; j<12; j++)
-        for(int i=0; i<12; i++)
+    CLayer *capa=this->tilemap->Layers[0];
+    for(int j=0; j<capa->height; j++)
+        for(int i=0; i<capa->width; i++)
         {
             //la i es Y
             //la j es X
-            Vec2D vtemp;
-            vtemp.y=i*32;
-            vtemp.x=j*32;
-            vtemp=utils::twoDToIso(&vtemp);
-            int x = vtemp.x;//(j-i) *(tileGridW/2);
-            int y = vtemp.y;//(i+j )* (tileGridH/2);
-            CTile *t=new CTile(this->engine->tileSize,this->engine->tileSize,this->engine->tileSize);
-            t->indiceTile=mapa[j][i];
-            t->Pos.x=j*this->engine->tileSize;
-            t->Pos.y=i*this->engine->tileSize;
-            t->i=i;
-            t->j=j;
-            t->PosProj.x=x;
-            t->PosProj.y=y;
-
+            CTile *t= capa->tiles[i+j*capa->width];
             this->vSprites.push_back(t);
-
-
         }
-
 
 }
 
@@ -216,12 +206,12 @@ vector<CSprite*> CWorld::ProcesaDepthSprites()
 
 
     vector<CSprite*> vOrder=vector<CSprite*>(this->vSprites);
-   /* sort( vOrder.begin( ), vOrder.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
+    sort( vOrder.begin( ), vOrder.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
     {
         return lhs->Depth < rhs->Depth;
-    });*/
+    });
 
-    sort( vOrder.begin( ), vOrder.end( ),ComparadorProfundidad);
+
     return vOrder;
 }
 

@@ -1,5 +1,5 @@
 #include "cEngine.h"
-#include "CWorld.h";
+#include "CWorld.h"
 cEngine::cEngine()
 {
     this->buffer=create_bitmap(SCREEN_W,SCREEN_H);
