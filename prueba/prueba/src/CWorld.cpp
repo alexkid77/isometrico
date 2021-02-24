@@ -5,7 +5,7 @@
 CWorld::CWorld(cEngine *engine)
 {
 
-    this->tilemap=this->LoadTmx("mapa.tmx");
+    this->tilemap=this->LoadTmx("mapa2.tmx");
     this->tileGridH= engine->tileGridH;
     this->tileGridW= engine->tileGridW;
     this->orig=engine->orig;
@@ -51,7 +51,7 @@ void CWorld::Update()
     for(uint16_t i=0; i<tilesOcupados.size(); i++)
     {
         Vec2D tile=tilesOcupados[i];
-        CTile *t=capa->tiles[tile.x+tile.y*capa->width];
+        CTile *t=capa->GetTile(tile.x,tile.y);
         if(t->indiceTile==2)
         {
             this->engine->player->Pos=this->engine->player->PosAnt;
@@ -76,14 +76,9 @@ void CWorld::Render()
     /*Se procesa los sprites para establecer el orden de renderizado */
     vector<CSprite*> vOrder =this->ProcesaDepthSprites();
 
+
     clear_to_color(this->engine->buffer, makecol(0, 0, 0));
     acquire_screen();
-
-
-    /* you must always release bitmaps before calling any input functions */
-    /*    Vec2D mousePos;
-        mousePos.x=mouse_x-orig.x-this->tileGridW/2;
-        mousePos.y=mouse_y-orig.y-this->tileGridH;*/
 
 
     for(uint16_t  i=0; i<vOrder.size(); i++)
@@ -126,11 +121,7 @@ void CWorld::Render()
 
     textout_centre_ex(this->engine->buffer, font, tempStr, SCREEN_W/2, 20, makecol(255,255,255), -1);
 
-    //tres posiciones
-    /*   putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+64,playerProj.y+this->engine->orig.y+32+16,makecol(255,255,255));
-       putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x,playerProj.y+this->engine->orig.y+32+16,makecol(0,255,0));
-       putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+64,makecol(255,0,0));
-       putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+32,makecol(255,0,0));*/
+
 
     blit(this->engine->buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
 
@@ -174,7 +165,7 @@ void CWorld::InitSprites()
         {
             //la i es Y
             //la j es X
-            CTile *t= capa->tiles[i+j*capa->width];
+            CTile *t= capa->GetTile(i,j);
             this->vSprites.push_back(t);
         }
 
@@ -182,8 +173,8 @@ void CWorld::InitSprites()
 
 vector<CSprite*> CWorld::ProcesaDepthSprites()
 {
-    //  for(int i=0; i<vTiles.size(); i++)
-    // {
+     // for(int i=0; i<this->vSprites.size(); i++)
+     //{
     CSprite *a=this->engine->player;
     for(uint16_t j=0; j<this->vSprites.size(); j++)
     {

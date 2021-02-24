@@ -17,6 +17,8 @@ public:
     int width;
     string name;
     bool visible;
+
+    CTile *GetTile(int x,int y);
 protected:
 
 private:

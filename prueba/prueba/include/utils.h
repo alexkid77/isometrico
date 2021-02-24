@@ -15,8 +15,6 @@ public:
         val.y=(vec->x+vec->y)/2;
         return val;
 
-        //int  isoX = ( ((ScreenY + scrollY) / tileHeight) + ((screenX + scrollX) - (isoMapMaxY * tileWidth/2)) / tileWidth )
-//int isoY = ( ((screenY + scrollY) / tileHeight) - ((screenX + scrollX) - (isoMapMaxY * tileWidth/2)) / tileWidth )
     }
 
     static Vec2D isoTo2D(Vec2D *vec)
@@ -48,4 +46,20 @@ public:
 
 };
 
+//snippets
+    /* you must always release bitmaps before calling any input functions */
+    /*    Vec2D mousePos;
+        mousePos.x=mouse_x-orig.x-this->tileGridW/2;
+        mousePos.y=mouse_y-orig.y-this->tileGridH;*/
+    //tres posiciones
+
+
+    /*   putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+64,playerProj.y+this->engine->orig.y+32+16,makecol(255,255,255));
+       putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x,playerProj.y+this->engine->orig.y+32+16,makecol(0,255,0));
+       putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+64,makecol(255,0,0));
+       putpixel(this->engine->buffer,playerProj.x+this->engine->orig.x+32,playerProj.y+this->engine->orig.y+32,makecol(255,0,0));*/
+
+
+             //int  isoX = ( ((ScreenY + scrollY) / tileHeight) + ((screenX + scrollX) - (isoMapMaxY * tileWidth/2)) / tileWidth )
+//int isoY = ( ((screenY + scrollY) / tileHeight) - ((screenX + scrollX) - (isoMapMaxY * tileWidth/2)) / tileWidth )
 #endif // UTILS_H

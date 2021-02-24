@@ -29,7 +29,7 @@ CTileMap::CTileMap(string file)
         {
 
             int j=conta%capa->width;
-            int i=conta/capa->height;
+            int i=conta/capa->width;
 
             Vec2D vtemp;
             vtemp.y=i*tileSize;
@@ -54,3 +54,4 @@ CTileMap::CTileMap(string file)
 
     }
 }
+

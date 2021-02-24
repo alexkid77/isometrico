@@ -69,7 +69,7 @@
 1613653083 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\utils.cpp
 	"utils.h"
 
-1614076171 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\utils.h
+1614163648 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\utils.h
 	<vector>
 	"comun.h"
 	"CSprite.h"
@@ -146,7 +146,7 @@
 	"CTileMap.h"
 	<vector>
 
-1614163321 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
+1614165432 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
 	"CWorld.h"
 	<algorithm>
 	<cstdio>
@@ -255,13 +255,13 @@
 	<vector>
 	"tinyxml2.h"
 
-1614163320 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\ctilemap.h
+1614163832 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\ctilemap.h
 	<vector>
 	<CTile.h>
 	<CLayer.h>
 	"tmxparser/tmxparser.h"
 
-1614163321 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\clayer.h
+1614164122 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\clayer.h
 	<CTile.h>
 	<vector>
 	<string>
@@ -289,10 +289,10 @@
 	<android/log.h>
 	<assert.h>
 
-1614158531 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\clayer.cpp
+1614164755 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\clayer.cpp
 	"CLayer.h"
 
-1614161898 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\ctilemap.cpp
+1614165310 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\ctilemap.cpp
 	"CTileMap.h"
 
 1614163321 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\tmxparser\base64.h
