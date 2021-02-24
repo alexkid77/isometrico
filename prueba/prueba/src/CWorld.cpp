@@ -83,7 +83,7 @@ void CWorld::Render()
 
     for(uint16_t  i=0; i<vOrder.size(); i++)
     {
-        Tile *t=dynamic_cast<Tile*>(vOrder[i]);
+        CTile *t=dynamic_cast<CTile*>(vOrder[i]);
         CSprite * e=dynamic_cast<CSprite*>(vOrder[i]);
         int sortTam=e->Depth;
         if(t== 0)
@@ -173,7 +173,7 @@ void CWorld::InitSprites()
             vtemp=utils::twoDToIso(&vtemp);
             int x = vtemp.x;//(j-i) *(tileGridW/2);
             int y = vtemp.y;//(i+j )* (tileGridH/2);
-            Tile *t=new Tile(this->engine->tileSize,this->engine->tileSize,this->engine->tileSize);
+            CTile *t=new CTile(this->engine->tileSize,this->engine->tileSize,this->engine->tileSize);
             t->indiceTile=mapa[j][i];
             t->Pos.x=j*this->engine->tileSize;
             t->Pos.y=i*this->engine->tileSize;

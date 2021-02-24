@@ -139,13 +139,13 @@
 1614075162 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\csprite.cpp
 	"CSprite.h"
 
-1614076171 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cworld.h
+1614153973 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cworld.h
 	"comun.h"
 	"cEngine.h"
-	"Tile.h"
+	"CTile.h"
 	<vector>
 
-1614075945 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
+1614153954 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
 	"CWorld.h"
 	<algorithm>
 	<cstdio>
@@ -183,4 +183,10 @@
 	<string>
 	<fstream>
 	<stdexcept>
+
+1614154016 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\ctile.h
+	<CSprite.h>
+
+1614154070 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\ctile.cpp
+	"CTile.h"
 

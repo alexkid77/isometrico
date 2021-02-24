@@ -5,7 +5,7 @@
 
 #include "comun.h"
 #include "cEngine.h"
-#include "Tile.h"
+#include "CTile.h"
 #include <vector>
 using namespace std;
 class CWorld

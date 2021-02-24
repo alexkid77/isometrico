@@ -4,15 +4,15 @@
 #include <CSprite.h>
 
 
-class Tile : public CSprite
+class CTile : public CSprite
 {
 public:
     int indiceTile;
     int i;
     int j;
 
-    Tile(int tileGridW,int tileGridH,int tileSize);
-    virtual ~Tile();
+    CTile(int tileGridW,int tileGridH,int tileSize);
+    virtual ~CTile();
 
 protected:
 
