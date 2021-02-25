@@ -31,7 +31,7 @@ private:
     void VisitNode(CSprite *ent,int *sortDepth);
     void InitSprites();
     vector<CSprite*> ProcesaDepthSprites();
-
+void PreSortByXY(vector<CSprite*> &v);
 
 };
 

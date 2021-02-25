@@ -31,10 +31,10 @@ void CWorld::Update()
         this->vSprites[i]->ClearDepth();
 
 
- sort(  this->vSprites.begin( ),  this->vSprites.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
-    {
-        return ((lhs->Pos.x+lhs->Pos.y) < (rhs->Pos.x+rhs->Pos.y));
-    });
+    /*  sort(  this->vSprites.begin( ),  this->vSprites.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
+      {
+          return ((lhs->Pos.x+lhs->Pos.y) < (rhs->Pos.x+rhs->Pos.y));
+      });*/
 
     CLayer *capa=this->tilemap->Layers[0];
 
@@ -83,7 +83,8 @@ void CWorld::Render()
     clear_to_color(this->engine->buffer, makecol(0, 0, 0));
     acquire_screen();
 
-
+    int offsetx=this->engine->player->PosProj.x;
+    int offsety=this->engine->player->PosProj.y;
     for(uint16_t  i=0; i<vOrder.size(); i++)
     {
         CTile *t=dynamic_cast<CTile*>(vOrder[i]);
@@ -92,16 +93,16 @@ void CWorld::Render()
         if(t== 0)
         {
 
-            masked_blit(this->engine->tiles[0], this->engine->buffer, 0, 0,  e->PosProj.x+this->orig.x,  e->PosProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
+            masked_blit(this->engine->tiles[0], this->engine->buffer, 0, 0,  e->PosProj.x+this->orig.x-offsetx,  e->PosProj.y+this->orig.y-offsety, this->engine->tileW,this->engine->tileH);
 
         }
         else
         {
-            masked_blit(this->engine->tiles[t->indiceTile], this->engine->buffer, 0, 0, t->PosProj.x+this->orig.x, t->PosProj.y+this->orig.y, this->engine->tileW,this->engine->tileH);
+            masked_blit(this->engine->tiles[t->indiceTile], this->engine->buffer, 0, 0, t->PosProj.x+this->orig.x-offsetx, t->PosProj.y+this->orig.y-offsety, this->engine->tileW,this->engine->tileH);
             char tempStr2 [100];
-            // snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
-            sprintf ( tempStr2,  "(%d)", e->Depth );
-            //  textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x+32,e->PosProj.y+this->orig.y+32, makecol(255,255,255), -1);
+            snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
+            //sprintf ( tempStr2,  "(%d)", e->Depth );
+            // textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x-offsetx+32, e->PosProj.y+this->orig.y-offsety+32, makecol(255,255,255), -1);
 
         }
 
@@ -117,7 +118,7 @@ void CWorld::Render()
     CTile *t=capa->tiles[val2.x+val2.y*capa->width];
 
 
-    snprintf ( tempStr, 100, "player x:%d px:%d player y:%d py:%d tile:%d,%d val:%d", this->engine->player->Pos.x,this->engine->player->PosProj.x,  this->engine->player->Pos.y,this->engine->player->PosProj.y,val2.x,val2.y,t->indiceTile );
+    snprintf ( tempStr, 100, "player x:%d px:%d player y:%d py:%d tile:%d,%d val:%d tam%d", this->engine->player->Pos.x,this->engine->player->PosProj.x,  this->engine->player->Pos.y,this->engine->player->PosProj.y,val2.x,val2.y,t->indiceTile,vOrder.size() );
 
 
 
@@ -155,7 +156,7 @@ void CWorld::VisitNode(CSprite *ent,int *sortDepth)
 
 void CWorld::InitSprites()
 {
-   this->vSprites.clear();
+    this->vSprites.clear();
 
 
     CLayer *capa=this->tilemap->Layers[0];
@@ -167,6 +168,7 @@ void CWorld::InitSprites()
             CTile *t= capa->GetTile(i,j);
             this->vSprites.push_back(t);
         }
+
     this->engine->player->Depth=0;
     this->engine->player->visitado=false;
     this->engine->player->entidadesDebajo.clear();
@@ -177,15 +179,42 @@ void CWorld::InitSprites()
 
 vector<CSprite*> CWorld::ProcesaDepthSprites()
 {
-     // for(int i=0; i<this->vSprites.size(); i++)
-     //{
+
+    vector<CSprite *>vVisible;
+    int ntiles=32;
+
+
+    CLayer *capa=this->tilemap->Layers[0];
+    //int offsety=(this->engine->player->Pos.y/32);
+   // int offsetx=(this->engine->player->Pos.x/32);
+
+
+
+    for(int y=0; y<capa->height; y++)
+        for(int x=0; x<capa->width; x++)
+        {
+            CSprite *s=  capa->tiles[x+y*capa->width];
+            if(s->PosProj.x<(SCREEN_W-this->orig.x+this->engine->player->PosProj.x)
+               && s->PosProj.y<(SCREEN_H-this->orig.y+this->engine->player->PosProj.y)
+&& (s->PosProj.x+this->orig.x+this->engine->player->PosProj.x)>-1
+&& (s->PosProj.y+this->orig.y+this->engine->player->PosProj.y)>-1
+               )
+                vVisible.push_back(s);
+        }
+
+    vVisible.push_back(this->engine->player);
+    int tam=vVisible.size();
+    this->PreSortByXY(vVisible);
+
+    // for(int i=0; i<this->vSprites.size(); i++)
+    //{
     CSprite *a=this->engine->player;
-    for(uint16_t j=0; j<this->vSprites.size(); j++)
+    for(uint16_t j=0; j<vVisible.size(); j++)
     {
         /* if(i==j)
              continue;*/
 
-        CSprite *b=this->vSprites[j];
+        CSprite *b=vVisible[j];
         if( a->SolapaEntidad(b))
         {
             a->entidadesDebajo.push_back(b);
@@ -196,11 +225,11 @@ vector<CSprite*> CWorld::ProcesaDepthSprites()
 
 
     int sortDepth=0;
-    for(uint16_t  i=0; i<this->vSprites.size(); i++)
-        this->VisitNode(this->vSprites[i],&sortDepth);
+    for(uint16_t  i=0; i<vVisible.size(); i++)
+        this->VisitNode(vVisible[i],&sortDepth);
 
 
-    vector<CSprite*> vOrder=vector<CSprite*>(this->vSprites);
+    vector<CSprite*> vOrder=vector<CSprite*>(vVisible);
     sort( vOrder.begin( ), vOrder.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
     {
         return lhs->Depth < rhs->Depth;
@@ -210,3 +239,10 @@ vector<CSprite*> CWorld::ProcesaDepthSprites()
     return vOrder;
 }
 
+void CWorld::PreSortByXY(vector<CSprite*> &v)
+{
+    sort(  v.begin( ),  v.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
+    {
+        return ((lhs->Pos.x+lhs->Pos.y) < (rhs->Pos.x+rhs->Pos.y));
+    });
+}

@@ -9,15 +9,15 @@ cEngine::cEngine()
     this->tileGridH= this->tileH/2;
     this->tileGridW=this->tileW;
     this->orig.x=SCREEN_W/2-tileW/2;
-    this->orig.y=SCREEN_H/4-tileH/4;
+    this->orig.y=SCREEN_H/2-tileH/2;
     BITMAP *tilesRaw=load_bmp("tile2.bmp", 0);
     tiles=ExtraeTiles(tilesRaw,tileW,tileH);
 
     this->player= new CSprite(this->tileGridW,this->tileGridH,this->tileSize);
     //this->player->Pos.x=213;
     //this->player->Pos.y=142;
-    this->player->Pos.x=32;
-    this->player->Pos.y=258;
+    this->player->Pos.x=0;
+    this->player->Pos.y=0;
     this->player->onCollision=this->onPlayerCollision;
     this->mapa=new CWorld(this);
     //ctor
