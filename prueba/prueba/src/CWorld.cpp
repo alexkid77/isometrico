@@ -102,7 +102,7 @@ void CWorld::Render()
             char tempStr2 [100];
             snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
             //sprintf ( tempStr2,  "(%d)", e->Depth );
-            // textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x-offsetx+32, e->PosProj.y+this->orig.y-offsety+32, makecol(255,255,255), -1);
+             textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x-offsetx+32, e->PosProj.y+this->orig.y-offsety+32, makecol(255,255,255), -1);
 
         }
 
@@ -125,7 +125,11 @@ void CWorld::Render()
 
     textout_centre_ex(this->engine->buffer, font, tempStr, SCREEN_W/2, 20, makecol(255,255,255), -1);
 
-
+  Vec2D pos1;
+    pos1.x=SCREEN_W;
+    pos1.y=SCREEN_H;
+     pos1=utils::twoDToIso(&pos1);
+    putpixel(this->engine->buffer,pos1.x,pos1.y,makecol(255,0,0));
 
     blit(this->engine->buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
 
@@ -188,17 +192,21 @@ vector<CSprite*> CWorld::ProcesaDepthSprites()
     //int offsety=(this->engine->player->Pos.y/32);
    // int offsetx=(this->engine->player->Pos.x/32);
 
+    Vec2D pos0;
+    pos0.x=544;
+    pos0.y=272;
+  pos0=utils::isoTo2D(&pos0); //hay que corregir el nombre esta mal
+   Vec2D pos1;
+  pos0.y=pos0.y/32;
+  pos0.x=pos0.x/32;
+  // pos0= utils::GetTileWithPos(32,32,pos0.x,pos0.y);
 
 
-    for(int y=0; y<capa->height; y++)
-        for(int x=0; x<capa->width; x++)
+    for(int y=0; y<1 ;y++)
+        for(int x=0; x<18; x++)
         {
             CSprite *s=  capa->tiles[x+y*capa->width];
-            if(s->PosProj.x<(SCREEN_W-this->orig.x+this->engine->player->PosProj.x)
-               && s->PosProj.y<(SCREEN_H-this->orig.y+this->engine->player->PosProj.y)
-&& (s->PosProj.x+this->orig.x+this->engine->player->PosProj.x)>-1
-&& (s->PosProj.y+this->orig.y+this->engine->player->PosProj.y)>-1
-               )
+
                 vVisible.push_back(s);
         }
 
