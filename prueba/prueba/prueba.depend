@@ -40,7 +40,7 @@
 	<allegro.h>
 	"cEngine.h"
 
-1614590730 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cengine.h
+1614602967 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cengine.h
 	"comun.h"
 	"cVideo.h"
 	<allegro.h>
@@ -147,7 +147,7 @@
 	"CTileMap.h"
 	<vector>
 
-1614600336 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
+1614602967 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
 	"CWorld.h"
 	<algorithm>
 	<cstdio>

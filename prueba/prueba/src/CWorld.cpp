@@ -124,6 +124,9 @@ void CWorld::Render()
 
 
     textout_centre_ex(this->engine->buffer, font, tempStr, SCREEN_W/2, 20, makecol(255,255,255), -1);
+    char fpsStr [100];
+    snprintf ( fpsStr, 100, "fps:%d", this->engine->fps );
+    textout_ex(this->engine->buffer, font, fpsStr, 0, 20, makecol(255,255,255), -1);
 
     Vec2D pos1;
     pos1.x=SCREEN_W;

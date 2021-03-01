@@ -22,6 +22,7 @@ public:
         this->debug=n;
     }
     static void onPlayerCollision();
+    int fps;
 protected:
 
 private:
