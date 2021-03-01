@@ -10,6 +10,7 @@ CWorld::CWorld(cEngine *engine)
     this->tileGridW= engine->tileGridW;
     this->orig=engine->orig;
     this->engine=engine;
+    this->vSprites=vector<CSprite *>(2048);
     this->InitSprites();
 
 }
@@ -26,8 +27,8 @@ CWorld::~CWorld()
 void CWorld::Update()
 {
     this->engine->player->ClearDepth();
-
-    for(uint16_t  i=0; i<this->vSprites.size(); i++)
+int tam=this->vSprites.size();
+    for(uint16_t  i=0; i<tam; i++)
         this->vSprites[i]->ClearDepth();
 
 
@@ -85,7 +86,8 @@ void CWorld::Render()
 
     int offsetx=this->engine->player->PosProj.x;
     int offsety=this->engine->player->PosProj.y;
-    for(uint16_t  i=0; i<this->vVisible.size(); i++)
+    int tamVisible=this->vVisible.size();
+    for(uint16_t  i=0; i<tamVisible; i++)
     {
         CTile *t=dynamic_cast<CTile*>(this->vVisible[i]);
         CSprite * e=dynamic_cast<CSprite*>(this->vVisible[i]);
@@ -259,7 +261,8 @@ void CWorld::ProcesaDepthSprites()
     // for(int i=0; i<this->vSprites.size(); i++)
     //{
     CSprite *a=this->engine->player;
-    for(uint16_t j=0; j<vVisible.size(); j++)
+
+    for(uint16_t j=0; j<tam; j++)
     {
         /* if(i==j)
              continue;*/
@@ -275,7 +278,7 @@ void CWorld::ProcesaDepthSprites()
 
 
     int sortDepth=0;
-    for(uint16_t  i=0; i<vVisible.size(); i++)
+    for(uint16_t  i=0; i<tam; i++)
         this->VisitNode(vVisible[i],&sortDepth);
 
 

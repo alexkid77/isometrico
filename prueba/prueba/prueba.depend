@@ -36,7 +36,7 @@
 	"cEngine.h"
 	"CWorld.h"
 
-1614597735 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\main.cpp
+1614605549 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\main.cpp
 	<allegro.h>
 	"cEngine.h"
 
@@ -137,7 +137,7 @@
 	<algorithm>
 	<CEntity.h>
 
-1614600607 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\csprite.cpp
+1614604920 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\csprite.cpp
 	"CSprite.h"
 
 1614599886 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cworld.h
@@ -147,7 +147,7 @@
 	"CTileMap.h"
 	<vector>
 
-1614602967 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
+1614605678 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
 	"CWorld.h"
 	<algorithm>
 	<cstdio>

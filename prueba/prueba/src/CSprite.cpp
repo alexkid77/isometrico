@@ -9,6 +9,7 @@ CSprite::CSprite(int tileGridW,int tileGridH,int tileSize)
     this->tileGridH=tileGridH;
     this->Depth=0;
     this->tileSize=tileSize;
+    this->entidadesDebajo=vector<CSprite*>(128);
     //ctor
 }
 
