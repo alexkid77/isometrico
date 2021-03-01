@@ -30,9 +30,9 @@ private:
     vector<CSprite*> vSprites;
     void VisitNode(CSprite *ent,int *sortDepth);
     void InitSprites();
-    vector<CSprite*> ProcesaDepthSprites();
+    void ProcesaDepthSprites();
 void PreSortByXY(vector<CSprite*> &v);
-
+    vector<CSprite*> vVisible;
 };
 
 #endif // CMAP_H

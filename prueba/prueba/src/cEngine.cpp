@@ -16,8 +16,8 @@ cEngine::cEngine()
     this->player= new CSprite(this->tileGridW,this->tileGridH,this->tileSize);
     //this->player->Pos.x=213;
     //this->player->Pos.y=142;
-    this->player->Pos.x=0;
-    this->player->Pos.y=0;
+    this->player->Pos.x=673;
+    this->player->Pos.y=141;
     this->player->onCollision=this->onPlayerCollision;
     this->mapa=new CWorld(this);
     //ctor

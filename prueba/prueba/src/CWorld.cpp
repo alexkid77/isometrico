@@ -77,7 +77,7 @@ void CWorld::Render()
 
 
     /*Se procesa los sprites para establecer el orden de renderizado */
-    vector<CSprite*> vOrder =this->ProcesaDepthSprites();
+    this->ProcesaDepthSprites();
 
 
     clear_to_color(this->engine->buffer, makecol(0, 0, 0));
@@ -85,10 +85,10 @@ void CWorld::Render()
 
     int offsetx=this->engine->player->PosProj.x;
     int offsety=this->engine->player->PosProj.y;
-    for(uint16_t  i=0; i<vOrder.size(); i++)
+    for(uint16_t  i=0; i<this->vVisible.size(); i++)
     {
-        CTile *t=dynamic_cast<CTile*>(vOrder[i]);
-        CSprite * e=dynamic_cast<CSprite*>(vOrder[i]);
+        CTile *t=dynamic_cast<CTile*>(this->vVisible[i]);
+        CSprite * e=dynamic_cast<CSprite*>(this->vVisible[i]);
 
         if(t== 0)
         {
@@ -102,7 +102,7 @@ void CWorld::Render()
             char tempStr2 [100];
             snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
             //sprintf ( tempStr2,  "(%d)", e->Depth );
-             textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x-offsetx+32, e->PosProj.y+this->orig.y-offsety+32, makecol(255,255,255), -1);
+            // textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x-offsetx+32, e->PosProj.y+this->orig.y-offsety+32, makecol(255,255,255), -1);
 
         }
 
@@ -118,17 +118,17 @@ void CWorld::Render()
     CTile *t=capa->tiles[val2.x+val2.y*capa->width];
 
 
-    snprintf ( tempStr, 100, "player x:%d px:%d player y:%d py:%d tile:%d,%d val:%d tam%d", this->engine->player->Pos.x,this->engine->player->PosProj.x,  this->engine->player->Pos.y,this->engine->player->PosProj.y,val2.x,val2.y,t->indiceTile,vOrder.size() );
+    snprintf ( tempStr, 100, "player x:%d px:%d player y:%d py:%d tile:%d,%d val:%d tam%d", this->engine->player->Pos.x,this->engine->player->PosProj.x,  this->engine->player->Pos.y,this->engine->player->PosProj.y,val2.x,val2.y,t->indiceTile,this->vVisible.size() );
 
 
 
 
     textout_centre_ex(this->engine->buffer, font, tempStr, SCREEN_W/2, 20, makecol(255,255,255), -1);
 
-  Vec2D pos1;
+    Vec2D pos1;
     pos1.x=SCREEN_W;
     pos1.y=SCREEN_H;
-     pos1=utils::twoDToIso(&pos1);
+    pos1=utils::twoDToIso(&pos1);
     putpixel(this->engine->buffer,pos1.x,pos1.y,makecol(255,0,0));
 
     blit(this->engine->buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
@@ -181,33 +181,72 @@ void CWorld::InitSprites()
 
 }
 
-vector<CSprite*> CWorld::ProcesaDepthSprites()
+void CWorld::ProcesaDepthSprites()
 {
 
-    vector<CSprite *>vVisible;
+
     int ntiles=32;
 
+    this->vVisible.clear();
 
     CLayer *capa=this->tilemap->Layers[0];
-    //int offsety=(this->engine->player->Pos.y/32);
-   // int offsetx=(this->engine->player->Pos.x/32);
+    int offsety=(this->engine->player->PosProj.y);
+    int offsetx=(this->engine->player->PosProj.x);
 
     Vec2D pos0;
-    pos0.x=544;
-    pos0.y=272;
-  pos0=utils::isoTo2D(&pos0); //hay que corregir el nombre esta mal
-   Vec2D pos1;
-  pos0.y=pos0.y/32;
-  pos0.x=pos0.x/32;
-  // pos0= utils::GetTileWithPos(32,32,pos0.x,pos0.y);
+    pos0.x=SCREEN_W-orig.x-80+offsetx;
+    pos0.y=SCREEN_H-orig.y-32+offsety;
+    pos0=utils::isoTo2D(&pos0); //hay que corregir el nombre esta mal
+
+    pos0.y=pos0.y/32+1;
+    pos0.x=pos0.x/32+1;
+
+    if(pos0.x>capa->width)
+        pos0.x=capa->width;
 
 
-    for(int y=0; y<1 ;y++)
-        for(int x=0; x<18; x++)
+
+    Vec2D pos1;
+    pos1.x=0-orig.x+offsetx;
+    pos1.y=SCREEN_H-orig.y-32+offsety;
+    pos1=utils::isoTo2D(&pos1);
+    pos1.y=pos1.y/32+1;
+    pos1.x=pos1.x/32+1;
+
+    if(pos1.y>capa->width)
+        pos1.y=capa->width;
+
+    Vec2D pos2;
+    pos2.x=0-orig.x+offsetx;
+    pos2.y=0-orig.y+offsety;
+    pos2=utils::isoTo2D(&pos2);
+    pos2.y=pos2.y/32-2;
+    pos2.x=pos2.x/32-2;
+    if(pos2.x<0)
+        pos2.x=0;
+    if(pos2.y<0)
+        pos2.y=0;
+
+
+    Vec2D pos3;
+    pos3.x=SCREEN_W-orig.x+offsetx;
+    pos3.y=0-orig.y+offsety;
+    pos3=utils::isoTo2D(&pos3);
+    pos3.y=pos3.y/32-1;
+    pos3.x=pos3.x/32-1;
+    if(pos3.x<0)
+        pos3.x=0;
+    if(pos3.y<0)
+        pos3.y=0;
+    // pos0= utils::GetTileWithPos(32,32,pos0.x,pos0.y);
+
+
+    for(int y=pos3.y; y<pos1.y ; y++)
+        for(int x=pos2.x; x<pos0.x; x++)
         {
             CSprite *s=  capa->tiles[x+y*capa->width];
 
-                vVisible.push_back(s);
+            vVisible.push_back(s);
         }
 
     vVisible.push_back(this->engine->player);
@@ -237,14 +276,14 @@ vector<CSprite*> CWorld::ProcesaDepthSprites()
         this->VisitNode(vVisible[i],&sortDepth);
 
 
-    vector<CSprite*> vOrder=vector<CSprite*>(vVisible);
-    sort( vOrder.begin( ), vOrder.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
+
+    sort( vVisible.begin( ), vVisible.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
     {
         return lhs->Depth < rhs->Depth;
     });
 
 
-    return vOrder;
+    return ;
 }
 
 void CWorld::PreSortByXY(vector<CSprite*> &v)
