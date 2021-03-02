@@ -18,4 +18,11 @@ struct Vec2D
     }
 };
 
+struct ViewPort
+{
+    Vec2D p1;
+    Vec2D p2;
+
+};
+
 #endif // STRUCTURES_H_INCLUDED

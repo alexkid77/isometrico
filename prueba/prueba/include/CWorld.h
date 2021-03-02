@@ -32,6 +32,7 @@ private:
     void InitSprites();
     void ProcesaDepthSprites();
 void PreSortByXY(vector<CSprite*> &v);
+ViewPort  GetViewPort(int width,int height);
     vector<CSprite*> vVisible;
 };
 

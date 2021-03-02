@@ -27,7 +27,7 @@ CWorld::~CWorld()
 void CWorld::Update()
 {
     this->engine->player->ClearDepth();
-int tam=this->vSprites.size();
+    int tam=this->vSprites.size();
     for(uint16_t  i=0; i<tam; i++)
         this->vSprites[i]->ClearDepth();
 
@@ -96,15 +96,18 @@ void CWorld::Render()
         {
 
             masked_blit(this->engine->tiles[0], this->engine->buffer, 0, 0,  e->PosProj.x+this->orig.x-offsetx,  e->PosProj.y+this->orig.y-offsety, this->engine->tileW,this->engine->tileH);
-
+            char tempStr2 [100];
+            //snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
+            sprintf ( tempStr2,  "(%d)", e->Depth );
+            textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x-offsetx+32, e->PosProj.y+this->orig.y-offsety+32, makecol(255,0,0), -1);
         }
         else
         {
             masked_blit(this->engine->tiles[t->indiceTile], this->engine->buffer, 0, 0, t->PosProj.x+this->orig.x-offsetx, t->PosProj.y+this->orig.y-offsety, this->engine->tileW,this->engine->tileH);
             char tempStr2 [100];
-            snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
-            //sprintf ( tempStr2,  "(%d)", e->Depth );
-            // textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x-offsetx+32, e->PosProj.y+this->orig.y-offsety+32, makecol(255,255,255), -1);
+            //snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
+            sprintf ( tempStr2,  "(%d)", e->Depth );
+            textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x-offsetx+32, e->PosProj.y+this->orig.y-offsety+32, makecol(255,255,255), -1);
 
         }
 
@@ -195,62 +198,19 @@ void CWorld::ProcesaDepthSprites()
     this->vVisible.clear();
 
     CLayer *capa=this->tilemap->Layers[0];
-    int offsety=(this->engine->player->PosProj.y);
-    int offsetx=(this->engine->player->PosProj.x);
-
-    Vec2D pos0;
-    pos0.x=SCREEN_W-orig.x-80+offsetx;
-    pos0.y=SCREEN_H-orig.y-32+offsety;
-    pos0=utils::isoTo2D(&pos0); //hay que corregir el nombre esta mal
-
-    pos0.y=pos0.y/32+1;
-    pos0.x=pos0.x/32+1;
-
-    if(pos0.x>capa->width)
-        pos0.x=capa->width;
 
 
 
-    Vec2D pos1;
-    pos1.x=0-orig.x+offsetx;
-    pos1.y=SCREEN_H-orig.y-32+offsety;
-    pos1=utils::isoTo2D(&pos1);
-    pos1.y=pos1.y/32+1;
-    pos1.x=pos1.x/32+1;
+    ViewPort viewport=GetViewPort(capa->width,capa->height);
 
-    if(pos1.y>capa->width)
-        pos1.y=capa->width;
-
-    Vec2D pos2;
-    pos2.x=0-orig.x+offsetx;
-    pos2.y=0-orig.y+offsety;
-    pos2=utils::isoTo2D(&pos2);
-    pos2.y=pos2.y/32-2;
-    pos2.x=pos2.x/32-2;
-    if(pos2.x<0)
-        pos2.x=0;
-    if(pos2.y<0)
-        pos2.y=0;
-
-
-    Vec2D pos3;
-    pos3.x=SCREEN_W-orig.x+offsetx;
-    pos3.y=0-orig.y+offsety;
-    pos3=utils::isoTo2D(&pos3);
-    pos3.y=pos3.y/32-1;
-    pos3.x=pos3.x/32-1;
-    if(pos3.x<0)
-        pos3.x=0;
-    if(pos3.y<0)
-        pos3.y=0;
     // pos0= utils::GetTileWithPos(32,32,pos0.x,pos0.y);
 
 
-    for(int y=pos3.y; y<pos1.y ; y++)
-        for(int x=pos2.x; x<pos0.x; x++)
+    for(int y= viewport.p1.y; y<viewport.p2.y ; y++)
+        for(int x= viewport.p1.x; x<viewport.p2.x; x++)
         {
             CSprite *s=  capa->tiles[x+y*capa->width];
-
+            /*    if((s->PosProj.x-offsetx)<=SCREEN_W &&(s->PosProj.y-offsety)<=SCREEN_H  )*/
             vVisible.push_back(s);
         }
 
@@ -298,4 +258,64 @@ void CWorld::PreSortByXY(vector<CSprite*> &v)
     {
         return ((lhs->Pos.x+lhs->Pos.y) < (rhs->Pos.x+rhs->Pos.y));
     });
+}
+ViewPort  CWorld::GetViewPort(int width,int height)
+{
+    ViewPort viewport;
+
+    int offsety=(this->engine->player->PosProj.y);
+    int offsetx=(this->engine->player->PosProj.x);
+    Vec2D pos0;
+    pos0.x=SCREEN_W-orig.x-80+offsetx;
+    pos0.y=SCREEN_H-orig.y-32+offsety;
+    pos0=utils::isoTo2D(&pos0); //hay que corregir el nombre esta mal
+
+    pos0.y=pos0.y/32+1;
+    pos0.x=pos0.x/32+1;
+
+    if(pos0.x>width)
+        pos0.x=width;
+
+
+
+    Vec2D pos1;
+    pos1.x=0-orig.x+offsetx;
+    pos1.y=SCREEN_H-orig.y-32+offsety;
+    pos1=utils::isoTo2D(&pos1);
+    pos1.y=pos1.y/32+1;
+    pos1.x=pos1.x/32+1;
+
+    if(pos1.y>height)
+        pos1.y=height;
+
+    Vec2D pos2;
+    pos2.x=0-orig.x+offsetx;
+    pos2.y=0-orig.y+offsety;
+    pos2=utils::isoTo2D(&pos2);
+    pos2.y=pos2.y/32-2;
+    pos2.x=pos2.x/32-2;
+    if(pos2.x<0)
+        pos2.x=0;
+    if(pos2.y<0)
+        pos2.y=0;
+
+
+    Vec2D pos3;
+    pos3.x=SCREEN_W-orig.x+offsetx;
+    pos3.y=0-orig.y+offsety;
+    pos3=utils::isoTo2D(&pos3);
+    pos3.y=pos3.y/32-1;
+    pos3.x=pos3.x/32-1;
+    if(pos3.x<0)
+        pos3.x=0;
+    if(pos3.y<0)
+        pos3.y=0;
+
+    viewport.p1.y=pos3.y;
+    viewport.p2.y=pos1.y;
+
+    viewport.p1.x=pos2.x;
+    viewport.p2.x=pos0.x;
+
+    return viewport;
 }
