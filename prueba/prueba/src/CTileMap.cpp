@@ -46,6 +46,9 @@ CTileMap::CTileMap(string file)
             t->PosProj.x=x;
             t->PosProj.y=y;
             t->id=it2->gid;
+            t->Altura=0;
+            if(t->indiceTile==2)
+                  t->Altura=32;
             capa->tiles.push_back(t);
             conta++;
         }

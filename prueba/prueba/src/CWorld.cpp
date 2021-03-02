@@ -107,7 +107,7 @@ void CWorld::Render()
             char tempStr2 [100];
             //snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
             sprintf ( tempStr2,  "(%d)", e->Depth );
-            textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x-offsetx+32, e->PosProj.y+this->orig.y-offsety+32, makecol(255,255,255), -1);
+        //    textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x-offsetx+32, e->PosProj.y+this->orig.y-offsety+32, makecol(255,255,255), -1);
 
         }
 
@@ -205,13 +205,30 @@ void CWorld::ProcesaDepthSprites()
 
     // pos0= utils::GetTileWithPos(32,32,pos0.x,pos0.y);
 
-
+vector<CSprite *> vSuelo;
+  int kk=0;
     for(int y= viewport.p1.y; y<viewport.p2.y ; y++)
         for(int x= viewport.p1.x; x<viewport.p2.x; x++)
         {
             CSprite *s=  capa->tiles[x+y*capa->width];
+            int offsety=(this->engine->player->PosProj.y);
+            int offsetx=(this->engine->player->PosProj.x);
+             if((s->PosProj.x+this->orig.x-offsetx)<=SCREEN_W
+                && (s->PosProj.y+this->orig.y-offsety)<=SCREEN_H
+                && (s->PosProj.x+this->orig.x-offsetx+64)>=0
+                && (s->PosProj.y+this->orig.y-offsety+80)>=0
+                )
+
+           // if(s->Altura>0)
             /*    if((s->PosProj.x-offsetx)<=SCREEN_W &&(s->PosProj.y-offsety)<=SCREEN_H  )*/
             vVisible.push_back(s);
+            else
+            {
+
+                kk++;
+            }
+           /* else
+                vSuelo.push_back(s);*/
         }
 
     vVisible.push_back(this->engine->player);
@@ -248,7 +265,11 @@ void CWorld::ProcesaDepthSprites()
         return lhs->Depth < rhs->Depth;
     });
 
-
+ /*   vector<CSprite*> temp;
+    temp.reserve(vVisible.size()+vSuelo.size());
+    temp.insert( temp.end(), vSuelo.begin(), vSuelo.end() );
+       temp.insert( temp.end(), vVisible.begin(), vVisible.end() );
+       this->vVisible=temp;*/
     return ;
 }
 

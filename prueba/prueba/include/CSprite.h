@@ -16,7 +16,7 @@ public:
     int Depth;
     vector<CSprite*> entidadesDebajo;
     bool visitado;
-
+    int Altura;
     int i,j;
 
     vector<Vec2D> getTilesOcupados();

@@ -130,7 +130,7 @@
 1613401720 source:c:\users\alex\documents\isometrico\prueba\prueba\src\tile.cpp
 	"Tile.h"
 
-1614590730 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\csprite.h
+1614690718 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\csprite.h
 	"comun.h"
 	<vector>
 	<utils.h>
@@ -147,7 +147,7 @@
 	"CTileMap.h"
 	<vector>
 
-1614667886 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
+1614692814 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
 	"CWorld.h"
 	<algorithm>
 	<cstdio>
@@ -293,7 +293,7 @@
 1614590730 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\clayer.cpp
 	"CLayer.h"
 
-1614590730 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\ctilemap.cpp
+1614690803 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\ctilemap.cpp
 	"CTileMap.h"
 
 1614590730 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\tmxparser\base64.h
