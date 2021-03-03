@@ -24,5 +24,5 @@ struct ViewPort
     Vec2D p2;
 
 };
-
+enum TiposSprite {SPRITE,TILE};
 #endif // STRUCTURES_H_INCLUDED

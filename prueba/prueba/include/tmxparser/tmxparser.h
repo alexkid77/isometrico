@@ -33,14 +33,14 @@ THE SOFTWARE.
 template <typename TKey, typename TValue>
 struct Map
 {
-	typedef std::unordered_map<TKey, TValue> type;
+    typedef std::unordered_map<TKey, TValue> type;
 };
 #else
 #include <map>
 template <typename TKey, typename TValue>
 struct Map
 {
-	typedef std::map<TKey, TValue> type;
+    typedef std::map<TKey, TValue> type;
 };
 #endif
 
@@ -55,15 +55,15 @@ namespace tmxparser
 
 typedef enum
 {
-	kSuccess,
-	kErrorParsing,
-	kMissingRequiredAttribute,
-	kMissingMapNode,
-	kMissingDataNode,
-  kMissingTilesetNode,
-	kMalformedPropertyNode,
-	kInvalidTileIndex,
-	kUnknownTileIndices,
+    kSuccess,
+    kErrorParsing,
+    kMissingRequiredAttribute,
+    kMissingMapNode,
+    kMissingDataNode,
+    kMissingTilesetNode,
+    kMalformedPropertyNode,
+    kInvalidTileIndex,
+    kUnknownTileIndices,
 } TmxReturn;
 
 
@@ -75,41 +75,41 @@ typedef unsigned int TileId_t;
 
 typedef enum
 {
-	kOrthogonal = 0,
-	kIsometric,
-	kStaggered
+    kOrthogonal = 0,
+    kIsometric,
+    kStaggered
 } TmxOrientation;
 
 
 typedef enum
 {
-	kPolygon,
-	kPolyline,
-	kEllipse,
-	kSquare,
+    kPolygon,
+    kPolyline,
+    kEllipse,
+    kSquare,
 } TmxShapeType;
 
 
 typedef struct
 {
-	float u;
-	float v;
-	float u2;
-	float v2;
+    float u;
+    float v;
+    float u2;
+    float v2;
 } TmxRect;
 
 
 typedef struct
 {
-	std::string name;
-	std::string value;
+    std::string name;
+    std::string value;
 } TmxProperty;
 
 
 typedef struct
 {
-	TileId_t tileId;
-	float duration;
+    TileId_t tileId;
+    float duration;
 } TmxAnimationFrame;
 
 
@@ -124,18 +124,18 @@ typedef std::vector<TmxShapePoint> TmxShapePointCollection_t;
 
 typedef struct
 {
-	std::string name;
-	std::string type;
-	float x;
-	float y;
-	float width;
-	float height;
-	float rotation;
-	unsigned int referenceGid;
-	bool visible;
-	TmxPropertyMap_t propertyMap;
-	TmxShapeType shapeType;
-	TmxShapePointCollection_t shapePoints;
+    std::string name;
+    std::string type;
+    float x;
+    float y;
+    float width;
+    float height;
+    float rotation;
+    unsigned int referenceGid;
+    bool visible;
+    TmxPropertyMap_t propertyMap;
+    TmxShapeType shapeType;
+    TmxShapePointCollection_t shapePoints;
 } TmxObject;
 
 
@@ -144,12 +144,12 @@ typedef std::vector<TmxObject> TmxObjectCollection_t;
 
 typedef struct
 {
-	std::string name;
-	std::string color;
-	float opacity;
-	bool visible;
-	TmxPropertyMap_t propertyMap;
-	TmxObjectCollection_t objects;
+    std::string name;
+    std::string color;
+    float opacity;
+    bool visible;
+    TmxPropertyMap_t propertyMap;
+    TmxObjectCollection_t objects;
 } TmxObjectGroup;
 
 
@@ -158,10 +158,10 @@ typedef std::vector<TmxObjectGroup> TmxObjectGroupCollection_t;
 
 typedef struct
 {
-	TileId_t id;
-	TmxPropertyMap_t propertyMap;
-	TmxAnimationFrameCollection_t animations;
-	TmxObjectGroupCollection_t objectgroups;
+    TileId_t id;
+    TmxPropertyMap_t propertyMap;
+    TmxAnimationFrameCollection_t animations;
+    TmxObjectGroupCollection_t objectgroups;
 } TmxTileDefinition;
 
 
@@ -170,32 +170,32 @@ typedef Map<unsigned int, TmxTileDefinition>::type TmxTileDefinitionMap_t;
 
 typedef struct
 {
-	int x;
-	int y;
+    int x;
+    int y;
 } TmxOffset;
 
 
 typedef struct
 {
-	std::string format;
-	std::string source;
-	std::string transparentColor;
-	unsigned int width;
-	unsigned int height;
+    std::string format;
+    std::string source;
+    std::string transparentColor;
+    unsigned int width;
+    unsigned int height;
 } TmxImage;
 
 
 typedef struct
 {
-	std::string name;
-	unsigned int x;
-	unsigned int y;
-	unsigned int widthInTiles;
-	unsigned int heightInTiles;
-	float opacity;
-	bool visible;
-	TmxPropertyMap_t propertyMap;
-	TmxImage image;
+    std::string name;
+    unsigned int x;
+    unsigned int y;
+    unsigned int widthInTiles;
+    unsigned int heightInTiles;
+    float opacity;
+    bool visible;
+    TmxPropertyMap_t propertyMap;
+    TmxImage image;
 } TmxImageLayer;
 
 
@@ -204,20 +204,20 @@ typedef std::vector<TmxImageLayer> TmxImageLayerCollection_t;
 
 typedef struct
 {
-  std::string source;
-	unsigned int firstgid;
-	std::string name;
-	unsigned int tileWidth;
-	unsigned int tileHeight;
-	unsigned int tileSpacingInImage;
-	unsigned int tileMarginInImage;
-	TmxOffset offset;
+    std::string source;
+    unsigned int firstgid;
+    std::string name;
+    unsigned int tileWidth;
+    unsigned int tileHeight;
+    unsigned int tileSpacingInImage;
+    unsigned int tileMarginInImage;
+    TmxOffset offset;
 
-	unsigned int rowCount; /// based on image width and tile spacing/margins
-	unsigned int colCount; /// based on image height and tile spacing/margins
+    unsigned int rowCount; /// based on image width and tile spacing/margins
+    unsigned int colCount; /// based on image height and tile spacing/margins
 
-	TmxImage image;
-	TmxTileDefinitionMap_t tileDefinitions;
+    TmxImage image;
+    TmxTileDefinitionMap_t tileDefinitions;
 } TmxTileset;
 
 
@@ -226,10 +226,10 @@ typedef std::vector<TmxTileset> TmxTilesetCollection_t;
 
 typedef struct
 {
-	unsigned int gid;
-	unsigned int tilesetIndex;
-	unsigned int tileFlatIndex;
-	bool flipX, flipY, flipDiagonal;
+    unsigned int gid;
+    unsigned int tilesetIndex;
+    unsigned int tileFlatIndex;
+    bool flipX, flipY, flipDiagonal;
 } TmxLayerTile;
 
 
@@ -238,13 +238,13 @@ typedef std::vector<TmxLayerTile> TmxLayerTileCollection_t;
 
 typedef struct
 {
-	std::string name;
-	unsigned int width;
-	unsigned int height;
-	float opacity;
-	bool visible;
-	TmxPropertyMap_t propertyMap;
-	TmxLayerTileCollection_t tiles;
+    std::string name;
+    unsigned int width;
+    unsigned int height;
+    float opacity;
+    bool visible;
+    TmxPropertyMap_t propertyMap;
+    TmxLayerTileCollection_t tiles;
 } TmxLayer;
 
 
@@ -253,19 +253,19 @@ typedef std::vector<TmxLayer> TmxLayerCollection_t;
 
 typedef struct
 {
-	std::string version;
-	TmxOrientation orientation;
-	unsigned int width;
-	unsigned int height;
-	unsigned int tileWidth;
-	unsigned int tileHeight;
-	std::string backgroundColor;
-	std::string renderOrder;
-	TmxPropertyMap_t propertyMap;
-	TmxTilesetCollection_t tilesetCollection;
-	TmxLayerCollection_t layerCollection;
-	TmxObjectGroupCollection_t objectGroupCollection;
-	TmxImageLayerCollection_t imageLayerCollection;
+    std::string version;
+    TmxOrientation orientation;
+    unsigned int width;
+    unsigned int height;
+    unsigned int tileWidth;
+    unsigned int tileHeight;
+    std::string backgroundColor;
+    std::string renderOrder;
+    TmxPropertyMap_t propertyMap;
+    TmxTilesetCollection_t tilesetCollection;
+    TmxLayerCollection_t layerCollection;
+    TmxObjectGroupCollection_t objectGroupCollection;
+    TmxImageLayerCollection_t imageLayerCollection;
 } TmxMap;
 
 

@@ -20,6 +20,8 @@ public:
 protected:
 
 private:
+    CSprite *objeto;
+
     int tileGridH;
     int tileGridW;
     Vec2D orig;
@@ -28,12 +30,16 @@ private:
     CTileMap *tilemap;
 
     vector<CSprite*> vSprites;
+    vector<CSprite*> vVisible;
+
     void VisitNode(CSprite *ent,int *sortDepth);
     void InitSprites();
     void ProcesaDepthSprites();
-void PreSortByXY(vector<CSprite*> &v);
-ViewPort  GetViewPort(int width,int height);
-    vector<CSprite*> vVisible;
+    void PreSortByXY(vector<CSprite*> &v);
+    ViewPort  GetViewPort(int width,int height);
+    void OrdenaTopologicamente();
+    void OrdenaTopologicamente2();
+
 };
 
 #endif // CMAP_H

@@ -10,6 +10,7 @@ CSprite::CSprite(int tileGridW,int tileGridH,int tileSize)
     this->Depth=0;
     this->tileSize=tileSize;
     this->entidadesDebajo=vector<CSprite*>(128);
+    this->Tipo=SPRITE;
     //ctor
 }
 

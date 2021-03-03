@@ -16,8 +16,8 @@ cEngine::cEngine()
     this->player= new CSprite(this->tileGridW,this->tileGridH,this->tileSize);
     //this->player->Pos.x=213;
     //this->player->Pos.y=142;
-    this->player->Pos.x=673;
-    this->player->Pos.y=141;
+    this->player->Pos.x=67;
+    this->player->Pos.y=100;
     this->player->onCollision=this->onPlayerCollision;
     this->mapa=new CWorld(this);
     //ctor
@@ -27,8 +27,10 @@ cEngine::~cEngine()
 {
     //dtor
 }
-void cEngine::onPlayerCollision()
+void cEngine::onPlayerCollision(CEntity *ent)
 {
+    int x=0;
+    x++;
 //   printf("Colision\n");
 }
 void cEngine::Update()
@@ -51,7 +53,6 @@ void cEngine::Update()
 
 
     this->mapa->Update();
-
 }
 
 void cEngine::Render()

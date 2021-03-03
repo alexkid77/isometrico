@@ -13,6 +13,12 @@ CWorld::CWorld(cEngine *engine)
     this->vSprites=vector<CSprite *>(2048);
     this->InitSprites();
 
+    this->objeto=new CSprite(this->engine->tileGridW,this->engine->tileGridH,this->engine->tileSize);
+    this->objeto->Pos.x=20;
+    this->objeto->Pos.y=10;
+    this->objeto->ClearDepth();
+    this->vSprites.push_back(objeto);
+
 }
 CTileMap * CWorld::LoadTmx(string file)
 {
@@ -27,18 +33,10 @@ CWorld::~CWorld()
 void CWorld::Update()
 {
     this->engine->player->ClearDepth();
-    int tam=this->vSprites.size();
-    for(uint16_t  i=0; i<tam; i++)
-        this->vSprites[i]->ClearDepth();
-
-
-    /*  sort(  this->vSprites.begin( ),  this->vSprites.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
-      {
-          return ((lhs->Pos.x+lhs->Pos.y) < (rhs->Pos.x+rhs->Pos.y));
-      });*/
 
     CLayer *capa=this->tilemap->Layers[0];
 
+    /*mirar que el player no salga del mapa*/
     if( this->engine->player->Pos.x<=0)
         this->engine->player->Pos.x=0;
     if( this->engine->player->Pos.y<=0)
@@ -59,8 +57,18 @@ void CWorld::Update()
         if(t->indiceTile==2)
         {
             this->engine->player->Pos=this->engine->player->PosAnt;
-            this->engine->player->onCollision();
+            this->engine->player->onCollision(t);
         }
+    }
+
+    int temp=0;
+    if(objeto->Pos.x<(this->engine->player->Pos.x+31+temp) &&
+       (objeto->Pos.x+31+temp)>(this->engine->player->Pos.x) &&
+       objeto->Pos.y<(this->engine->player->Pos.y+31+temp) &&
+         (objeto->Pos.y+31+temp)>(this->engine->player->Pos.y)
+       )
+    {
+          this->engine->player->Pos=this->engine->player->PosAnt;
     }
 
 }
@@ -82,35 +90,35 @@ void CWorld::Render()
 
 
     clear_to_color(this->engine->buffer, makecol(0, 0, 0));
-    acquire_screen();
+
 
     int offsetx=this->engine->player->PosProj.x;
     int offsety=this->engine->player->PosProj.y;
     int tamVisible=this->vVisible.size();
     for(uint16_t  i=0; i<tamVisible; i++)
     {
-        CTile *t=dynamic_cast<CTile*>(this->vVisible[i]);
-        CSprite * e=dynamic_cast<CSprite*>(this->vVisible[i]);
+        CSprite * e=(this->vVisible[i]);
 
-        if(t== 0)
+        if(e->Tipo==TILE)
         {
+            CTile *t=static_cast<CTile*>(this->vVisible[i]);
+            masked_blit(this->engine->tiles[t->indiceTile], this->engine->buffer, 0, 0, t->PosProj.x+this->orig.x-offsetx, t->PosProj.y+this->orig.y-offsety, this->engine->tileW,this->engine->tileH);
+            char tempStr2 [100];
+            //snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
+            sprintf ( tempStr2,  "(%d)", e->Depth );
+            //    textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x-offsetx+32, e->PosProj.y+this->orig.y-offsety+32, makecol(255,255,255), -1);
 
+        }
+        else
+        {
+            e->PosProj=e->getPosProj();
             masked_blit(this->engine->tiles[0], this->engine->buffer, 0, 0,  e->PosProj.x+this->orig.x-offsetx,  e->PosProj.y+this->orig.y-offsety, this->engine->tileW,this->engine->tileH);
             char tempStr2 [100];
             //snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
             sprintf ( tempStr2,  "(%d)", e->Depth );
             textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x-offsetx+32, e->PosProj.y+this->orig.y-offsety+32, makecol(255,0,0), -1);
-        }
-        else
-        {
-            masked_blit(this->engine->tiles[t->indiceTile], this->engine->buffer, 0, 0, t->PosProj.x+this->orig.x-offsetx, t->PosProj.y+this->orig.y-offsety, this->engine->tileW,this->engine->tileH);
-            char tempStr2 [100];
-            //snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
-            sprintf ( tempStr2,  "(%d)", e->Depth );
-        //    textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x-offsetx+32, e->PosProj.y+this->orig.y-offsety+32, makecol(255,255,255), -1);
 
         }
-
 
     }
 
@@ -133,12 +141,8 @@ void CWorld::Render()
     snprintf ( fpsStr, 100, "fps:%d", this->engine->fps );
     textout_ex(this->engine->buffer, font, fpsStr, 0, 20, makecol(255,255,255), -1);
 
-    Vec2D pos1;
-    pos1.x=SCREEN_W;
-    pos1.y=SCREEN_H;
-    pos1=utils::twoDToIso(&pos1);
-    putpixel(this->engine->buffer,pos1.x,pos1.y,makecol(255,0,0));
 
+    acquire_screen();
     blit(this->engine->buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
 
 
@@ -193,65 +197,61 @@ void CWorld::ProcesaDepthSprites()
 {
 
 
-    int ntiles=32;
 
     this->vVisible.clear();
 
     CLayer *capa=this->tilemap->Layers[0];
 
+    vVisible.push_back(this->engine->player);
 
+  vVisible.push_back(this->objeto);
 
+    /*solo se dibuja lo que se ve en la pantalla*/
     ViewPort viewport=GetViewPort(capa->width,capa->height);
 
-    // pos0= utils::GetTileWithPos(32,32,pos0.x,pos0.y);
 
-vector<CSprite *> vSuelo;
-  int kk=0;
     for(int y= viewport.p1.y; y<viewport.p2.y ; y++)
         for(int x= viewport.p1.x; x<viewport.p2.x; x++)
         {
             CSprite *s=  capa->tiles[x+y*capa->width];
             int offsety=(this->engine->player->PosProj.y);
             int offsetx=(this->engine->player->PosProj.x);
-             if((s->PosProj.x+this->orig.x-offsetx)<=SCREEN_W
-                && (s->PosProj.y+this->orig.y-offsety)<=SCREEN_H
-                && (s->PosProj.x+this->orig.x-offsetx+64)>=0
-                && (s->PosProj.y+this->orig.y-offsety+80)>=0
-                )
+            if((s->PosProj.x+this->orig.x-offsetx)<=SCREEN_W
+                    && (s->PosProj.y+this->orig.y-offsety)<=SCREEN_H
+                    && (s->PosProj.x+this->orig.x-offsetx+64)>=0
+                    && (s->PosProj.y+this->orig.y-offsety+80)>=0
+              )
 
-           // if(s->Altura>0)
-            /*    if((s->PosProj.x-offsetx)<=SCREEN_W &&(s->PosProj.y-offsety)<=SCREEN_H  )*/
-            vVisible.push_back(s);
-            else
-            {
+                vVisible.push_back(s);
 
-                kk++;
-            }
-           /* else
-                vSuelo.push_back(s);*/
         }
 
-    vVisible.push_back(this->engine->player);
+    /*se limpia la profundidad*/
+    for(uint16_t  i=0; i<vVisible.size(); i++)
+        vVisible[i]->ClearDepth();
+    /*ordena topologicamente los sprites*/
+    this->OrdenaTopologicamente2();
+
+}
+
+void CWorld::OrdenaTopologicamente()
+{
     int tam=vVisible.size();
     this->PreSortByXY(vVisible);
 
-    // for(int i=0; i<this->vSprites.size(); i++)
-    //{
+
     CSprite *a=this->engine->player;
 
     for(uint16_t j=0; j<tam; j++)
     {
-        /* if(i==j)
-             continue;*/
 
         CSprite *b=vVisible[j];
         if( a->SolapaEntidad(b))
-        {
             a->entidadesDebajo.push_back(b);
-        }
+
     }
     a->visitado=false;
-    // }
+
 
 
     int sortDepth=0;
@@ -265,14 +265,43 @@ vector<CSprite *> vSuelo;
         return lhs->Depth < rhs->Depth;
     });
 
- /*   vector<CSprite*> temp;
-    temp.reserve(vVisible.size()+vSuelo.size());
-    temp.insert( temp.end(), vSuelo.begin(), vSuelo.end() );
-       temp.insert( temp.end(), vVisible.begin(), vVisible.end() );
-       this->vVisible=temp;*/
-    return ;
 }
 
+void CWorld::OrdenaTopologicamente2()
+{
+    int tam=vVisible.size();
+
+
+    for(int i=0; i<tam; i++)
+    {
+        CSprite *a=this->vVisible[i];
+
+        for(uint16_t j=0; j<tam; j++)
+        {
+            if(i==j)
+                continue;
+
+            CSprite *b=vVisible[j];
+            if( a->SolapaEntidad(b))
+                a->entidadesDebajo.push_back(b);
+
+        }
+        a->visitado=false;
+    }
+
+
+    int sortDepth=0;
+    for(uint16_t  i=0; i<tam; i++)
+        this->VisitNode(vVisible[i],&sortDepth);
+
+
+
+    sort( vVisible.begin( ), vVisible.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
+    {
+        return lhs->Depth < rhs->Depth;
+    });
+
+}
 void CWorld::PreSortByXY(vector<CSprite*> &v)
 {
     sort(  v.begin( ),  v.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
@@ -280,6 +309,7 @@ void CWorld::PreSortByXY(vector<CSprite*> &v)
         return ((lhs->Pos.x+lhs->Pos.y) < (rhs->Pos.x+rhs->Pos.y));
     });
 }
+
 ViewPort  CWorld::GetViewPort(int width,int height)
 {
     ViewPort viewport;

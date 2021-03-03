@@ -21,7 +21,7 @@ public:
     {
         this->debug=n;
     }
-    static void onPlayerCollision();
+     static void onPlayerCollision(CEntity *ent);
     int fps;
 protected:
 

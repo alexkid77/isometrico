@@ -22,7 +22,7 @@ int main(void)
     select_mouse_cursor(MOUSE_CURSOR_ARROW);
     set_color_depth(32);
     /* set a graphics mode sized 320x200 */
-    set_gfx_mode(GFX_SAFE, 800, 600,0, 0);
+    set_gfx_mode(GFX_SAFE, 1280, 720,0, 0);
 
     cEngine *engine=new cEngine();
     while (!key[KEY_ESC])
