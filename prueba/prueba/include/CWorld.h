@@ -29,8 +29,14 @@ private:
     cEngine* engine;
     CTileMap *tilemap;
 
+    //todos los objetos del mundo
     vector<CSprite*> vSprites;
+
+    //todos los objeto que se ven
     vector<CSprite*> vVisible;
+
+    //todos los objeto dinamicos
+    vector<CSprite*> vDinamicos;
 
     void VisitNode(CSprite *ent,int *sortDepth);
     void InitSprites();

@@ -13,3 +13,7 @@ CTile::~CTile()
     x++;
     //dtor
 }
+void CTile::onCollision(CEntity *ent)
+{
+
+}

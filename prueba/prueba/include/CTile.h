@@ -12,10 +12,11 @@ public:
     int j;
 
     CTile(int tileGridW,int tileGridH,int tileSize);
+
     virtual ~CTile();
 
 protected:
-
+    virtual void onCollision(CEntity *ent);
 private:
 };
 

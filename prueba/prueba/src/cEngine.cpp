@@ -13,12 +13,12 @@ cEngine::cEngine()
     BITMAP *tilesRaw=load_bmp("tile2.bmp", 0);
     tiles=ExtraeTiles(tilesRaw,tileW,tileH);
 
-    this->player= new CSprite(this->tileGridW,this->tileGridH,this->tileSize);
+    this->player= new CPlayer(this->tileGridW,this->tileGridH,this->tileSize);
     //this->player->Pos.x=213;
     //this->player->Pos.y=142;
     this->player->Pos.x=67;
     this->player->Pos.y=100;
-    this->player->onCollision=this->onPlayerCollision;
+    //  this->player->onCollision=this->onPlayerCollision;
     this->mapa=new CWorld(this);
     //ctor
 }

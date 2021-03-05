@@ -11,13 +11,14 @@ CWorld::CWorld(cEngine *engine)
     this->orig=engine->orig;
     this->engine=engine;
     this->vSprites=vector<CSprite *>(2048);
-    this->InitSprites();
 
     this->objeto=new CSprite(this->engine->tileGridW,this->engine->tileGridH,this->engine->tileSize);
-    this->objeto->Pos.x=20;
-    this->objeto->Pos.y=10;
+    this->objeto->Pos.x=60;
+    this->objeto->Pos.y=60;
     this->objeto->ClearDepth();
-    this->vSprites.push_back(objeto);
+    this->InitSprites();
+
+    // this->vSprites.push_back(objeto);
 
 }
 CTileMap * CWorld::LoadTmx(string file)
@@ -33,7 +34,7 @@ CWorld::~CWorld()
 void CWorld::Update()
 {
     this->engine->player->ClearDepth();
-
+    this->objeto->ClearDepth();
     CLayer *capa=this->tilemap->Layers[0];
 
     /*mirar que el player no salga del mapa*/
@@ -47,29 +48,36 @@ void CWorld::Update()
     if( this->engine->player->Pos.y>((capa->height*32)-32))
         this->engine->player->Pos.y=capa->height*32-32;
 
-    //mirar que tiles pisa
-    vector<Vec2D> tilesOcupados=this->engine->player->getTilesOcupados();
 
-    for(uint16_t i=0; i<tilesOcupados.size(); i++)
+    //mirar que tiles pisa
+    for(int i=0; i<this->vDinamicos.size(); i++)
     {
-        Vec2D tile=tilesOcupados[i];
-        CTile *t=capa->GetTile(tile.x,tile.y);
-        if(t->indiceTile==2)
+        CSprite *s=vDinamicos[i];
+        s->vColisiones.clear();
+        vector<Vec2D> tilesOcupados=s->getTilesOcupados();
+
+
+        for(uint16_t i=0; i<tilesOcupados.size() ; i++)
         {
-            this->engine->player->Pos=this->engine->player->PosAnt;
-            this->engine->player->onCollision(t);
+            Vec2D tile=tilesOcupados[i];
+            CTile *t=capa->GetTile(tile.x,tile.y);
+            if(t->indiceTile==2)
+            {
+                s->Pos=s->PosAnt;
+                s->vColisiones.push_back(t);
+                s->onCollision(t);
+                break;
+            }
+
+        }
+
+        if(objeto->hasCollision(this->engine->player) )
+        {
+            this->objeto->onCollision(this->engine->player);
         }
     }
+       this->ProcesaDepthSprites();
 
-    int temp=0;
-    if(objeto->Pos.x<(this->engine->player->Pos.x+31+temp) &&
-       (objeto->Pos.x+31+temp)>(this->engine->player->Pos.x) &&
-       objeto->Pos.y<(this->engine->player->Pos.y+31+temp) &&
-         (objeto->Pos.y+31+temp)>(this->engine->player->Pos.y)
-       )
-    {
-          this->engine->player->Pos=this->engine->player->PosAnt;
-    }
 
 }
 
@@ -86,7 +94,6 @@ void CWorld::Render()
 
 
     /*Se procesa los sprites para establecer el orden de renderizado */
-    this->ProcesaDepthSprites();
 
 
     clear_to_color(this->engine->buffer, makecol(0, 0, 0));
@@ -112,7 +119,7 @@ void CWorld::Render()
         else
         {
             e->PosProj=e->getPosProj();
-            masked_blit(this->engine->tiles[0], this->engine->buffer, 0, 0,  e->PosProj.x+this->orig.x-offsetx,  e->PosProj.y+this->orig.y-offsety, this->engine->tileW,this->engine->tileH);
+            masked_blit(this->engine->tiles[2], this->engine->buffer, 0, 0,  e->PosProj.x+this->orig.x-offsetx,  e->PosProj.y+this->orig.y-offsety, this->engine->tileW,this->engine->tileH);
             char tempStr2 [100];
             //snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
             sprintf ( tempStr2,  "(%d)", e->Depth );
@@ -185,10 +192,12 @@ void CWorld::InitSprites()
             this->vSprites.push_back(t);
         }
 
-    this->engine->player->Depth=0;
-    this->engine->player->visitado=false;
-    this->engine->player->entidadesDebajo.clear();
 
+
+
+    this->vDinamicos.push_back(this->engine->player);
+    this->vDinamicos.push_back(this->objeto);
+    this->vSprites.push_back(this->objeto);
     this->vSprites.push_back(this->engine->player);
 
 }
@@ -201,10 +210,12 @@ void CWorld::ProcesaDepthSprites()
     this->vVisible.clear();
 
     CLayer *capa=this->tilemap->Layers[0];
+    for(int i=0; i<this->vDinamicos.size(); i++)
+        vVisible.push_back(this->vDinamicos[i]);
+    /* vVisible.push_back(this->objeto);
+     vVisible.push_back(this->engine->player);*/
 
-    vVisible.push_back(this->engine->player);
 
-  vVisible.push_back(this->objeto);
 
     /*solo se dibuja lo que se ve en la pantalla*/
     ViewPort viewport=GetViewPort(capa->width,capa->height);
@@ -229,15 +240,16 @@ void CWorld::ProcesaDepthSprites()
     /*se limpia la profundidad*/
     for(uint16_t  i=0; i<vVisible.size(); i++)
         vVisible[i]->ClearDepth();
+
     /*ordena topologicamente los sprites*/
-    this->OrdenaTopologicamente2();
+    this->OrdenaTopologicamente();
 
 }
 
 void CWorld::OrdenaTopologicamente()
 {
     int tam=vVisible.size();
-    this->PreSortByXY(vVisible);
+   this->PreSortByXY(vVisible);
 
 
     CSprite *a=this->engine->player;
@@ -246,6 +258,8 @@ void CWorld::OrdenaTopologicamente()
     {
 
         CSprite *b=vVisible[j];
+        if(a==b)
+            continue;
         if( a->SolapaEntidad(b))
             a->entidadesDebajo.push_back(b);
 
@@ -253,6 +267,19 @@ void CWorld::OrdenaTopologicamente()
     a->visitado=false;
 
 
+    a=this->objeto;
+
+    for(uint16_t j=0; j<tam; j++)
+    {
+
+        CSprite *b=vVisible[j];
+         if(a==b)
+            continue;
+        if( a->SolapaEntidad(b))
+            a->entidadesDebajo.push_back(b);
+
+    }
+    a->visitado=false;
 
     int sortDepth=0;
     for(uint16_t  i=0; i<tam; i++)
@@ -262,7 +289,7 @@ void CWorld::OrdenaTopologicamente()
 
     sort( vVisible.begin( ), vVisible.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
     {
-        return lhs->Depth < rhs->Depth;
+        return lhs->Depth <rhs->Depth;
     });
 
 }
@@ -270,7 +297,7 @@ void CWorld::OrdenaTopologicamente()
 void CWorld::OrdenaTopologicamente2()
 {
     int tam=vVisible.size();
-
+this->PreSortByXY(vVisible);
 
     for(int i=0; i<tam; i++)
     {

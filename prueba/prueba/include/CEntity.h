@@ -8,9 +8,12 @@ public:
 
     int id;
     TiposSprite Tipo;
+    Vec2D Pos;
+    Vec2D PosAnt;
+    Vec2D PosProj;
     CEntity();
     virtual ~CEntity();
-    void(*onCollision)(CEntity *ent);
+    virtual void onCollision(CEntity *ent)=0;
 protected:
 
 private:

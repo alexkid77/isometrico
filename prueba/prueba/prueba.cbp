@@ -44,6 +44,7 @@
 		</Compiler>
 		<Unit filename="include/CEntity.h" />
 		<Unit filename="include/CLayer.h" />
+		<Unit filename="include/CPlayer.h" />
 		<Unit filename="include/CSprite.h" />
 		<Unit filename="include/CTile.h" />
 		<Unit filename="include/CTileMap.h" />
@@ -58,6 +59,7 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/CEntity.cpp" />
 		<Unit filename="src/CLayer.cpp" />
+		<Unit filename="src/CPlayer.cpp" />
 		<Unit filename="src/CSprite.cpp" />
 		<Unit filename="src/CTile.cpp" />
 		<Unit filename="src/CTileMap.cpp" />

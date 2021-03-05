@@ -6,7 +6,9 @@
 #include <string>
 #include "math.h"
 #include "CSprite.h"
+#include <CPlayer.h>
 #include "utils.h"
+
 class CWorld;
 using namespace std;
 
@@ -21,7 +23,7 @@ public:
     {
         this->debug=n;
     }
-     static void onPlayerCollision(CEntity *ent);
+    static void onPlayerCollision(CEntity *ent);
     int fps;
 protected:
 
@@ -33,7 +35,7 @@ private:
 
 
     BITMAP **tiles;
-    CSprite *player;
+    CPlayer *player;
     bool debug;
     int tileH;
     int tileW;

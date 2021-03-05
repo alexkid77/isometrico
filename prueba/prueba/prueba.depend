@@ -36,24 +36,25 @@
 	"cEngine.h"
 	"CWorld.h"
 
-1614768607 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\main.cpp
+1614932720 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\main.cpp
 	<allegro.h>
 	"cEngine.h"
 
-1614762387 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cengine.h
+1614934624 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cengine.h
 	"comun.h"
 	"cVideo.h"
 	<allegro.h>
 	<string>
 	"math.h"
 	"CSprite.h"
+	<CPlayer.h>
 	"utils.h"
 
 1613981506 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\structures.h
 
 1614590730 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cvideo.h
 
-1614767196 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cengine.cpp
+1614934624 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cengine.cpp
 	"cEngine.h"
 	"CWorld.h"
 
@@ -130,35 +131,36 @@
 1613401720 source:c:\users\alex\documents\isometrico\prueba\prueba\src\tile.cpp
 	"Tile.h"
 
-1614690718 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\csprite.h
+1614940925 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\csprite.h
 	"comun.h"
 	<vector>
 	<utils.h>
 	<algorithm>
 	<CEntity.h>
 
-1614754560 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\csprite.cpp
+1614953178 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\csprite.cpp
 	"CSprite.h"
+	"stdio.h"
 
-1614766963 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cworld.h
+1614935114 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cworld.h
 	"comun.h"
 	"cEngine.h"
 	"CTile.h"
 	"CTileMap.h"
 	<vector>
 
-1614768715 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
+1614953124 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
 	"CWorld.h"
 	<algorithm>
 	<cstdio>
 
-1614760653 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\centity.h
+1614934624 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\centity.h
 	<comun.h>
 
 1614590730 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\centity.cpp
 	"CEntity.h"
 
-1614760258 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\comun.h
+1614855975 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\comun.h
 
 1502456737 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\tsxparser.cpp
 	"TSXParser.h"
@@ -187,10 +189,10 @@
 	<fstream>
 	<stdexcept>
 
-1614590730 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\ctile.h
+1614934624 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\ctile.h
 	<CSprite.h>
 
-1614754551 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\ctile.cpp
+1614855412 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\ctile.cpp
 	"CTile.h"
 
 1614155319 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\tmxparser.cpp
@@ -401,4 +403,10 @@
 	<algorithm>
 	<string>
 	<sstream>
+
+1614942132 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cplayer.cpp
+	"CPlayer.h"
+
+1614934624 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cplayer.h
+	<CSprite.h>
 

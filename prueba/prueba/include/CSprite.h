@@ -10,9 +10,7 @@ class CSprite:public CEntity
 {
 public:
 
-    Vec2D Pos;
-    Vec2D PosAnt;
-    Vec2D PosProj;
+
     int Depth;
     vector<CSprite*> entidadesDebajo;
     bool visitado;
@@ -30,7 +28,9 @@ public:
     void ClearDepth();
 
     virtual ~CSprite();
-
+    virtual void onCollision(CEntity *ent);
+    virtual bool hasCollision(CEntity *ent);
+    vector<CSprite*> vColisiones;
     int getDepth()
     {
         return this->Depth;
