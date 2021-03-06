@@ -4,10 +4,10 @@
 #include "cVideo.h"
 #include <allegro.h>
 #include <string>
-#include "math.h"
-#include "CSprite.h"
+#include <math.h>
+#include <CSprite.h>
 #include <CPlayer.h>
-#include "utils.h"
+#include <utils.h>
 
 class CWorld;
 using namespace std;

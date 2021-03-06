@@ -1,4 +1,4 @@
-#include "CEntity.h"
+#include <CEntity.h>
 
 CEntity::CEntity()
 {

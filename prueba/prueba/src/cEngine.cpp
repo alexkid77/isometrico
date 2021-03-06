@@ -1,5 +1,5 @@
-#include "CEngine.h"
-#include "CWorld.h"
+#include <CEngine.h>
+#include <CWorld.h>
 CEngine::CEngine()
 {
     this->buffer=create_bitmap(SCREEN_W,SCREEN_H);
@@ -14,13 +14,16 @@ CEngine::CEngine()
     tiles=ExtraeTiles(tilesRaw,tileW,tileH);
 
     this->player= new CPlayer(this->tileGridW,this->tileGridH,this->tileSize);
-    //this->player->Pos.x=213;
-    //this->player->Pos.y=142;
+
     this->player->Pos.x=67;
     this->player->Pos.y=100;
-    //  this->player->onCollision=this->onPlayerCollision;
+    this->player->Pos.z=70;
+
+    this->player->Size.x=32;
+    this->player->Size.y=32;
+    this->player->Size.z=80;
     this->mapa=new CWorld(this);
-    //ctor
+
 }
 
 CEngine::~CEngine()
@@ -48,6 +51,12 @@ void CEngine::Update()
     if(key[KEY_RIGHT])
         this->player->Pos.x+=inc;
 
+    if(key[KEY_C])
+        if(this->player->Pos.z>1)
+            this->player->Pos.z-=inc;
+    if(key[KEY_D])
+        this->player->Pos.z+=inc;
+
     if(key[KEY_SPACE])
         this->debug=!this->debug;
 
@@ -57,11 +66,7 @@ void CEngine::Update()
 
 void CEngine::Render()
 {
-
-
     this->mapa->Render();
-
-
 }
 
 
@@ -70,7 +75,6 @@ BITMAP **CEngine::ExtraeTiles(BITMAP *tilesRaw,int tileW,int tileH)
     BITMAP **tiles=new BITMAP*[5];
     int c=0;
     for( int y=0; y<1; y++)
-    {
         for(int x=0; x<5; x++)
         {
             tiles[c]= create_bitmap(tileW, tileH);
@@ -78,7 +82,7 @@ BITMAP **CEngine::ExtraeTiles(BITMAP *tilesRaw,int tileW,int tileH)
             blit(tilesRaw, tile, x*tileW, y*tileH, 0, 0, tileW,tileH);
             c++;
         }
-    }
+
 
 
     return tiles;

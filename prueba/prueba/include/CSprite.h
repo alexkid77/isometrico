@@ -1,6 +1,6 @@
 #ifndef ENTIDAD_H
 #define ENTIDAD_H
-#include "comun.h"
+#include <comun.h>
 #include <vector>
 #include <utils.h>
 #include <algorithm>
@@ -9,13 +9,16 @@ using namespace std;
 class CSprite:public CEntity
 {
 public:
+    //colisiones
+    vector<CSprite*> vColisiones;
 
-
+    //profundida de dibujado
     int Depth;
     vector<CSprite*> entidadesDebajo;
     bool visitado;
-    int Altura;
-    int i,j;
+
+    //posicion tile
+    // int i,j;
 
     vector<Vec2D> getTilesOcupados();
     Vec2D getPosProj();
@@ -25,12 +28,13 @@ public:
     CSprite();
     CSprite(int tileGridW,int tileGridH,int tileSize);
 
-    void ClearDepth();
+
 
     virtual ~CSprite();
     virtual void onCollision(CEntity *ent);
     virtual bool hasCollision(CEntity *ent);
-    vector<CSprite*> vColisiones;
+
+    void ClearDepth();
     int getDepth()
     {
         return this->Depth;

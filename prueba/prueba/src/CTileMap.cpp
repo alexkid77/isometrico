@@ -1,4 +1,4 @@
-#include "CTileMap.h"
+#include <CTileMap.h>
 
 CTileMap::CTileMap()
 {
@@ -34,21 +34,21 @@ CTileMap::CTileMap(string file)
             Vec2D vtemp;
             vtemp.y=i*tileSize;
             vtemp.x=j*tileSize;
-            vtemp=utils::twoDToIso(&vtemp);
+            vtemp=utils::IsoTo2D(&vtemp);
             int x = vtemp.x;
             int y = vtemp.y;
             CTile *t=new CTile(tileSize,tileSize,tileSize);
             t->indiceTile=it2->tileFlatIndex;
             t->Pos.x=j*tileSize;
             t->Pos.y=i*tileSize;
+            t->Pos.z=0;
             t->i=i;
             t->j=j;
             t->PosProj.x=x;
             t->PosProj.y=y;
             t->id=it2->gid;
-            t->Altura=0;
-            if(t->indiceTile==2)
-                t->Altura=32;
+
+
             capa->tiles.push_back(t);
             conta++;
         }

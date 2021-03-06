@@ -1,4 +1,4 @@
-#include "CWorld.h"
+#include <CWorld.h>
 #include <algorithm>
 #include <cstdio>
 
@@ -15,10 +15,15 @@ CWorld::CWorld(CEngine *engine)
     this->objeto=new CSprite(this->engine->tileGridW,this->engine->tileGridH,this->engine->tileSize);
     this->objeto->Pos.x=60;
     this->objeto->Pos.y=60;
+    this->objeto->Pos.z=0;
+    this->objeto->Size.x=32;
+    this->objeto->Size.y=32;
+    this->objeto->Size.z=80;
     this->objeto->ClearDepth();
+
     this->InitSprites();
 
-    // this->vSprites.push_back(objeto);
+
 
 }
 CTileMap * CWorld::LoadTmx(string file)
@@ -80,7 +85,7 @@ void CWorld::ProcesaCollisiones()
         {
             Vec2D tile=tilesOcupados[i];
             CTile *t=capa->GetTile(tile.x,tile.y);
-            if(t->indiceTile==2)
+            if(t->indiceTile==2 && ((t->Pos.z+1)>= s->Pos.z ))
             {
                 s->Pos=s->PosAnt;
                 s->vColisiones.push_back(t);
@@ -129,7 +134,7 @@ void CWorld::Render()
         else
         {
             e->PosProj=e->getPosProj();
-            masked_blit(this->engine->tiles[2], this->engine->buffer, 0, 0,  e->PosProj.x+this->orig.x-offsetx,  e->PosProj.y+this->orig.y-offsety, this->engine->tileW,this->engine->tileH);
+            masked_blit(this->engine->tiles[0], this->engine->buffer, 0, 0,  e->PosProj.x+this->orig.x-offsetx,  e->PosProj.y+this->orig.y-offsety, this->engine->tileW,this->engine->tileH);
             char tempStr2 [100];
             //snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
             sprintf ( tempStr2,  "(%d)", e->Depth );
@@ -340,7 +345,7 @@ ViewPort  CWorld::GetViewPort(int width,int height)
     Vec2D pos0;
     pos0.x=SCREEN_W-orig.x-80+offsetx;
     pos0.y=SCREEN_H-orig.y-32+offsety;
-    pos0=utils::isoTo2D(&pos0); //hay que corregir el nombre esta mal
+    pos0=utils::twoDToIso(&pos0); //hay que corregir el nombre esta mal
 
     pos0.y=pos0.y/32+1;
     pos0.x=pos0.x/32+1;
@@ -353,7 +358,7 @@ ViewPort  CWorld::GetViewPort(int width,int height)
     Vec2D pos1;
     pos1.x=0-orig.x+offsetx;
     pos1.y=SCREEN_H-orig.y-32+offsety;
-    pos1=utils::isoTo2D(&pos1);
+    pos1=utils::twoDToIso(&pos1);
     pos1.y=pos1.y/32+1;
     pos1.x=pos1.x/32+1;
 
@@ -363,7 +368,7 @@ ViewPort  CWorld::GetViewPort(int width,int height)
     Vec2D pos2;
     pos2.x=0-orig.x+offsetx;
     pos2.y=0-orig.y+offsety;
-    pos2=utils::isoTo2D(&pos2);
+    pos2=utils::twoDToIso(&pos2);
     pos2.y=pos2.y/32-2;
     pos2.x=pos2.x/32-2;
     if(pos2.x<0)
@@ -375,7 +380,7 @@ ViewPort  CWorld::GetViewPort(int width,int height)
     Vec2D pos3;
     pos3.x=SCREEN_W-orig.x+offsetx;
     pos3.y=0-orig.y+offsety;
-    pos3=utils::isoTo2D(&pos3);
+    pos3=utils::twoDToIso(&pos3);
     pos3.y=pos3.y/32-1;
     pos3.x=pos3.x/32-1;
     if(pos3.x<0)

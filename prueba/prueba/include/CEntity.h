@@ -8,8 +8,13 @@ public:
 
     int id;
     TiposSprite Tipo;
-    Vec2D Pos;
-    Vec2D PosAnt;
+    //Posicion del objeto
+    Vec3D Pos;
+    //Posicion Anterior del objeto
+    Vec3D PosAnt;
+    //tamaño del bouding box del objeto
+    Vec3D Size;
+
     Vec2D PosProj;
     CEntity();
     virtual ~CEntity();

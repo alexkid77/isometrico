@@ -1,13 +1,13 @@
 #ifndef UTILS_H
 #define UTILS_H
 #include <vector>
-#include "comun.h"
-#include "CSprite.h"
+#include <comun.h>
+#include <CSprite.h>
 #define REJILLA 32
 class utils
 {
 public:
-    static Vec2D twoDToIso(Vec2D *vec)
+    static Vec2D IsoTo2D(Vec2D *vec)
     {
 
         Vec2D val;
@@ -17,7 +17,16 @@ public:
 
     }
 
-    static Vec2D isoTo2D(Vec2D *vec)
+    static Vec2D IsoTo2D(Vec3D *vec)
+    {
+
+        Vec2D val;
+        val.x=vec->x-vec->y;
+        val.y=(vec->x+vec->y-vec->z)/2;
+        return val;
+    }
+
+    static Vec2D twoDToIso(Vec2D *vec)
     {
         Vec2D val;
         val.x = (2 * vec->y + vec->x) / 2;

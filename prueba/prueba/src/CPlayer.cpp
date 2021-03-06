@@ -1,4 +1,4 @@
-#include "CPlayer.h"
+#include <CPlayer.h>
 
 CPlayer::CPlayer(int tileGridW,int tileGridH,int tileSize):CSprite(tileGridW,tileGridH,tileSize)
 {

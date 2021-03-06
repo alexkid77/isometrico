@@ -3,10 +3,10 @@
 #ifndef CMAP_H
 #define CMAP_H
 
-#include "comun.h"
-#include "CEngine.h"
-#include "CTile.h"
-#include "CTileMap.h"
+#include <comun.h>
+#include <CEngine.h>
+#include <CTile.h>
+#include <CTileMap.h>
 #include <vector>
 using namespace std;
 class CWorld

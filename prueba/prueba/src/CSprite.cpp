@@ -1,5 +1,5 @@
-#include "CSprite.h"
-#include "stdio.h"
+#include <CSprite.h>
+#include <stdio.h>
 CSprite::CSprite()
 {
     //ctor
@@ -59,16 +59,17 @@ bool CSprite::OcupaTile(int x,int y)
 }
 Vec2D CSprite::getPosProj()
 {
-    Vec2D playerProj;
+    Vec3D playerProj;
     playerProj.x=this->Pos.x;
     playerProj.y=this->Pos.y;
-    playerProj=utils::twoDToIso(&playerProj);
-    return playerProj;
+    playerProj.z=this->Pos.z;
+    Vec2D res=utils::IsoTo2D(&playerProj);
+    return res;
 }
 
 bool CSprite::SolapaEntidad(CSprite *b)
 {
-    if((b->Pos.x<(this->Pos.x+32)) && (b->Pos.y<(this->Pos.y+32)))
+    if((b->Pos.x<(this->Pos.x+32)) && (b->Pos.y<(this->Pos.y+32)) && (b->Pos.z <(this->Pos.z+32)))
         return true;
     return false;
 }
@@ -129,7 +130,7 @@ bool CSprite::hasCollision(CEntity *ent)
     if(this->Pos.x<(ent->Pos.x+32+temp) &&
             (this->Pos.x+32+temp)>(ent->Pos.x) &&
             this->Pos.y<(ent->Pos.y+32+temp) &&
-            (this->Pos.y+32+temp)>(ent->Pos.y))
+            (this->Pos.y+32+temp)>(ent->Pos.y) && (this->Pos.z+80+temp)>ent->Pos.z)
         return true;
     else
         return false;

@@ -1,4 +1,4 @@
-#include "CTile.h"
+#include <CTile.h>
 
 CTile::CTile(int tileGridW,int tileGridH,int tileSize):CSprite(tileGridW,tileGridH,tileSize)
 {
