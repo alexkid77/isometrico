@@ -12,13 +12,13 @@
 class CWorld;
 using namespace std;
 
-class cEngine
+class CEngine
 {
 public:
-    cEngine();
+    CEngine();
     void Update();
     void Render();
-    virtual ~cEngine();
+    virtual ~CEngine();
     void setDebug(bool n)
     {
         this->debug=n;

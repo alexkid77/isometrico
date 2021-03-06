@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <cstdio>
 
-CWorld::CWorld(cEngine *engine)
+CWorld::CWorld(CEngine *engine)
 {
 
     this->tilemap=this->LoadTmx("mapa3.tmx");
@@ -25,7 +25,7 @@ CTileMap * CWorld::LoadTmx(string file)
 {
     CTileMap *tilemap=new CTileMap(file);
     return tilemap;
-    // map.layerCollection
+
 }
 CWorld::~CWorld()
 {
@@ -33,26 +33,45 @@ CWorld::~CWorld()
 }
 void CWorld::Update()
 {
-    this->engine->player->ClearDepth();
-    this->objeto->ClearDepth();
+
+    this->ProcesaCollisiones();
+    this->ProcesaDepthSprites();
+
+
+}
+void CWorld::ProcesaCollisiones()
+{
+
     CLayer *capa=this->tilemap->Layers[0];
-
-    /*mirar que el player no salga del mapa*/
-    if( this->engine->player->Pos.x<=0)
-        this->engine->player->Pos.x=0;
-    if( this->engine->player->Pos.y<=0)
-        this->engine->player->Pos.y=0;
-
-    if( this->engine->player->Pos.x>((capa->width*32)-32))
-        this->engine->player->Pos.x=capa->width*32-32;
-    if( this->engine->player->Pos.y>((capa->height*32)-32))
-        this->engine->player->Pos.y=capa->height*32-32;
-
-
-    //mirar que tiles pisa
-    for(int i=0; i<this->vDinamicos.size(); i++)
+    /*Mirar colisiones entre objeto dinamicos*/
+    for(uint32_t i=0; i<this->vDinamicos.size(); i++)
     {
+        CSprite *obj1=vDinamicos[i];
+        for(uint32_t j=0; j<this->vDinamicos.size(); j++)
+        {
+            CSprite *obj2=vDinamicos[j];
+            if(obj1!=obj2 &&  obj1->hasCollision(obj2))
+                obj1->onCollision(obj2);
+        }
+    }
+
+    /*Mirar colisiones con los tiles*/
+    for(unsigned int i=0; i<this->vDinamicos.size(); i++)
+    {
+
         CSprite *s=vDinamicos[i];
+
+        /*que no se salga del mapa*/
+        if( s->Pos.x<0)
+            s->Pos.x=0;
+        if( s->Pos.y<0)
+            s->Pos.y=0;
+
+        if( s->Pos.x>((capa->width*32)-32))
+            s->Pos.x=capa->width*32-32;
+        if( s->Pos.y>((capa->height*32)-32))
+            s->Pos.y=capa->height*32-32;
+
         s->vColisiones.clear();
         vector<Vec2D> tilesOcupados=s->getTilesOcupados();
 
@@ -68,17 +87,8 @@ void CWorld::Update()
                 s->onCollision(t);
                 break;
             }
-
-        }
-
-        if(objeto->hasCollision(this->engine->player) )
-        {
-            this->objeto->onCollision(this->engine->player);
         }
     }
-       this->ProcesaDepthSprites();
-
-
 }
 
 void CWorld::Render()
@@ -210,17 +220,14 @@ void CWorld::ProcesaDepthSprites()
     this->vVisible.clear();
 
     CLayer *capa=this->tilemap->Layers[0];
-    for(int i=0; i<this->vDinamicos.size(); i++)
+    for(unsigned int i=0; i<this->vDinamicos.size(); i++)
         vVisible.push_back(this->vDinamicos[i]);
-    /* vVisible.push_back(this->objeto);
-     vVisible.push_back(this->engine->player);*/
+
 
 
 
     /*solo se dibuja lo que se ve en la pantalla*/
     ViewPort viewport=GetViewPort(capa->width,capa->height);
-
-
     for(int y= viewport.p1.y; y<viewport.p2.y ; y++)
         for(int x= viewport.p1.x; x<viewport.p2.x; x++)
         {
@@ -233,7 +240,7 @@ void CWorld::ProcesaDepthSprites()
                     && (s->PosProj.y+this->orig.y-offsety+80)>=0
               )
 
-                vVisible.push_back(s);
+                this->vVisible.push_back(s);
 
         }
 
@@ -248,38 +255,25 @@ void CWorld::ProcesaDepthSprites()
 
 void CWorld::OrdenaTopologicamente()
 {
-    int tam=vVisible.size();
-   this->PreSortByXY(vVisible);
+    int tam=this->vVisible.size();
+    // this->PreSortByXY(vVisible);
 
-
-    CSprite *a=this->engine->player;
-
-    for(uint16_t j=0; j<tam; j++)
+    for(uint32_t i=0; i<this->vDinamicos.size(); i++)
     {
+        CSprite *a=this->vDinamicos[i];
+        for(uint16_t j=0; j<tam; j++)
+        {
+            CSprite *b=vVisible[j];
+            if(a==b)
+                continue;
+            if( a->SolapaEntidad(b))
+                a->entidadesDebajo.push_back(b);
 
-        CSprite *b=vVisible[j];
-        if(a==b)
-            continue;
-        if( a->SolapaEntidad(b))
-            a->entidadesDebajo.push_back(b);
-
+        }
+        a->visitado=false;
     }
-    a->visitado=false;
 
 
-    a=this->objeto;
-
-    for(uint16_t j=0; j<tam; j++)
-    {
-
-        CSprite *b=vVisible[j];
-         if(a==b)
-            continue;
-        if( a->SolapaEntidad(b))
-            a->entidadesDebajo.push_back(b);
-
-    }
-    a->visitado=false;
 
     int sortDepth=0;
     for(uint16_t  i=0; i<tam; i++)
@@ -297,7 +291,7 @@ void CWorld::OrdenaTopologicamente()
 void CWorld::OrdenaTopologicamente2()
 {
     int tam=vVisible.size();
-this->PreSortByXY(vVisible);
+    this->PreSortByXY(vVisible);
 
     for(int i=0; i<tam; i++)
     {

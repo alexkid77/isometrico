@@ -4,7 +4,7 @@
 #define CMAP_H
 
 #include "comun.h"
-#include "cEngine.h"
+#include "CEngine.h"
 #include "CTile.h"
 #include "CTileMap.h"
 #include <vector>
@@ -12,7 +12,7 @@ using namespace std;
 class CWorld
 {
 public:
-    CWorld(cEngine* engine);
+    CWorld(CEngine* engine);
     virtual ~CWorld();
     void Update();
     void Render();
@@ -26,7 +26,7 @@ private:
     int tileGridW;
     Vec2D orig;
 
-    cEngine* engine;
+    CEngine* engine;
     CTileMap *tilemap;
 
     //todos los objetos del mundo
@@ -41,6 +41,7 @@ private:
     void VisitNode(CSprite *ent,int *sortDepth);
     void InitSprites();
     void ProcesaDepthSprites();
+    void ProcesaCollisiones();
     void PreSortByXY(vector<CSprite*> &v);
     ViewPort  GetViewPort(int width,int height);
     void OrdenaTopologicamente();

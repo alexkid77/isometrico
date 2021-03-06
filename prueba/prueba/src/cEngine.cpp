@@ -1,6 +1,6 @@
-#include "cEngine.h"
+#include "CEngine.h"
 #include "CWorld.h"
-cEngine::cEngine()
+CEngine::CEngine()
 {
     this->buffer=create_bitmap(SCREEN_W,SCREEN_H);
     this->tileH=80;
@@ -23,17 +23,17 @@ cEngine::cEngine()
     //ctor
 }
 
-cEngine::~cEngine()
+CEngine::~CEngine()
 {
     //dtor
 }
-void cEngine::onPlayerCollision(CEntity *ent)
+void CEngine::onPlayerCollision(CEntity *ent)
 {
     int x=0;
     x++;
 //   printf("Colision\n");
 }
-void cEngine::Update()
+void CEngine::Update()
 {
 
     int inc=1;
@@ -55,7 +55,7 @@ void cEngine::Update()
     this->mapa->Update();
 }
 
-void cEngine::Render()
+void CEngine::Render()
 {
 
 
@@ -65,7 +65,7 @@ void cEngine::Render()
 }
 
 
-BITMAP **cEngine::ExtraeTiles(BITMAP *tilesRaw,int tileW,int tileH)
+BITMAP **CEngine::ExtraeTiles(BITMAP *tilesRaw,int tileW,int tileH)
 {
     BITMAP **tiles=new BITMAP*[5];
     int c=0;
@@ -86,7 +86,7 @@ BITMAP **cEngine::ExtraeTiles(BITMAP *tilesRaw,int tileW,int tileH)
 
 
 
-Vec2D cEngine::setAltura(Vec2D *pos,int tileSizeH,int altura,int tileHeight)
+Vec2D CEngine::setAltura(Vec2D *pos,int tileSizeH,int altura,int tileHeight)
 {
     Vec2D val;
     val.y= pos->y-(altura*tileHeight);

@@ -1,5 +1,5 @@
 #include <allegro.h>
-#include "cEngine.h"
+#include "CEngine.h"
 volatile unsigned int ticks=0;
 volatile unsigned int fps=0;
 void inc_contador_tiempo_juego()
@@ -24,7 +24,7 @@ int main(void)
     /* set a graphics mode sized 320x200 */
     set_gfx_mode(GFX_SAFE, 800, 600,0, 0);
 
-    cEngine *engine=new cEngine();
+    CEngine *engine=new CEngine();
     while (!key[KEY_ESC])
     {
 

@@ -51,7 +51,7 @@ bool CSprite::OcupaTile(int x,int y)
     Vec2D Comp;
     Comp.x=x;
     Comp.y=y;
-    for(int i=0; i<v.size(); i++)
+    for(unsigned int i=0; i<v.size(); i++)
         if(Comp==v[i])
             return true;
 
@@ -87,28 +87,37 @@ void CSprite::onCollision(CEntity *ent)
     switch(ent->Tipo)
     {
     case PLAYER:
-        if(vColisiones.size()==0){
+        if(vColisiones.size()==0)
+        {
 
-        this->PosAnt=this->Pos;
-        int dx= ent->Pos.x-ent->PosAnt.x;
-        int dy= ent->Pos.y-ent->PosAnt.y;
-        this->Pos.x+=dx;
-        this->Pos.y+=dy;
-        ent->PosAnt=ent->Pos;
-         ent->Pos.x-=dx;
-           ent->Pos.y-=dy;
+            this->PosAnt=this->Pos;
+            int dx= ent->Pos.x-ent->PosAnt.x;
+            int dy= ent->Pos.y-ent->PosAnt.y;
+            this->Pos.x+=dx;
+            this->Pos.y+=dy;
+            if(this->Pos.x<0)
+                this->Pos.x=0;
+            if(this->Pos.y<0)
+                this->Pos.y=0;
+
+            ent->PosAnt=ent->Pos;
+            ent->Pos.x-=dx;
+            ent->Pos.y-=dy;
         }
-        else{
+        else
+        {
             this->Pos= this->PosAnt;
             ent->Pos=ent->PosAnt;
             printf("double colision\n");
         }
 
         break;
-  /*  case TILE:
-         this->Pos= this->PosAnt;
-          printf("colision tile\n");
-        break;*/
+    case TILE:
+        this->Pos= this->PosAnt;
+        printf("colision tile\n");
+        break;
+    case SPRITE:
+        break;
     }
 
 }
