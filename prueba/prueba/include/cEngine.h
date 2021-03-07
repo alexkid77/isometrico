@@ -47,7 +47,7 @@ private:
     BITMAP ** ExtraeTiles(BITMAP *tilesRaw,int tileW,int tileH);
 
 
-    Vec2D setAltura(Vec2D *pos,int tileSizeH,int altura,int tileHeight);
+
 
 
 };

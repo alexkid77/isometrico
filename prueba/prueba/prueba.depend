@@ -19,7 +19,7 @@
 	<allegro.h>
 	"CEngine.h"
 
-1615046990 c:\users\alex\documents\isometrico\prueba\prueba\include\cengine.h
+1615125534 c:\users\alex\documents\isometrico\prueba\prueba\include\cengine.h
 	"comun.h"
 	"cVideo.h"
 	<allegro.h>
@@ -33,7 +33,7 @@
 
 1615049106 c:\users\alex\documents\isometrico\prueba\prueba\include\cvideo.h
 
-1615120015 source:c:\users\alex\documents\isometrico\prueba\prueba\src\cengine.cpp
+1615125514 source:c:\users\alex\documents\isometrico\prueba\prueba\src\cengine.cpp
 	<CEngine.h>
 	<CWorld.h>
 
@@ -365,14 +365,14 @@
 1615047122 source:c:\users\alex\documents\isometrico\prueba\prueba\src\clayer.cpp
 	<CLayer.h>
 
-1615120347 source:c:\users\alex\documents\isometrico\prueba\prueba\src\csprite.cpp
+1615120412 source:c:\users\alex\documents\isometrico\prueba\prueba\src\csprite.cpp
 	<CSprite.h>
 	<stdio.h>
 
 1615117422 source:c:\users\alex\documents\isometrico\prueba\prueba\src\ctile.cpp
 	<CTile.h>
 
-1615118543 source:c:\users\alex\documents\isometrico\prueba\prueba\src\ctilemap.cpp
+1615125333 source:c:\users\alex\documents\isometrico\prueba\prueba\src\ctilemap.cpp
 	<CTileMap.h>
 
 1615120195 source:c:\users\alex\documents\isometrico\prueba\prueba\src\cworld.cpp

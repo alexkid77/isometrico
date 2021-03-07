@@ -82,17 +82,9 @@ BITMAP **CEngine::ExtraeTiles(BITMAP *tilesRaw,int tileW,int tileH)
             c++;
         }
 
-
-
     return tiles;
 }
 
 
 
-Vec2D CEngine::setAltura(Vec2D *pos,int tileSizeH,int altura,int tileHeight)
-{
-    Vec2D val;
-    val.y= pos->y-(altura*tileHeight);
-    val.x=pos->x;
-    return val;
-}
+

@@ -27,7 +27,6 @@ CTileMap::CTileMap(string file)
         int conta=0;
         for (auto it2 = it->tiles.begin(); it2 != it->tiles.end(); ++it2)
         {
-
             int j=conta%capa->width;
             int i=conta/capa->width;
 
@@ -53,9 +52,7 @@ CTileMap::CTileMap(string file)
             capa->tiles.push_back(t);
             conta++;
         }
-
         this->Layers.push_back(capa);
-
     }
 }
 
