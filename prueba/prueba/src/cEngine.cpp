@@ -13,16 +13,14 @@ CEngine::CEngine()
     BITMAP *tilesRaw=load_bmp("tile2.bmp", 0);
     tiles=ExtraeTiles(tilesRaw,tileW,tileH);
 
-    Vec3D playerBox(32,32,80);
+    Vec3D playerBox(32,32,100);
     this->player= new CPlayer(this->tileGridW,this->tileGridH,this->tileSize,playerBox);
 
     this->player->Pos.x=67;
     this->player->Pos.y=100;
     this->player->Pos.z=70;
 
-    this->player->Size.x=32;
-    this->player->Size.y=32;
-    this->player->Size.z=80;
+
     this->mapa=new CWorld(this);
 
 }

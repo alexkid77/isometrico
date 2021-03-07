@@ -70,7 +70,7 @@ Vec2D CSprite::getPosProj()
 
 bool CSprite::SolapaEntidad(CSprite *b)
 {
-    if((b->Pos.x<(this->Pos.x+32)) && (b->Pos.y<(this->Pos.y+32)) && (b->Pos.z <(this->Pos.z+32)))
+    if((b->Pos.x<(this->Pos.x+this->Size.x)) && (b->Pos.y<(this->Pos.y+this->Size.y)) && (b->Pos.z <(this->Pos.z+this->Size.z)))
         return true;
     return false;
 }
@@ -95,6 +95,7 @@ void CSprite::onCollision(CEntity *ent)
             this->PosAnt=this->Pos;
             int dx= ent->Pos.x-ent->PosAnt.x;
             int dy= ent->Pos.y-ent->PosAnt.y;
+            int dz= ent->Pos.z-ent->PosAnt.z;
             this->Pos.x+=dx;
             this->Pos.y+=dy;
             if(this->Pos.x<0)
@@ -105,6 +106,11 @@ void CSprite::onCollision(CEntity *ent)
             ent->PosAnt=ent->Pos;
             ent->Pos.x-=dx;
             ent->Pos.y-=dy;
+            ent->Pos.z-=dz;
+            /*if(dx==0 && dy==0 && ent->Pos.z<=(this->Pos.z+this->Size.z))
+            {
+                ent->Pos.z=this->Pos.z+this->Size.z;
+            }*/
         }
         else
         {

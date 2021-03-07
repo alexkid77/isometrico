@@ -37,7 +37,7 @@ CTileMap::CTileMap(string file)
             vtemp=utils::IsoTo2D(&vtemp);
             int x = vtemp.x;
             int y = vtemp.y;
-            Vec3D boxSize(32,32,32);
+            Vec3D boxSize(32,32,50);
             CTile *t=new CTile(tileSize,tileSize,tileSize,boxSize);
             t->indiceTile=it2->tileFlatIndex;
             t->Pos.x=j*tileSize;

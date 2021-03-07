@@ -12,13 +12,11 @@ CWorld::CWorld(CEngine *engine)
     this->engine=engine;
     this->vSprites=vector<CSprite *>(2048);
 
-    this->objeto=new CSprite(this->engine->tileGridW,this->engine->tileGridH,this->engine->tileSize,Vec3D(32,32,80));
+    this->objeto=new CSprite(this->engine->tileGridW,this->engine->tileGridH,this->engine->tileSize,Vec3D(32,32,96));
     this->objeto->Pos.x=60;
     this->objeto->Pos.y=60;
     this->objeto->Pos.z=0;
-    this->objeto->Size.x=32;
-    this->objeto->Size.y=32;
-    this->objeto->Size.z=80;
+
     this->objeto->ClearDepth();
 
     this->InitSprites();
@@ -85,9 +83,11 @@ void CWorld::ProcesaCollisiones()
         {
             Vec2D tile=tilesOcupados[i];
             CTile *t=capa->GetTile(tile.x,tile.y);
-            if(t->indiceTile==2 && ((t->Pos.z+1)>= s->Pos.z ))
+            if(t->indiceTile==2 && t->hasCollision(s) /*((t->Pos.z+1)>= s->Pos.z )*/)
             {
+
                 s->Pos=s->PosAnt;
+
                 s->vColisiones.push_back(t);
                 s->onCollision(t);
                 break;
