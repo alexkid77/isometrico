@@ -8,7 +8,7 @@ class CPlayer : public CSprite
 {
 public:
     CPlayer();
-    CPlayer(int tileGridW,int tileGridH,int tileSize);
+    CPlayer(int tileGridW,int tileGridH,int tileSize,Vec3D boxSize);
     virtual ~CPlayer();
     virtual void onCollision(CEntity *ent);
 protected:

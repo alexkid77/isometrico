@@ -12,7 +12,7 @@ CWorld::CWorld(CEngine *engine)
     this->engine=engine;
     this->vSprites=vector<CSprite *>(2048);
 
-    this->objeto=new CSprite(this->engine->tileGridW,this->engine->tileGridH,this->engine->tileSize);
+    this->objeto=new CSprite(this->engine->tileGridW,this->engine->tileGridH,this->engine->tileSize,Vec3D(32,32,80));
     this->objeto->Pos.x=60;
     this->objeto->Pos.y=60;
     this->objeto->Pos.z=0;

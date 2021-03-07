@@ -26,7 +26,7 @@ public:
 
     bool SolapaEntidad(CSprite *b);
     CSprite();
-    CSprite(int tileGridW,int tileGridH,int tileSize);
+    CSprite(int tileGridW,int tileGridH,int tileSize,Vec3D BoxSize);
 
 
 

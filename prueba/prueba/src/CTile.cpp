@@ -1,6 +1,6 @@
 #include <CTile.h>
 
-CTile::CTile(int tileGridW,int tileGridH,int tileSize):CSprite(tileGridW,tileGridH,tileSize)
+CTile::CTile(int tileGridW,int tileGridH,int tileSize,Vec3D boxSize):CSprite(tileGridW,tileGridH,tileSize,boxSize)
 {
     this->indiceTile=0;
     this->Tipo=TILE;

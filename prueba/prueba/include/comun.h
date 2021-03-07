@@ -5,6 +5,18 @@ struct Vec3D
     int x;
     int y;
     int z;
+     Vec3D()
+     {
+     this->x=0;
+        this->y=0;
+        this->z=0;
+     }
+    Vec3D(int x,int y,int z)
+    {
+        this->x=x;
+        this->y=y;
+        this->z=z;
+    }
     const bool operator==(const Vec3D &vec) const
     {
         return ((this->x == vec.x) && (this->y == vec.y) && this->z==vec.z);

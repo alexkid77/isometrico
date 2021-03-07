@@ -4,7 +4,7 @@ CSprite::CSprite()
 {
     //ctor
 }
-CSprite::CSprite(int tileGridW,int tileGridH,int tileSize)
+CSprite::CSprite(int tileGridW,int tileGridH,int tileSize,Vec3D BoxSize)
 {
     this->tileGridW=tileGridW;
     this->tileGridH=tileGridH;
@@ -12,6 +12,7 @@ CSprite::CSprite(int tileGridW,int tileGridH,int tileSize)
     this->tileSize=tileSize;
     this->entidadesDebajo=vector<CSprite*>(128);
     this->Tipo=SPRITE;
+    this->Size=BoxSize;
     //ctor
 }
 
@@ -127,10 +128,10 @@ bool CSprite::hasCollision(CEntity *ent)
 {
     int temp=0;
 
-    if(this->Pos.x<(ent->Pos.x+32+temp) &&
-            (this->Pos.x+32+temp)>(ent->Pos.x) &&
-            this->Pos.y<(ent->Pos.y+32+temp) &&
-            (this->Pos.y+32+temp)>(ent->Pos.y) && (this->Pos.z+80+temp)>ent->Pos.z)
+    if(this->Pos.x<(ent->Pos.x+ent->Size.x+temp) &&
+            (this->Pos.x+this->Size.x+temp)>(ent->Pos.x) &&
+            this->Pos.y<(ent->Pos.y+ent->Size.y+temp) &&
+            (this->Pos.y+this->Size.y+temp)>(ent->Pos.y) && (this->Pos.z+this->Size.z+temp)>ent->Pos.z)
         return true;
     else
         return false;

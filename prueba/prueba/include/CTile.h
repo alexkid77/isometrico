@@ -11,7 +11,7 @@ public:
     int i;
     int j;
 
-    CTile(int tileGridW,int tileGridH,int tileSize);
+    CTile(int tileGridW,int tileGridH,int tileSize,Vec3D boxSize);
 
     virtual ~CTile();
 
