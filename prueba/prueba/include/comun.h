@@ -62,8 +62,31 @@ struct ViewPort
 
 struct Rect
 {
+    Rect()
+    {
+
+    }
+     Rect(int x,int y,int w,int h)
+     {
+        this->orig.x=x;
+        this->orig.y=y;
+
+        this->sizes.x=w;
+        this->sizes.y=h;
+     }
     Vec2D orig;
     Vec2D sizes;
+};
+
+struct sRGB
+{
+    int r,g,b;
+    sRGB(int r,int g,int b)
+    {
+        this->r=r;
+        this->g=g;
+        this->b=b;
+    }
 };
 
 enum TiposSprite {SPRITE,TILE,PLAYER};

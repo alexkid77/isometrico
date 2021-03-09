@@ -1,6 +1,6 @@
 #include "IVideoSystem.h"
 
-IVideoSystem::IVideoSystem(int width,int height)
+IVideoSystem::IVideoSystem()
 {
     //ctor
 }

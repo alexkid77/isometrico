@@ -2,7 +2,7 @@
 #define CENGINE_H
 #include "comun.h"
 #include "cVideo.h"
-#include <allegro.h>
+#include "IVideoSystem.h"
 #include <string>
 #include <math.h>
 #include <CSprite.h>
@@ -15,7 +15,7 @@ using namespace std;
 class CEngine
 {
 public:
-    CEngine();
+    CEngine(IVideoSystem *vidSystem);
     void Update();
     void Render();
     virtual ~CEngine();
@@ -28,13 +28,11 @@ public:
 protected:
 
 private:
+    IVideoSystem *vidSys;
     friend class CWorld;
     friend class CSprite;
     CWorld *mapa;
-    BITMAP *buffer;
 
-
-    BITMAP **tiles;
     CPlayer *player;
     bool debug;
     int tileH;
@@ -44,7 +42,7 @@ private:
     int tileSize;
     Vec2D orig;
 
-    BITMAP ** ExtraeTiles(BITMAP *tilesRaw,int tileW,int tileH);
+
 
 
 

@@ -110,13 +110,14 @@ void CWorld::Render()
 
     /*Se procesa los sprites para establecer el orden de renderizado */
 
+    this->engine->vidSys->ClearToColor(sRGB(0, 0, 0));
 
-    clear_to_color(this->engine->buffer, makecol(0, 0, 0));
 
 
     int offsetx=this->engine->player->PosProj.x;
     int offsety=this->engine->player->PosProj.y;
     int tamVisible=this->vVisible.size();
+    IVideoSystem *vid=this->engine->vidSys;
     for(uint16_t  i=0; i<tamVisible; i++)
     {
         CSprite * e=(this->vVisible[i]);
@@ -124,7 +125,10 @@ void CWorld::Render()
         if(e->Tipo==TILE)
         {
             CTile *t=static_cast<CTile*>(this->vVisible[i]);
-            masked_blit(this->engine->tiles[t->indiceTile], this->engine->buffer, 0, 0, t->PosProj.x+this->orig.x-offsetx, t->PosProj.y+this->orig.y-offsety, this->engine->tileW,this->engine->tileH);
+            Rect Dest(t->PosProj.x+this->orig.x-offsetx,t->PosProj.y+this->orig.y-offsety,this->engine->tileW,this->engine->tileH);
+            Rect Src(0,0,this->engine->tileW,this->engine->tileH);
+
+            vid->Blit(t->indiceTile,Src,Dest);
             char tempStr2 [100];
             //snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
             sprintf ( tempStr2,  "(%d)", e->Depth );
@@ -134,11 +138,16 @@ void CWorld::Render()
         else
         {
             e->PosProj=e->getPosProj();
-            masked_blit(this->engine->tiles[0], this->engine->buffer, 0, 0,  e->PosProj.x+this->orig.x-offsetx,  e->PosProj.y+this->orig.y-offsety, this->engine->tileW,this->engine->tileH);
+            Rect Dest(e->PosProj.x+this->orig.x-offsetx,e->PosProj.y+this->orig.y-offsety,this->engine->tileW,this->engine->tileH);
+            Rect Src(0,0,this->engine->tileW,this->engine->tileH);
+
+            vid->Blit(0,Src,Dest);
+
             char tempStr2 [100];
             //snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );
             sprintf ( tempStr2,  "(%d)", e->Depth );
-            textout_centre_ex(this->engine->buffer, font, tempStr2, e->PosProj.x+this->orig.x-offsetx+32, e->PosProj.y+this->orig.y-offsety+32, makecol(255,0,0), -1);
+            vid->TextOutCenter(e->PosProj.x+this->orig.x-offsetx+32,e->PosProj.y+this->orig.y-offsety+32,tempStr2,sRGB(255,0,0));
+
 
         }
 
@@ -157,18 +166,15 @@ void CWorld::Render()
 
 
 
+    vid->TextOutCenter(vid->getWidth()/2,20,tempStr,sRGB(255,255,255));
 
-    textout_centre_ex(this->engine->buffer, font, tempStr, SCREEN_W/2, 20, makecol(255,255,255), -1);
+
     char fpsStr [100];
     snprintf ( fpsStr, 100, "fps:%d", this->engine->fps );
-    textout_ex(this->engine->buffer, font, fpsStr, 0, 20, makecol(255,255,255), -1);
+    vid->TextOut(0,20,fpsStr,sRGB(255,255,255));
 
+   vid->ToScreen();
 
-    acquire_screen();
-    blit(this->engine->buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-
-
-    release_screen();
 }
 
 void CWorld::VisitNode(CSprite *ent,int *sortDepth)
@@ -229,8 +235,8 @@ void CWorld::ProcesaDepthSprites()
         vVisible.push_back(this->vDinamicos[i]);
 
 
-
-
+    int screen_w=this->engine->vidSys->getWidth();
+    int screen_h=this->engine->vidSys->getHeight();
     /*solo se dibuja lo que se ve en la pantalla*/
     ViewPort viewport=GetViewPort(capa->width,capa->height);
     for(int y= viewport.p1.y; y<viewport.p2.y ; y++)
@@ -239,8 +245,8 @@ void CWorld::ProcesaDepthSprites()
             CSprite *s=  capa->tiles[x+y*capa->width];
             int offsety=(this->engine->player->PosProj.y);
             int offsetx=(this->engine->player->PosProj.x);
-            if((s->PosProj.x+this->orig.x-offsetx)<=SCREEN_W
-                    && (s->PosProj.y+this->orig.y-offsety)<=SCREEN_H
+            if((s->PosProj.x+this->orig.x-offsetx)<=screen_w
+                    && (s->PosProj.y+this->orig.y-offsety)<=screen_h
                     && (s->PosProj.x+this->orig.x-offsetx+64)>=0
                     && (s->PosProj.y+this->orig.y-offsety+80)>=0
               )
@@ -339,12 +345,15 @@ void CWorld::PreSortByXY(vector<CSprite*> &v)
 ViewPort  CWorld::GetViewPort(int width,int height)
 {
     ViewPort viewport;
+    int screen_w=this->engine->vidSys->getWidth();
+    int screen_h=this->engine->vidSys->getHeight();
 
     int offsety=(this->engine->player->PosProj.y);
     int offsetx=(this->engine->player->PosProj.x);
+
     Vec2D pos0;
-    pos0.x=SCREEN_W-orig.x-80+offsetx;
-    pos0.y=SCREEN_H-orig.y-32+offsety;
+    pos0.x=screen_w-orig.x-80+offsetx;
+    pos0.y=screen_h-orig.y-32+offsety;
     pos0=utils::twoDToIso(&pos0); //hay que corregir el nombre esta mal
 
     pos0.y=pos0.y/32+1;
@@ -357,7 +366,7 @@ ViewPort  CWorld::GetViewPort(int width,int height)
 
     Vec2D pos1;
     pos1.x=0-orig.x+offsetx;
-    pos1.y=SCREEN_H-orig.y-32+offsety;
+    pos1.y=screen_h-orig.y-32+offsety;
     pos1=utils::twoDToIso(&pos1);
     pos1.y=pos1.y/32+1;
     pos1.x=pos1.x/32+1;
@@ -378,7 +387,7 @@ ViewPort  CWorld::GetViewPort(int width,int height)
 
 
     Vec2D pos3;
-    pos3.x=SCREEN_W-orig.x+offsetx;
+    pos3.x=screen_w-orig.x+offsetx;
     pos3.y=0-orig.y+offsety;
     pos3=utils::twoDToIso(&pos3);
     pos3.y=pos3.y/32-1;
