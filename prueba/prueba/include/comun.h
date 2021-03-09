@@ -5,12 +5,12 @@ struct Vec3D
     int x;
     int y;
     int z;
-     Vec3D()
-     {
-     this->x=0;
+    Vec3D()
+    {
+        this->x=0;
         this->y=0;
         this->z=0;
-     }
+    }
     Vec3D(int x,int y,int z)
     {
         this->x=x;
@@ -59,5 +59,12 @@ struct ViewPort
     Vec2D p2;
 
 };
+
+struct Rect
+{
+    Vec2D orig;
+    Vec2D sizes;
+};
+
 enum TiposSprite {SPRITE,TILE,PLAYER};
 #endif // STRUCTURES_H_INCLUDED

@@ -37,27 +37,27 @@
 	<CEngine.h>
 	<CWorld.h>
 
-1614932720 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\main.cpp
+1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\main.cpp
 	<allegro.h>
-	"cEngine.h"
+	"CEngine.h"
 
-1614934624 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cengine.h
+1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cengine.h
 	"comun.h"
 	"cVideo.h"
 	<allegro.h>
 	<string>
-	"math.h"
-	"CSprite.h"
+	<math.h>
+	<CSprite.h>
 	<CPlayer.h>
-	"utils.h"
+	<utils.h>
 
 1613981506 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\structures.h
 
-1614590730 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cvideo.h
+1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cvideo.h
 
-1614934624 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cengine.cpp
-	"cEngine.h"
-	"CWorld.h"
+1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cengine.cpp
+	<CEngine.h>
+	<CWorld.h>
 
 1613728930 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\entidad.h
 	"structures.h"
@@ -68,13 +68,13 @@
 1613729586 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\entidad.cpp
 	"Entidad.h"
 
-1614590730 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\utils.cpp
-	"utils.h"
+1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\utils.cpp
+	<utils.h>
 
-1614760258 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\utils.h
+1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\utils.h
 	<vector>
-	"comun.h"
-	"CSprite.h"
+	<comun.h>
+	<CSprite.h>
 
 1613980031 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cmap.h
 	"structures.h"
@@ -132,36 +132,36 @@
 1613401720 source:c:\users\alex\documents\isometrico\prueba\prueba\src\tile.cpp
 	"Tile.h"
 
-1614940925 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\csprite.h
-	"comun.h"
+1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\csprite.h
+	<comun.h>
 	<vector>
 	<utils.h>
 	<algorithm>
 	<CEntity.h>
 
-1614953178 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\csprite.cpp
-	"CSprite.h"
-	"stdio.h"
+1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\csprite.cpp
+	<CSprite.h>
+	<stdio.h>
 
-1614935114 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cworld.h
-	"comun.h"
-	"cEngine.h"
-	"CTile.h"
-	"CTileMap.h"
+1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cworld.h
+	<comun.h>
+	<CEngine.h>
+	<CTile.h>
+	<CTileMap.h>
 	<vector>
 
-1614953124 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
-	"CWorld.h"
+1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
+	<CWorld.h>
 	<algorithm>
 	<cstdio>
 
-1614934624 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\centity.h
+1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\centity.h
 	<comun.h>
 
-1614590730 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\centity.cpp
-	"CEntity.h"
+1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\centity.cpp
+	<CEntity.h>
 
-1614855975 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\comun.h
+1615285263 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\comun.h
 
 1502456737 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\tsxparser.cpp
 	"TSXParser.h"
@@ -190,11 +190,11 @@
 	<fstream>
 	<stdexcept>
 
-1614934624 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\ctile.h
+1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\ctile.h
 	<CSprite.h>
 
-1614855412 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\ctile.cpp
-	"CTile.h"
+1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\ctile.cpp
+	<CTile.h>
 
 1614155319 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\tmxparser.cpp
 	"TMXParser.h"
@@ -210,14 +210,14 @@
 	<utility>
 	<map>
 
-1614590730 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\tmxparser\base64.cpp
+1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\tmxparser\base64.cpp
 	"tmxparser/base64.h"
 	<iostream>
 
 1527521443 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\tmxparser\base64.h
 	<string>
 
-1614590730 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\tmxparser\tinyxml2.cpp
+1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\tmxparser\tinyxml2.cpp
 	"tmxparser/tinyxml2.h"
 	<new>
 	<stddef.h>
@@ -241,7 +241,7 @@
 	<android/log.h>
 	<assert.h>
 
-1614590730 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\tmxparser\tmxparser.cpp
+1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\tmxparser\tmxparser.cpp
 	"tmxparser/tmxparser.h"
 	"tmxparser/base64.h"
 	<string.h>
@@ -260,25 +260,25 @@
 	<vector>
 	"tinyxml2.h"
 
-1614590730 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\ctilemap.h
+1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\ctilemap.h
 	<vector>
 	<CTile.h>
 	<CLayer.h>
-	"tmxparser/tmxparser.h"
+	<tmxparser/tmxparser.h>
 
-1614590730 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\clayer.h
+1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\clayer.h
 	<CTile.h>
 	<vector>
 	<string>
 
-1614760258 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\tmxparser\tmxparser.h
+1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\tmxparser\tmxparser.h
 	<string>
 	<unordered_map>
 	<map>
 	<vector>
 	"tinyxml2.h"
 
-1614590730 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\tmxparser\tinyxml2.h
+1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\tmxparser\tinyxml2.h
 	<ctype.h>
 	<limits.h>
 	<stdio.h>
@@ -294,13 +294,13 @@
 	<android/log.h>
 	<assert.h>
 
-1614590730 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\clayer.cpp
-	"CLayer.h"
+1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\clayer.cpp
+	<CLayer.h>
 
-1614760258 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\ctilemap.cpp
-	"CTileMap.h"
+1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\ctilemap.cpp
+	<CTileMap.h>
 
-1614590730 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\tmxparser\base64.h
+1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\tmxparser\base64.h
 	<string>
 
 1615117382 c:\users\alex\documents\isometrico\prueba\prueba\include\comun.h
@@ -407,10 +407,10 @@
 	<string>
 	<sstream>
 
-1614942132 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cplayer.cpp
-	"CPlayer.h"
+1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cplayer.cpp
+	<CPlayer.h>
 
-1614934624 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cplayer.h
+1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cplayer.h
 	<CSprite.h>
 
 1615117263 c:\users\alex\documents\isometrico\prueba\prueba\include\cplayer.h
@@ -418,4 +418,17 @@
 
 1615117244 source:c:\users\alex\documents\isometrico\prueba\prueba\src\cplayer.cpp
 	<CPlayer.h>
+
+1615285485 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\ivideosystem.cpp
+	"IVideoSystem.h"
+
+1615285846 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\ivideosystem.h
+	"comun.h"
+
+1615286719 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cvideosystemallegro.cpp
+	"CVideoSystemAllegro.h"
+
+1615286439 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cvideosystemallegro.h
+	<IVideoSystem.h>
+	<allegro.h>
 
