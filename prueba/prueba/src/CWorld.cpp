@@ -1,7 +1,7 @@
 #include <CWorld.h>
 #include <algorithm>
 #include <cstdio>
-
+#include <CItemPushable.h>
 CWorld::CWorld(CEngine *engine)
 {
 
@@ -10,9 +10,9 @@ CWorld::CWorld(CEngine *engine)
     this->tileGridW= engine->tileGridW;
     this->orig=engine->orig;
     this->engine=engine;
-    this->vSprites=vector<CSprite *>(2048);
+    this->childs=vector<CSprite *>(2048);
 
-    this->objeto=new CSprite(this->engine->tileGridW,this->engine->tileGridH,this->engine->tileSize,Vec3D(32,32,96));
+    this->objeto=new CItemPushable(this->engine->tileGridW,this->engine->tileGridH,this->engine->tileSize,Vec3D(32,32,96));
     this->objeto->Pos.x=60;
     this->objeto->Pos.y=60;
     this->objeto->Pos.z=0;
@@ -34,9 +34,11 @@ CWorld::~CWorld()
 {
     //dtor
 }
-void CWorld::Update()
+void CWorld::Update(double deltaTime)
 {
 
+    for(uint32_t i=0; i<this->childs.size(); i++)
+        this->childs[i]->Update(deltaTime);
     this->ProcesaCollisiones();
     this->ProcesaDepthSprites();
 
@@ -85,9 +87,7 @@ void CWorld::ProcesaCollisiones()
             CTile *t=capa->GetTile(tile.x,tile.y);
             if(t->indiceTile==2 && t->hasCollision(s) /*((t->Pos.z+1)>= s->Pos.z )*/)
             {
-
                 s->Pos=s->PosAnt;
-
                 s->vColisiones.push_back(t);
                 s->onCollision(t);
                 break;
@@ -173,7 +173,7 @@ void CWorld::Render()
     snprintf ( fpsStr, 100, "fps:%d", this->engine->fps );
     vid->TextOut(0,20,fpsStr,sRGB(255,255,255));
 
-   vid->ToScreen();
+    vid->ToScreen();
 
 }
 
@@ -200,7 +200,7 @@ void CWorld::VisitNode(CSprite *ent,int *sortDepth)
 
 void CWorld::InitSprites()
 {
-    this->vSprites.clear();
+    this->childs.clear();
 
 
     CLayer *capa=this->tilemap->Layers[0];
@@ -210,7 +210,7 @@ void CWorld::InitSprites()
             //la i es Y
             //la j es X
             CTile *t= capa->GetTile(i,j);
-            this->vSprites.push_back(t);
+            this->childs.push_back(t);
         }
 
 
@@ -218,8 +218,8 @@ void CWorld::InitSprites()
 
     this->vDinamicos.push_back(this->engine->player);
     this->vDinamicos.push_back(this->objeto);
-    this->vSprites.push_back(this->objeto);
-    this->vSprites.push_back(this->engine->player);
+    this->childs.push_back(this->objeto);
+    this->childs.push_back(this->engine->player);
 
 }
 

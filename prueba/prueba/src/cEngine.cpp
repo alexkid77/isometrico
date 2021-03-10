@@ -1,10 +1,11 @@
 #include <CEngine.h>
 #include <CWorld.h>
 #include "allegro.h"
-CEngine::CEngine(IVideoSystem *vidSystem)
+CEngine::CEngine(IVideoSystem *vidSystem,ITimer *timer)
 {
 
     this->vidSys=vidSystem;
+    this->timer=timer;
 
     this->tileH=80;
     this->tileW=64;
@@ -24,6 +25,9 @@ CEngine::CEngine(IVideoSystem *vidSystem)
 
 
     this->mapa=new CWorld(this);
+
+    this->fpsCount=0;
+    this->tFpsAnt=this->timer->GetTicks();
 
 }
 
@@ -62,12 +66,23 @@ void CEngine::Update()
         this->debug=!this->debug;
 
 
-    this->mapa->Update();
+    this->mapa->Update(this->timer->GetTicks());
 }
 
 void CEngine::Render()
 {
+    if(fabs(this->tFpsAnt-this->timer->GetTicks())>1000)
+    {
+        this->tFpsAnt=this->timer->GetTicks();
+        this->fps=this->fpsCount;
+        this->fpsCount=0;
+    }
     this->mapa->Render();
+
+    this->fpsCount++;
+
+
+
 }
 
 

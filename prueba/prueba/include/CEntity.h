@@ -18,7 +18,9 @@ public:
     Vec2D PosProj;
     CEntity();
     virtual ~CEntity();
+    virtual void Update(double deltaTime)=0;
     virtual void onCollision(CEntity *ent)=0;
+
 protected:
 
 private:

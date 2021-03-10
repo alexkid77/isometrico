@@ -3,7 +3,9 @@
 #include <vector>
 #include <comun.h>
 #include <CSprite.h>
+#include <chrono>
 #define REJILLA 32
+
 class utils
 {
 public:
@@ -50,7 +52,6 @@ public:
         res.y =tile_y;
         return res;
     }
-
 
 
 };

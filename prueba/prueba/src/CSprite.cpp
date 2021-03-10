@@ -86,47 +86,7 @@ void CSprite::ClearDepth()
 void CSprite::onCollision(CEntity *ent)
 {
 
-    switch(ent->Tipo)
-    {
-    case PLAYER:
-        if(vColisiones.size()==0)
-        {
 
-            this->PosAnt=this->Pos;
-            int dx= ent->Pos.x-ent->PosAnt.x;
-            int dy= ent->Pos.y-ent->PosAnt.y;
-            int dz= ent->Pos.z-ent->PosAnt.z;
-            this->Pos.x+=dx;
-            this->Pos.y+=dy;
-            if(this->Pos.x<0)
-                this->Pos.x=0;
-            if(this->Pos.y<0)
-                this->Pos.y=0;
-
-            ent->PosAnt=ent->Pos;
-            ent->Pos.x-=dx;
-            ent->Pos.y-=dy;
-            ent->Pos.z-=dz;
-            /*if(dx==0 && dy==0 && ent->Pos.z<=(this->Pos.z+this->Size.z))
-            {
-                ent->Pos.z=this->Pos.z+this->Size.z;
-            }*/
-        }
-        else
-        {
-            this->Pos= this->PosAnt;
-            ent->Pos=ent->PosAnt;
-            printf("double colision\n");
-        }
-
-        break;
-    case TILE:
-        this->Pos= this->PosAnt;
-        printf("colision tile\n");
-        break;
-    case SPRITE:
-        break;
-    }
 
 }
 
@@ -143,3 +103,7 @@ bool CSprite::hasCollision(CEntity *ent)
         return false;
 }
 
+void  CSprite::Update(double deltaTime)
+{
+
+}

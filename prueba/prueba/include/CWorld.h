@@ -14,7 +14,7 @@ class CWorld
 public:
     CWorld(CEngine* engine);
     virtual ~CWorld();
-    void Update();
+    void Update(double deltaTime);
     void Render();
     CTileMap * LoadTmx(string file);
 protected:
@@ -30,7 +30,7 @@ private:
     CTileMap *tilemap;
 
     //todos los objetos del mundo
-    vector<CSprite*> vSprites;
+    vector<CSprite*> childs;
 
     //todos los objeto que se ven
     vector<CSprite*> vVisible;

@@ -33,7 +33,7 @@ public:
     virtual ~CSprite();
     virtual void onCollision(CEntity *ent);
     virtual bool hasCollision(CEntity *ent);
-
+    virtual void Update(double deltaTime);
     void ClearDepth();
     int getDepth()
     {

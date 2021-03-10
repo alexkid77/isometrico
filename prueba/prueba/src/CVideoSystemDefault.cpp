@@ -4,27 +4,34 @@ CVideoSystemDefault::CVideoSystemDefault(int width,int height)
 {
     this->width=width;
     this->height=height;
-    this->buffer=create_bitmap( this->width,this->height);
+    if (allegro_init() == 0)
+    {
+
+        set_color_depth(32);
+        /* set a graphics mode sized 320x200 */
+        set_gfx_mode(GFX_SAFE, 800, 600,0, 0);
+        this->buffer=create_bitmap( this->width,this->height);
+    }
 
 }
 int CVideoSystemDefault::getWidth()
 {
-  return  this->width;
+    return  this->width;
 }
 
 int CVideoSystemDefault::getHeight()
 {
-  return  this->height;
+    return  this->height;
 }
 
 void CVideoSystemDefault::Blit(int indexTile,Rect Src,Rect Dest)
 {
-   masked_blit(this->tiles[indexTile], this->buffer, Src.orig.x, Src.orig.y,  Dest.orig.x, Dest.orig.y, Dest.sizes.x,Dest.sizes.y);
+    masked_blit(this->tiles[indexTile], this->buffer, Src.orig.x, Src.orig.y,  Dest.orig.x, Dest.orig.y, Dest.sizes.x,Dest.sizes.y);
 }
 
 void CVideoSystemDefault::TextOut(int x,int y,char *text,sRGB color)
 {
-  textout_ex(this->buffer, font, text, x, y, makecol(color.r, color.g, color.b), -1);
+    textout_ex(this->buffer, font, text, x, y, makecol(color.r, color.g, color.b), -1);
 }
 void CVideoSystemDefault::ToScreen()
 {
@@ -53,8 +60,9 @@ void CVideoSystemDefault::ClearToColor(sRGB color)
 }
 void CVideoSystemDefault::TextOutCenter(int x,int y,char *text,sRGB color)
 {
-textout_centre_ex(this->buffer, font, text, x, y, makecol(color.r, color.g, color.b), -1);
+    textout_centre_ex(this->buffer, font, text, x, y, makecol(color.r, color.g, color.b), -1);
 }
+
 CVideoSystemDefault::~CVideoSystemDefault()
 {
     //dtor

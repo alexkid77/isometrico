@@ -37,15 +37,17 @@
 	<CEngine.h>
 	<CWorld.h>
 
-1615294600 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\main.cpp
+1615374401 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\main.cpp
 	<allegro.h>
 	"CEngine.h"
 	"CVideoSystemDefault.h"
+	"ITimerWindows.h"
 
-1615288263 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cengine.h
+1615373829 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cengine.h
 	"comun.h"
 	"cVideo.h"
-	"IVideoSystem.h"
+	<IVideoSystem.h>
+	<ITimer.h>
 	<string>
 	<math.h>
 	<CSprite.h>
@@ -56,7 +58,7 @@
 
 1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cvideo.h
 
-1615289546 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cengine.cpp
+1615375655 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cengine.cpp
 	<CEngine.h>
 	<CWorld.h>
 	"allegro.h"
@@ -73,10 +75,11 @@
 1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\utils.cpp
 	<utils.h>
 
-1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\utils.h
+1615372552 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\utils.h
 	<vector>
 	<comun.h>
 	<CSprite.h>
+	<chrono>
 
 1613980031 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cmap.h
 	"structures.h"
@@ -134,36 +137,38 @@
 1613401720 source:c:\users\alex\documents\isometrico\prueba\prueba\src\tile.cpp
 	"Tile.h"
 
-1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\csprite.h
+1615375890 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\csprite.h
 	<comun.h>
 	<vector>
 	<utils.h>
 	<algorithm>
 	<CEntity.h>
 
-1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\csprite.cpp
+1615378443 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\csprite.cpp
 	<CSprite.h>
 	<stdio.h>
 
-1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cworld.h
+1615376363 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cworld.h
 	<comun.h>
 	<CEngine.h>
 	<CTile.h>
 	<CTileMap.h>
 	<vector>
 
-1615295848 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
+1615378443 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
 	<CWorld.h>
 	<algorithm>
 	<cstdio>
+	<CItemPushable.h>
 
-1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\centity.h
+1615375829 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\centity.h
 	<comun.h>
 
 1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\centity.cpp
 	<CEntity.h>
 
-1615295338 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\comun.h
+1615377561 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\comun.h
+	<chrono>
 
 1502456737 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\tsxparser.cpp
 	"TSXParser.h"
@@ -434,11 +439,29 @@
 	<allegro.h>
 	<comun.h>
 
-1615296229 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cvideosystemdefault.h
+1615374401 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cvideosystemdefault.h
 	<allegro.h>
 	<IVideoSystem.h>
 	<comun.h>
 
-1615295680 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cvideosystemdefault.cpp
+1615374401 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cvideosystemdefault.cpp
 	"CVideoSystemDefault.h"
+
+1615372075 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\itimer.cpp
+	"ITimer.h"
+
+1615374401 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\itimer.h
+
+1615374401 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\itimerwindows.cpp
+	"ITimerWindows.h"
+	<chrono>
+
+1615374401 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\itimerwindows.h
+	<ITimer.h>
+
+1615378812 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\citempushable.cpp
+	"CItemPushable.h"
+
+1615378443 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\citempushable.h
+	<CSprite.h>
 

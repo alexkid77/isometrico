@@ -12,7 +12,7 @@ public:
 
 
 
-   inline void Blit(int indexTile,Rect Orig,Rect Dest) ;
+    inline void Blit(int indexTile,Rect Orig,Rect Dest) ;
     void TextOut(int x,int y,char *text,sRGB color);
     void TextOutCenter(int x,int y,char *text,sRGB color);
     void LoadTiles(int tileW,int tileH);
@@ -25,7 +25,7 @@ public:
 protected:
 
 private:
-  int width,height;
+    int width,height;
     BITMAP *buffer;
     BITMAP **tiles;
 };

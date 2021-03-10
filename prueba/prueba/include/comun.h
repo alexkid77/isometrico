@@ -1,5 +1,6 @@
 #ifndef STRUCTURES_H_INCLUDED
 #define STRUCTURES_H_INCLUDED
+#include <chrono>
 struct Vec3D
 {
     int x;
@@ -12,6 +13,36 @@ struct Vec3D
         this->z=0;
     }
     Vec3D(int x,int y,int z)
+    {
+        this->x=x;
+        this->y=y;
+        this->z=z;
+    }
+    const bool operator==(const Vec3D &vec) const
+    {
+        return ((this->x == vec.x) && (this->y == vec.y) && this->z==vec.z);
+    }
+
+    const bool operator!=(const Vec3D &vec) const
+    {
+        return !(*this == vec);
+    }
+
+
+};
+
+struct Vec3Df
+{
+    float x;
+    float y;
+    float z;
+    Vec3Df()
+    {
+        this->x=0;
+        this->y=0;
+        this->z=0;
+    }
+    Vec3Df(int x,int y,int z)
     {
         this->x=x;
         this->y=y;
@@ -66,14 +97,14 @@ struct Rect
     {
 
     }
-     Rect(int x,int y,int w,int h)
-     {
+    Rect(int x,int y,int w,int h)
+    {
         this->orig.x=x;
         this->orig.y=y;
 
         this->sizes.x=w;
         this->sizes.y=h;
-     }
+    }
     Vec2D orig;
     Vec2D sizes;
 };
@@ -90,4 +121,10 @@ struct sRGB
 };
 
 enum TiposSprite {SPRITE,TILE,PLAYER};
+
+
+
+
+
+
 #endif // STRUCTURES_H_INCLUDED

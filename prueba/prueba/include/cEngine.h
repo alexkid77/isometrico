@@ -2,7 +2,8 @@
 #define CENGINE_H
 #include "comun.h"
 #include "cVideo.h"
-#include "IVideoSystem.h"
+#include <IVideoSystem.h>
+#include <ITimer.h>
 #include <string>
 #include <math.h>
 #include <CSprite.h>
@@ -15,7 +16,7 @@ using namespace std;
 class CEngine
 {
 public:
-    CEngine(IVideoSystem *vidSystem);
+    CEngine(IVideoSystem *vidSystem,ITimer *timer);
     void Update();
     void Render();
     virtual ~CEngine();
@@ -29,6 +30,7 @@ protected:
 
 private:
     IVideoSystem *vidSys;
+    ITimer *timer;
     friend class CWorld;
     friend class CSprite;
     CWorld *mapa;
@@ -42,7 +44,8 @@ private:
     int tileSize;
     Vec2D orig;
 
-
+    int fpsCount;
+    double tFpsAnt;
 
 
 
