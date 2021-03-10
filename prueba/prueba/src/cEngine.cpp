@@ -64,9 +64,9 @@ void CEngine::Update()
 
     if(key[KEY_SPACE])
         this->debug=!this->debug;
+ this->mapa->Update(this->timer->GetTicks());
 
 
-    this->mapa->Update(this->timer->GetTicks());
 }
 
 void CEngine::Render()

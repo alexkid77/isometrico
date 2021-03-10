@@ -58,7 +58,7 @@
 
 1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cvideo.h
 
-1615375655 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cengine.cpp
+1615380868 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cengine.cpp
 	<CEngine.h>
 	<CWorld.h>
 	"allegro.h"
@@ -459,7 +459,7 @@
 1615374401 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\itimerwindows.h
 	<ITimer.h>
 
-1615378812 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\citempushable.cpp
+1615380918 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\citempushable.cpp
 	"CItemPushable.h"
 
 1615378443 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\citempushable.h

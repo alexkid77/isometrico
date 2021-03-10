@@ -15,59 +15,59 @@ void CItemPushable::Update(double deltaTime)
 {
     if(abs(time-deltaTime)>20)
     {
+        float decay=0.02;
         time=deltaTime;
         if( this->acel.x>0)
         {
-            this->acel.x=  this->acel.x-this->acel.x*(0.1f);
+            this->acel.x=  this->acel.x-this->acel.x*(decay);
             this->Pos.x+=this->acel.x;
         }
- if( this->acel.y>0){
-        this->acel.y=this->acel.y-this->acel.y*(0.1f);
-        this->Pos.y+=this->acel.y;
- }
+        if( this->acel.y>0)
+        {
+            this->acel.y=this->acel.y-this->acel.y*(decay);
+            this->Pos.y+=this->acel.y;
+        }
     }
 }
 void CItemPushable::onCollision(CEntity *ent)
 {
-
+  this->PosAnt=this->Pos;
     switch(ent->Tipo)
     {
     case PLAYER:
         if(vColisiones.size()==0)
         {
 
-
             int dx= ent->Pos.x-ent->PosAnt.x;
             int dy= ent->Pos.y-ent->PosAnt.y;
             int dz= ent->Pos.z-ent->PosAnt.z;
-            this->Pos.x+=dx*30;
-            this->Pos.y+=dy*30;
+            this->Pos.x+=dx;
+            this->Pos.y+=dy;
             if(this->Pos.x<0)
                 this->Pos.x=0;
             if(this->Pos.y<0)
                 this->Pos.y=0;
 
-        /*    ent->PosAnt=ent->Pos;
-            ent->Pos.x-=dx;
-            ent->Pos.y-=dy;
-            ent->Pos.z-=dz;*/
+                ent->PosAnt=ent->Pos;
+                ent->Pos.x-=dx;
+                ent->Pos.y-=dy;
+                ent->Pos.z-=dz;
             this->acel.x=dx*20;
             this->acel.y=dy*20;
-            this->PosAnt=this->Pos;
-            //      this->Pos.x+= this->acel.x;
-            //   this->Pos.y+= this->acel.y;
+
+
 
         }
         else
         {
-            this->Pos= this->PosAnt;
+
             ent->Pos=ent->PosAnt;
             //   printf("double colision\n");
         }
 
         break;
     case TILE:
-        this->Pos= this->PosAnt;
+
         // printf("colision tile\n");
         break;
     case SPRITE:
