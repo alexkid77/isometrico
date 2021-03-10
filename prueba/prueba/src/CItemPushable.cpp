@@ -17,12 +17,12 @@ void CItemPushable::Update(double deltaTime)
     {
         float decay=0.02;
         time=deltaTime;
-        if( this->acel.x>0)
+        if( this->acel.x!=0)
         {
             this->acel.x=  this->acel.x-this->acel.x*(decay);
             this->Pos.x+=this->acel.x;
         }
-        if( this->acel.y>0)
+        if( this->acel.y!=0)
         {
             this->acel.y=this->acel.y-this->acel.y*(decay);
             this->Pos.y+=this->acel.y;
@@ -31,6 +31,7 @@ void CItemPushable::Update(double deltaTime)
 }
 void CItemPushable::onCollision(CEntity *ent)
 {
+    int x=0;
   this->PosAnt=this->Pos;
     switch(ent->Tipo)
     {
@@ -68,6 +69,7 @@ void CItemPushable::onCollision(CEntity *ent)
         break;
     case TILE:
 
+    x++;
         // printf("colision tile\n");
         break;
     case SPRITE:
