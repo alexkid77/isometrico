@@ -3,6 +3,7 @@
 CItemPushable::CItemPushable(int tileGridW,int tileGridH,int tileSize,Vec3D BoxSize):CSprite(tileGridW,tileGridH,tileSize,BoxSize)
 {
     //ctor
+    this->decay=0.04;
     this->acel=Vec3Df(0,0,0);
     time=0;
 }
@@ -16,7 +17,7 @@ void CItemPushable::Update(double deltaTime)
     this->PosAnt=this->Pos;
     if(abs(time-deltaTime)>20)
     {
-        float decay=0.2;
+
         time=deltaTime;
         if( this->acel.x!=0)
         {
@@ -37,6 +38,7 @@ void CItemPushable::onCollision(CEntity *ent)
     switch(ent->Tipo)
     {
     case PLAYER:
+              this->decay=0.04;
         if(vColisiones.size()==0)
         {
 
@@ -69,7 +71,7 @@ void CItemPushable::onCollision(CEntity *ent)
 
         break;
     case TILE:
-
+        this->decay=0;
         x++;
         // printf("colision tile\n");
         break;

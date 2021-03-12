@@ -16,6 +16,7 @@ protected:
 private:
     double time;
     Vec3Df acel;
+    float decay;
 };
 
 #endif // CITEMPUSHABLE_H
