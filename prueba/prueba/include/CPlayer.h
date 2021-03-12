@@ -11,6 +11,7 @@ public:
     CPlayer(int tileGridW,int tileGridH,int tileSize,Vec3D boxSize);
     virtual ~CPlayer();
     virtual void onCollision(CEntity *ent);
+    void Update(double deltaTime);
 protected:
 
 private:

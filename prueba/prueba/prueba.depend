@@ -58,7 +58,7 @@
 
 1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cvideo.h
 
-1615380868 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cengine.cpp
+1615556147 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cengine.cpp
 	<CEngine.h>
 	<CWorld.h>
 	"allegro.h"
@@ -137,14 +137,14 @@
 1613401720 source:c:\users\alex\documents\isometrico\prueba\prueba\src\tile.cpp
 	"Tile.h"
 
-1615375890 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\csprite.h
+1615547701 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\csprite.h
 	<comun.h>
 	<vector>
 	<utils.h>
 	<algorithm>
 	<CEntity.h>
 
-1615378443 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\csprite.cpp
+1615554724 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\csprite.cpp
 	<CSprite.h>
 	<stdio.h>
 
@@ -155,11 +155,12 @@
 	<CTileMap.h>
 	<vector>
 
-1615378443 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
+1615556224 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
 	<CWorld.h>
 	<algorithm>
 	<cstdio>
 	<CItemPushable.h>
+	<allegro.h>
 
 1615375829 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\centity.h
 	<comun.h>
@@ -414,10 +415,10 @@
 	<string>
 	<sstream>
 
-1615283743 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cplayer.cpp
+1615555902 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cplayer.cpp
 	<CPlayer.h>
 
-1615283743 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cplayer.h
+1615555631 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cplayer.h
 	<CSprite.h>
 
 1615117263 c:\users\alex\documents\isometrico\prueba\prueba\include\cplayer.h
@@ -459,7 +460,7 @@
 1615374401 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\itimerwindows.h
 	<ITimer.h>
 
-1615384580 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\citempushable.cpp
+1615556295 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\citempushable.cpp
 	"CItemPushable.h"
 
 1615378443 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\citempushable.h

@@ -5,7 +5,10 @@ CPlayer::CPlayer(int tileGridW,int tileGridH,int tileSize,Vec3D boxSize):CSprite
     //ctor
     this->Tipo=PLAYER;
 }
-
+void CPlayer::Update(double deta)
+{
+    this->PosAnt=this->Pos;
+}
 CPlayer::~CPlayer()
 {
     //dtor

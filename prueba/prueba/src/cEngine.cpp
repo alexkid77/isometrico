@@ -44,27 +44,11 @@ void CEngine::onPlayerCollision(CEntity *ent)
 void CEngine::Update()
 {
 
-    int inc=1;
-    this->player->PosAnt=this->player->Pos;
-    if(key[KEY_UP])
-        this->player->Pos.y-=inc;
-    if(key[KEY_DOWN])
-        this->player->Pos.y+=inc;
 
-    if(key[KEY_LEFT])
-        this->player->Pos.x-=inc;
-    if(key[KEY_RIGHT])
-        this->player->Pos.x+=inc;
+    this->mapa->Update(this->timer->GetTicks());
+    //this->player->PosAnt=this->player->Pos;
 
-    if(key[KEY_C])
-        if(this->player->Pos.z>1)
-            this->player->Pos.z-=inc;
-    if(key[KEY_D])
-        this->player->Pos.z+=inc;
 
-    if(key[KEY_SPACE])
-        this->debug=!this->debug;
- this->mapa->Update(this->timer->GetTicks());
 
 
 }

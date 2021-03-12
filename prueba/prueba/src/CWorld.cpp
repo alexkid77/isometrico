@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cstdio>
 #include <CItemPushable.h>
+#include <allegro.h>
 CWorld::CWorld(CEngine *engine)
 {
 
@@ -39,11 +40,32 @@ void CWorld::Update(double deltaTime)
 
     for(uint32_t i=0; i<this->childs.size(); i++)
         this->childs[i]->Update(deltaTime);
+
+    int inc=1;
+    if(key[KEY_UP])
+        this->engine->player->Pos.y-=inc;
+    if(key[KEY_DOWN])
+        this->engine->player->Pos.y+=inc;
+
+    if(key[KEY_LEFT])
+        this->engine->player->Pos.x-=inc;
+    if(key[KEY_RIGHT])
+        this->engine->player->Pos.x+=inc;
+
+    if(key[KEY_C])
+        if(    this->engine->player->Pos.z>1)
+            this->engine->player->Pos.z-=inc;
+    if(key[KEY_D])
+        this->engine->player->Pos.z+=inc;
+
+    if(key[KEY_SPACE])
+        this->engine->debug=!this->engine->debug;
     this->ProcesaCollisiones();
     this->ProcesaDepthSprites();
 
 
 }
+
 void CWorld::ProcesaCollisiones()
 {
 
@@ -87,7 +109,12 @@ void CWorld::ProcesaCollisiones()
             CTile *t=capa->GetTile(tile.x,tile.y);
             if(t->indiceTile==2 && t->hasCollision(s) /*((t->Pos.z+1)>= s->Pos.z )*/)
             {
-                s->Pos=s->PosAnt;
+                Vec3D pInter=t->getIntersection(s);
+                s->Pos.x=s->Pos.x-pInter.x;
+                s->Pos.y=s->Pos.y-pInter.y;
+                s->Pos.z=s->Pos.z-pInter.z;
+                //s->Pos.y-=pInter.y;
+                //  s->Pos=pInter;//s->PosAnt;
                 s->vColisiones.push_back(t);
                 s->onCollision(t);
                 break;

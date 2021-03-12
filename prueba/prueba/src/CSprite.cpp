@@ -92,17 +92,25 @@ void CSprite::onCollision(CEntity *ent)
 
 bool CSprite::hasCollision(CEntity *ent)
 {
-    int temp=0;
 
-    if(this->Pos.x<(ent->Pos.x+ent->Size.x+temp) &&
-            (this->Pos.x+this->Size.x+temp)>(ent->Pos.x) &&
-            this->Pos.y<(ent->Pos.y+ent->Size.y+temp) &&
-            (this->Pos.y+this->Size.y+temp)>(ent->Pos.y) && (this->Pos.z+this->Size.z+temp)>ent->Pos.z)
+
+    if(this->Pos.x<(ent->Pos.x+ent->Size.x) &&
+            (this->Pos.x+this->Size.x)>(ent->Pos.x) &&
+            this->Pos.y<(ent->Pos.y+ent->Size.y) &&
+            (this->Pos.y+this->Size.y)>(ent->Pos.y) && (this->Pos.z+this->Size.z)>ent->Pos.z)
         return true;
     else
         return false;
 }
+Vec3D CSprite::getIntersection(CEntity *ent)
+{
+    Vec3D dir=Vec3D(0,0,0);
+    dir.x=ent->Pos.x-ent->PosAnt.x;
+    dir.y=ent->Pos.y-ent->PosAnt.y;
+    dir.z=ent->Pos.z-ent->PosAnt.z;
 
+    return dir;
+}
 void  CSprite::Update(double deltaTime)
 {
 
