@@ -16,7 +16,7 @@ CWorld::CWorld(CEngine *engine)
     this->objeto=new CItemPushable(this->engine->tileGridW,this->engine->tileGridH,this->engine->tileSize,Vec3D(32,32,96));
     this->objeto->Pos.x=60;
     this->objeto->Pos.y=60;
-    this->objeto->Pos.z=0;
+    this->objeto->Pos.z=1;
 
     this->objeto->ClearDepth();
 
@@ -110,7 +110,7 @@ void CWorld::ProcesaCollisiones()
         {
             Vec2D tile=tilesOcupados[i];
             CTile *t=capa->GetTile(tile.x,tile.y);
-            if(t->indiceTile==2 && t->hasCollision(s) /*((t->Pos.z+1)>= s->Pos.z )*/)
+            if(/*t->indiceTile==2 &&*/ t->hasCollision(s) /*((t->Pos.z+1)>= s->Pos.z )*/)
             {
                 Vec3D pInter=t->getIntersection(s);
                 s->Pos.x=s->Pos.x-pInter.x;
@@ -124,9 +124,9 @@ void CWorld::ProcesaCollisiones()
             }
             else
             {
-            /*    CPlayer *pla=static_cast<CPlayer*>(s);
+                CPlayer *pla=static_cast<CPlayer*>(s);
                 if(pla!=0 &&  pla->estado!=CPlayer::JUMP_UP)
-                    pla->estado=CPlayer::IDLE;*/
+                    pla->estado=CPlayer::IDLE;
             }
         }
     }

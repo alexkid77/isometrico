@@ -11,7 +11,7 @@ void CPlayer::Update(double deta)
 {
     float decay=0.01f;
     this->PosAnt=this->Pos;
-   /* switch(this->estado)
+    switch(this->estado)
     {
     case JUMP_UP:
 
@@ -29,7 +29,7 @@ void CPlayer::Update(double deta)
     case IDLE:
 
         break;
-    }*/
+    }
 }
 CPlayer::~CPlayer()
 {
