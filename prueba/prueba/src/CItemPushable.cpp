@@ -42,9 +42,10 @@ void CItemPushable::onCollision(CEntity *ent)
         if(vColisiones.size()==0)
         {
 
-            int dx= ent->Pos.x-ent->PosAnt.x;
-            int dy= ent->Pos.y-ent->PosAnt.y;
-            int dz= ent->Pos.z-ent->PosAnt.z;
+            Vec3D res=ent->Pos-ent->PosAnt;
+            int dx= res.x;
+            int dy= res.y;
+            int dz= res.z;
             this->Pos.x+=dx;
             this->Pos.y+=dy;
             if(this->Pos.x<0)
@@ -56,7 +57,8 @@ void CItemPushable::onCollision(CEntity *ent)
             ent->Pos.x-=dx;
             ent->Pos.y-=dy;
             ent->Pos.z-=dz;
-            this->acel.x=dx*20;
+            int val=20;
+   this->acel.x=dx*20;
             this->acel.y=dy*20;
 
 

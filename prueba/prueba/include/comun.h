@@ -28,7 +28,32 @@ struct Vec3D
         return !(*this == vec);
     }
 
+    Vec3D operator+(const Vec3D op1)
+    {
+        Vec3D temp= Vec3D(this->x,this->y,this->z);
+        temp.x+=op1.x;
+        temp.y+=op1.y;
+        temp.z+=op1.z;
+        return temp;
+    }
 
+    Vec3D operator-(const Vec3D op1)
+    {
+        Vec3D temp= Vec3D(this->x,this->y,this->z);
+        temp.x-=op1.x;
+        temp.y-=op1.y;
+        temp.z-=op1.z;
+        return temp;
+    }
+
+    Vec3D operator*(const int val)
+    {
+        Vec3D temp= Vec3D(this->x,this->y,this->z);
+        temp.x*=val;
+        temp.y*=val;
+        temp.z*=val;
+        return temp;
+    }
 };
 
 struct Vec3Df
@@ -42,6 +67,12 @@ struct Vec3Df
         this->y=0;
         this->z=0;
     }
+  /*  Vec3Df(Vec3D &v)
+    {
+        this->x=v.x;
+        this->y=v.y;
+        this->z=v.z;
+    }*/
     Vec3Df(int x,int y,int z)
     {
         this->x=x;
@@ -58,6 +89,29 @@ struct Vec3Df
         return !(*this == vec);
     }
 
+    Vec3Df operator+(const Vec3Df op1)
+    {
+        Vec3Df temp= Vec3Df(this->x,this->y,this->z);
+        temp.x+=op1.x;
+        temp.y+=op1.y;
+        temp.z+=op1.z;
+        return temp;
+    }
+
+    Vec3Df operator-(const Vec3Df op1)
+    {
+        Vec3Df temp= Vec3Df(this->x,this->y,this->z);
+        temp.x-=op1.x;
+        temp.y-=op1.y;
+        temp.z-=op1.z;
+        return temp;
+    }
+
+
+   /* Vec3Df  operator*(int s)
+    {
+        return Vec3Df(x*s, y*s, z*s);
+    }*/
 
 };
 

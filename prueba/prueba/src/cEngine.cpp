@@ -20,8 +20,8 @@ CEngine::CEngine(IVideoSystem *vidSystem,ITimer *timer)
     this->player= new CPlayer(this->tileGridW,this->tileGridH,this->tileSize,playerBox);
 
     this->player->Pos.x=67;
-    this->player->Pos.y=100;
-    this->player->Pos.z=70;
+    this->player->Pos.y=290;
+    this->player->Pos.z=260;
 
 
     this->mapa=new CWorld(this);

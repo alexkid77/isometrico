@@ -59,7 +59,10 @@ void CWorld::Update(double deltaTime)
         this->engine->player->Pos.z+=inc;
 
     if(key[KEY_SPACE])
-        this->engine->debug=!this->engine->debug;
+    {
+        this->engine->player->Jump();
+    }
+        //this->engine->debug=!this->engine->debug;
     this->ProcesaCollisiones();
     this->ProcesaDepthSprites();
 
@@ -118,6 +121,12 @@ void CWorld::ProcesaCollisiones()
                 s->vColisiones.push_back(t);
                 s->onCollision(t);
                 break;
+            }
+            else
+            {
+            /*    CPlayer *pla=static_cast<CPlayer*>(s);
+                if(pla!=0 &&  pla->estado!=CPlayer::JUMP_UP)
+                    pla->estado=CPlayer::IDLE;*/
             }
         }
     }
