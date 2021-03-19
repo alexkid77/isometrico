@@ -67,12 +67,12 @@ struct Vec3Df
         this->y=0;
         this->z=0;
     }
-  /*  Vec3Df(Vec3D &v)
-    {
-        this->x=v.x;
-        this->y=v.y;
-        this->z=v.z;
-    }*/
+    /*  Vec3Df(Vec3D &v)
+      {
+          this->x=v.x;
+          this->y=v.y;
+          this->z=v.z;
+      }*/
     Vec3Df(int x,int y,int z)
     {
         this->x=x;
@@ -108,10 +108,10 @@ struct Vec3Df
     }
 
 
-   /* Vec3Df  operator*(int s)
-    {
-        return Vec3Df(x*s, y*s, z*s);
-    }*/
+    /* Vec3Df  operator*(int s)
+     {
+         return Vec3Df(x*s, y*s, z*s);
+     }*/
 
 };
 

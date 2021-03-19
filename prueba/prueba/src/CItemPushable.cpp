@@ -38,7 +38,7 @@ void CItemPushable::onCollision(CEntity *ent)
     switch(ent->Tipo)
     {
     case PLAYER:
-              this->decay=0.04;
+        this->decay=0.04;
         if(vColisiones.size()==0)
         {
 
@@ -58,7 +58,7 @@ void CItemPushable::onCollision(CEntity *ent)
             ent->Pos.y-=dy;
             ent->Pos.z-=dz;
             int val=20;
-   this->acel.x=dx*20;
+            this->acel.x=dx*20;
             this->acel.y=dy*20;
 
 

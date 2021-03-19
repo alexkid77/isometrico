@@ -16,7 +16,7 @@ CEngine::CEngine(IVideoSystem *vidSystem,ITimer *timer)
     this->orig.y= this->vidSys->getHeight()/2-tileH/2;
 
 
-    Vec3D playerBox(32,32,100);
+    Vec3D playerBox(32,32,96);
     this->player= new CPlayer(this->tileGridW,this->tileGridH,this->tileSize,playerBox);
 
     this->player->Pos.x=67;

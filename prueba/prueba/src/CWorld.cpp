@@ -62,7 +62,7 @@ void CWorld::Update(double deltaTime)
     {
         this->engine->player->Jump();
     }
-        //this->engine->debug=!this->engine->debug;
+    //this->engine->debug=!this->engine->debug;
     this->ProcesaCollisiones();
     this->ProcesaDepthSprites();
 
@@ -105,6 +105,7 @@ void CWorld::ProcesaCollisiones()
         s->vColisiones.clear();
         vector<Vec2D> tilesOcupados=s->getTilesOcupados();
 
+        /*se mira los tiles que pisa un objeto si la distancia es menor de 1 esta en el aire y debe caer el objeto*/
         bool tocaSuelo=false;
         for(uint16_t i=0; i<tilesOcupados.size() ; i++)
         {
@@ -115,30 +116,22 @@ void CWorld::ProcesaCollisiones()
                 Vec3D pInter=t->getIntersection(s);
                 s->Pos.x=s->Pos.x-pInter.x;
                 s->Pos.y=s->Pos.y-pInter.y;
-                s->Pos.z=s->Pos.z-pInter.z;
-                //s->Pos.y-=pInter.y;
-                //  s->Pos=pInter;//s->PosAnt;
+
+                // s->Pos.z=s->Pos.z-pInter.z;
+
                 s->vColisiones.push_back(t);
                 s->onCollision(t);
-                  tocaSuelo=true;
-                break;
+
+
             }
+
+            if(abs((t->Pos.z+t->Size.z)-s->Pos.z)>2 && !tocaSuelo)
+                tocaSuelo=false;
             else
-            {
-                if(abs((t->Pos.z+t->Size.z)-s->Pos.z)>2 && !tocaSuelo)
-                    tocaSuelo=false;
-                else
-                    tocaSuelo=true;
-
-
-
-            /*    CPlayer *pla=static_cast<CPlayer*>(s);
-                if(pla!=0 &&  pla->estado!=CPlayer::JUMP_UP)
-                    pla->estado=CPlayer::IDLE;*/
-            }
+                tocaSuelo=true;
         }
         if(!tocaSuelo && s->Pos.z>0)
-           s->Pos.z--;
+            s->Pos.z--;
     }
 }
 
