@@ -20,7 +20,7 @@ void CPlayer::Update(double deta)
             this->estado=JUMP_DOWN;
     break;
     case JUMP_DOWN:
-       this->Pos.z--;
+     //  this->Pos.z--;
         if(this->Pos.z<=0){
             this->estado=IDLE;
             this->Pos.z=0;

@@ -155,7 +155,7 @@
 	<CTileMap.h>
 	<vector>
 
-1616074244 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
+1616149269 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cworld.cpp
 	<CWorld.h>
 	<algorithm>
 	<cstdio>
@@ -415,7 +415,7 @@
 	<string>
 	<sstream>
 
-1616074027 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cplayer.cpp
+1616149214 source:c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\src\cplayer.cpp
 	<CPlayer.h>
 
 1616072685 c:\users\administrador\documents\c_alexproyectos\isometrico\prueba\prueba\include\cplayer.h
