@@ -12,7 +12,7 @@ CTileMap::~CTileMap()
 
 CTileMap::CTileMap(string file)
 {
-    string tileset;
+    string tileset=".";
     tmxparser::TmxMap map;
     tmxparser::TmxReturn error = tmxparser::parseFromFile(file, &map,tileset);
     int tileSize=map.tileWidth/2;
@@ -56,4 +56,3 @@ CTileMap::CTileMap(string file)
         this->Layers.push_back(capa);
     }
 }
-

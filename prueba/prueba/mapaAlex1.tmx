@@ -3,17 +3,17 @@
  <editorsettings>
   <export target="mapaAlex1.tmx" format="tmx"/>
  </editorsettings>
- <tileset firstgid="1" source="prueba/prueba/alex.tsx"/>
+ <tileset firstgid="1" source="tileAlex.tsx"/>
  <layer id="1" name="Capa de patrones 1" width="8" height="8">
   <data encoding="csv">
-0,0,7,7,7,7,7,7,
-0,8,5,5,5,5,5,5,
-0,8,5,5,5,11,11,5,
-0,8,5,5,5,11,11,5,
-0,8,5,5,5,11,11,5,
-0,8,5,5,11,11,5,5,
-0,8,5,5,5,5,5,11,
-0,8,5,5,5,5,5,5
+3,5,5,5,5,5,5,5,
+3,6,6,4,6,6,6,6,
+3,6,6,4,6,6,6,6,
+3,6,6,6,6,6,6,6,
+3,6,6,6,6,6,6,6,
+3,6,6,6,1,1,1,6,
+3,6,6,6,6,6,6,6,
+3,6,6,6,6,6,6,6
 </data>
  </layer>
 </map>

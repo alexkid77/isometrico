@@ -156,16 +156,9 @@ typedef struct
 typedef std::vector<TmxObjectGroup> TmxObjectGroupCollection_t;
 
 
-typedef struct
-{
-    TileId_t id;
-    TmxPropertyMap_t propertyMap;
-    TmxAnimationFrameCollection_t animations;
-    TmxObjectGroupCollection_t objectgroups;
-} TmxTileDefinition;
 
 
-typedef Map<unsigned int, TmxTileDefinition>::type TmxTileDefinitionMap_t;
+
 
 
 typedef struct
@@ -198,6 +191,15 @@ typedef struct
     TmxImage image;
 } TmxImageLayer;
 
+typedef struct
+{
+    TileId_t id;
+    TmxImage image;
+    TmxPropertyMap_t propertyMap;
+    TmxAnimationFrameCollection_t animations;
+    TmxObjectGroupCollection_t objectgroups;
+} TmxTileDefinition;
+typedef Map<unsigned int, TmxTileDefinition>::type TmxTileDefinitionMap_t;
 
 typedef std::vector<TmxImageLayer> TmxImageLayerCollection_t;
 
