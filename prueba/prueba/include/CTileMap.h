@@ -11,6 +11,7 @@ public:
     vector<CLayer*> Layers;
     CTileMap();
     CTileMap(string file);
+
     CTile *GetTile(int layerIndex,int x,int y);
     virtual ~CTileMap();
 

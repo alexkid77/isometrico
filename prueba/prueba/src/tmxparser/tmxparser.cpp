@@ -379,14 +379,15 @@ TmxReturn _parseTileset(tinyxml2::XMLElement* element, TmxTileset* outTileset)
     outTileset->tileMarginInImage = element->UnsignedAttribute("margin");
 
     // TODO - read TODO at end of this function
-    if (element->FirstChildElement("image") == NULL)
+   /* if (element->FirstChildElement("image") == NULL)
     {
         LOGE("We do not support maps with tilesets that have no image associated currently...");
         return kErrorParsing;
-    }
+    }*/
 
     TmxImage image;
-    TmxReturn error = _parseImageNode(element->FirstChildElement("image"), &outTileset->image);
+    TmxReturn error;
+  /*  TmxReturn error = _parseImageNode(element->FirstChildElement("image"), &outTileset->image);
     if (error)
     {
         LOGE("Error parsing image node...");
@@ -399,7 +400,7 @@ TmxReturn _parseTileset(tinyxml2::XMLElement* element, TmxTileset* outTileset)
     if (element->FirstChildElement("tileoffset") != NULL)
     {
         error = _parseOffsetNode(element->FirstChildElement("tileoffset"), &outTileset->offset);
-    }
+    }*/
 
     for (tinyxml2::XMLElement* child = element->FirstChildElement("tile"); child != NULL; child = child->NextSiblingElement("tile"))
     {
@@ -413,7 +414,7 @@ TmxReturn _parseTileset(tinyxml2::XMLElement* element, TmxTileset* outTileset)
             LOGE("Error parsing tile definition");
             return error;
         }
-
+     //   printf("imagen :%s\n",tileDef.image.source.c_str());
         outTileset->tileDefinitions[tileDef.id] = tileDef;
     }
 
@@ -485,6 +486,10 @@ TmxReturn _parseTileDefinitionNode(tinyxml2::XMLElement* element, TmxTileDefinit
         return error;
     }
 
+    if (element->FirstChildElement("image") != NULL)
+    {
+        error = _parseImageNode(element->FirstChildElement("image"), &outTileDefinition->image);
+    }
     if (element->FirstChildElement("animation") != NULL)
     {
         error = _parseTileAnimationNode(element->FirstChildElement("animation"), &outTileDefinition->animations);
