@@ -1,0 +1,2109 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)https://mazebert.com/forum/news/isometric-depth-sorting-%2Did775/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="nofollow">
+        <meta name="language" content="en">
+        <title>Isometric depth sorting</title>
+        <link rel="stylesheet" href="./Isometric depth sorting_files/mazebert.css">
+        <script src="./Isometric depth sorting_files/jquery.min.js.descarga"></script>
+
+        <script>
+            function readCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for(var i=0;i < ca.length;i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)===' ') c = c.substring(1,c.length);
+                    if (c.indexOf(nameEQ)===0) return c.substring(nameEQ.length,c.length);
+                }
+                return null;
+            }
+
+            function getUrlParameter(sParam, defaultValue) {
+                var sPageURL = window.location.search.substring(1),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
+
+                for (i = 0; i < sURLVariables.length; i++) {
+                    sParameterName = sURLVariables[i].split('=');
+
+                    if (sParameterName[0] === sParam) {
+                        return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                    }
+                }
+                return defaultValue;
+            }
+
+            function showError(error) {
+                $('#error-notification').show();
+                $('#error-notification .content').html(error);
+            }
+
+            function hideError() {
+                $('#error-notification').hide();
+            }
+
+            function showLogin(onComplete = null) {
+                $('#login-layer').toggleClass('show');
+                window.setTimeout(function () {
+                    $('#login-email').focus();
+                }, 300);
+                window.onMbLoginSuccess = onComplete;
+            }
+
+            var mb = {
+                loggedInPlayerId: readCookie('mbsession-id')
+            };
+            mb.loggedIn = mb.loggedInPlayerId != null;
+
+            $(document).ready(function() {
+                $["postJson"] = function( url, data, callback ) {
+                    return $.ajax({
+                        url: url,
+                        type: "POST",
+                        contentType:"application/json; charset=utf-8",
+                        dataType: "json",
+                        data: JSON.stringify(data),
+                        success: callback
+                    });
+                };
+
+                $.ajaxSetup({
+                    error: function (xhr) {
+                        var error = xhr.responseJSON ? xhr.responseJSON.error : 'An error has occurred: ' + xhr.status;
+                        showError(error);
+                    }
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div id="error-notification" class="alert">
+            <span class="close">×</span>
+            <span class="content"></span>
+        </div>
+
+        <header>
+            <nav class="navigation">
+                <a class="nav-brand" href="https://mazebert.com/">
+                    <img srcset="https://mazebert.com/assets/images/app-icon.png?t=1617270641, https://mazebert.com/assets/images/app-icon-2x.png?t=1617270641 2x" src="./Isometric depth sorting_files/app-icon-2x.png" class="app-icon" alt="Mazebert TD - Play your cards wisely to survive">
+                </a>
+                <div class="nav-mobile">
+                    <div id="nav-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <span class="forum-badge badge"></span>
+                </div>
+                <div class="nav-menu">
+                    <a href="https://mazebert.com/news/" class="nav-item">News</a>
+                    <a href="https://mazebert.com/stats/" class="nav-item">Stats</a>
+                    <a href="https://mazebert.com/cards/" class="nav-item">Cards</a>
+                    <a href="https://mazebert.com/forum/" class="nav-item is-active">Forum<span class="forum-badge badge"></span></a>
+                    <a href="https://mazebert.com/ladder/" class="nav-item">Ladder</a>
+                    <a href="https://mazebert.com/credits/" class="nav-item">Credits</a>
+                    <a href="https://mazebert.com/reviews/" class="nav-item">Reviews</a>
+                    <div class="nav-item">
+                        <button id="login-toggle">Log in</button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="has-navbar-fixed-top">
+            <div class="container">
+                <nav class="breadcrumbs">
+                    <a href="https://mazebert.com/forum/">Forum</a>&nbsp;/
+                    <a href="https://mazebert.com/forum/news/">News</a>&nbsp;/
+                    <span>Isometric depth sorting</span>
+                </nav>
+            </div>
+            
+
+    <div class="container">
+
+        
+<div class="post-content">
+    <div class="post-author first">
+        <div class="profile-picture">
+            <img class="shadow" alt="Andy" src="./Isometric depth sorting_files/5bf536d27c50cc30a6945c1d63f48535.jpeg" height="80" width="80">
+            <div class="badge-wrapper">
+                <span class="level">40</span>
+                <img alt="Supporter Level 40" src="./Isometric depth sorting_files/supporter-level-bg.png" srcset="https://mazebert.com/assets/images/supporter-level-bg@2x.png?t=1617270641 2x">
+            </div>
+        </div>
+        <div class="profile-content">
+            <h4><a href="https://mazebert.com/player/115/">Andy</a></h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;109<br>
+                Rank:&nbsp;145<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1366324814">7 years ago</div>
+        <a href="https://mazebert.com/supporters/rise-of-cthulhu-supporter-pack/">
+            <img alt="Rise of Cthulhu Supporter" style="float: right;" src="./Isometric depth sorting_files/roc-supporter-badge.png" srcset="https://mazebert.com/assets/images/roc-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+        <a href="https://mazebert.com/supporters/dawn-of-light-supporter-pack/">
+            <img alt="Dawn of Light Supporter" style="float: right;" src="./Isometric depth sorting_files/dol-supporter-badge.png" srcset="https://mazebert.com/assets/images/dol-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+    </div>
+
+    <h1>Isometric depth sorting</h1>
+
+    <a id="4675"></a>
+
+    <span class="post-content-text">Last week I decided to use an isometric perspective for rendering. The previous flat 2D style of rendering the scene was very limiting. Beyond that, I quite enjoyed isometric games like the old Age of Empires, Stronghold or Diablo. It seemed like a good compromise between my lack of 3D modeling skills and having some sort of perspective. Plus, of course the geeky style of isometric tiles is quite charming!
+
+<h2>1 The straight forward implementation</h2>
+The first implementation was pretty straight forward. I defined my isometric space so that x flows in screen coordinates left to right and top to bottom, y goes right to left top to bottom, while z just defines the floating in height. For convenience I defined that 1 unit in either x, y or z will bring you to the next tile in the iso grid.
+
+Since I was already using the great <a href="http://gamua.com/starling/" title="Starling" target="_blank">Starling Framework</a> for the previous 2D renderer, I simply derived an IsoSprite from the Sprite class like so. All game units will then extend from this class.
+
+<pre class="hljs">public class IsoSprite extends Sprite
+{
+    public var isoX:Number;
+    public var isoY:Number;
+    public var isoZ:Number;
+}
+</pre>
+
+Yes, public member variables are evil :-?, but in this case they will make up for a great boost in speed later! Note that I'm using Number here instead of int, because I wanted the Creeps to move fluently between tiles later. But step by step!
+
+For my defined iso space, the screen coordinates for each IsoSprite could be calculated by the following code:
+<pre class="hljs">private function projectSprite(sprite:IsoSprite):void
+{
+    sprite.x = (sprite.isoX - sprite.isoY) * _halfTileWidth;
+    sprite.y = (sprite.isoX + sprite.isoY - sprite.isoZ) * _halfTileHeight;
+}
+</pre>
+Where x and y are the standard screen coordinates of the Starling Sprite. The tile width and height depend on the resolution of the used tileset.
+
+<a href="https://mazebert.com/wp-content/uploads/2013/04/iso-tiles-unsorted.png"><img src="./Isometric depth sorting_files/iso-tiles-unsorted-200x300.png" alt="Unsorted Iso tiles" width="200" height="300" class="alignright size-medium wp-image-40"></a>However, when drawing the scene now, it's not really guaranteed that the sprites are not overlapping each other in a weird order like in the image. The problem here is that we are rendering the tiles in the wrong order. Although they look kind of 3d they are still flat images rendered on top of each other. For a correct output we need to use the painter's algorithm, drawing the tiles from back to front.
+
+Based on the isoX and isoY coordinates of the sprites, it's not hard to calculate a depth value for each sprite and sort them by this depth before rendering the scene:
+
+<pre class="hljs">private function calculateDepth(sprite:IsoSprite):void
+{
+    sprite.isoDepth = sprite.isoX + sprite.isoY;
+}
+</pre>
+
+And then define this comparison method to pass to the sortChildren method of Starlings DisplayObjectContainer class:
+
+<pre class="hljs">private function sortByIsoDepth(a:IsoSprite, b:IsoSprite):int
+{
+   if (a.isoDepth &gt; b.isoDepth)
+   {
+       return 1;
+   }
+   else if (a.isoDepth &lt; b.isoDepth)
+   {
+       return -1;
+   }
+   return 0;
+}
+</pre>
+
+<a href="https://mazebert.com/wp-content/uploads/2013/04/iso-tiles.png"><img src="./Isometric depth sorting_files/iso-tiles-200x300.png" alt="Static iso tiles" width="200" height="300" class="alignright size-medium wp-image-31"></a>Voilà - There we have a nice static isometric scene. That was not too hard! So let's start add some creeps. Still easy? Unfortunately this is  where isometry started to become quite a buzzer for me :-)
+
+If your game units are only allowed to "jump" from tile to tile, there is no problem with the sorting approach above. You would need to extend the iso depth calculation by z, so that you can specify that creeps should be rendered above ground tiles. Notice how in the example code below z is scaled down, so that is does not interfere too much with the x/y values.
+
+<pre class="hljs">private function calculateDepth(sprite:IsoSprite):void
+{
+    sprite.isoDepth = sprite.isoX + sprite.isoY + 0.001 * sprite.isoZ;
+}
+</pre>
+
+<a href="https://mazebert.com/wp-content/uploads/2013/04/iso-tiles-creps.png"><img src="./Isometric depth sorting_files/iso-tiles-creps-200x300.png" alt="iso-tiles-creps" width="200" height="300" class="alignright size-medium wp-image-52"></a>
+
+Notice the rendering glitches in the image! When creeps start moving between tiles the rendering all gets messed up. My first naive idea was that the sorting was "almost" right, so I'd just need to find out where sprites are misaligned and swap indices in the display list later on. I got it to work for just the creeps on their own, but as soon as you add flying projectiles I got lost with this approach. So I did some research on the internet and was shocked that there was so less information about this topic.
+
+I found two basic approaches to the sorting problem:
+<ul>
+  <li>Forget about correct sorting and utilize the depth buffer of the GPU</li>
+  <li>Do a topological sort on a graph, where the nodes are the sprites and the edges are an "is behind" relationship of the nodes.</li>
+</ul>
+
+I chose option 2 because my sprite textures are full of semi-transparency and the depth buffer can't handle semi-transparency. At the start this option sounds horribly complex for such a simple task as isometric sorting. But luckily I found some great resources which explain the theory behind it quite well:
+<ul>
+  <li><a href="http://en.wikipedia.org/wiki/Topological_sorting" title="Topological sorting on Wikipedia">Topological sorting on Wikipedia</a> (I used the depth first search algorithm)</li>
+  <li><a href="http://bannalia.blogspot.de/2008/02/filmation-math.html" title="Great blog post explaining the filmation technique">Great blog post explaining the filmation rendering technique</a></li>
+  <li><a href="https://code.google.com/p/as3isolib/" title="The open source as3isolib engine">The open source as3isolib engine</a> (Look into the DefaultSceneLayoutRenderer class for a reference implementation of the algorithm)</li>
+</ul>
+
+<h2>2 The topological sort implementation</h2>
+First of all I needed to extend the IsoSprite class by some additional information. The topological sort needs to compare the 3d bounds of IsoSprites with each other in order build the dependency graph. For this I decided to use axis aligned bounding boxes (AABB) which are well known from 3d rendering. They are extremely fast to compare and to update unless you are not rotating the underlying 3d model. As this rotation will never happen in the iso use case, we're all good to use them!
+
+<pre class="hljs">public class IsoSprite extends Sprite
+{
+    public var isoX:Number;
+    public var isoY:Number;
+    public var isoZ:Number;
+
+    // AABB in iso world space
+    public var minX:Number;
+    public var maxX:Number;
+    public var minY:Number;
+    public var maxY:Number;
+    public var minZ:Number;
+    public var maxZ:Number;
+    
+    // AABB in iso model space		
+    public var minXRelative:Number;
+    public var maxXRelative:Number;
+    public var minYRelative:Number;
+    public var maxYRelative:Number;
+    public var minZRelative:Number;
+    public var maxZRelative:Number;
+
+    // Internal variables for sorting in the renderer.
+    internal var isoDepth:int;
+    internal var isoSpritesBehind:Vector.<isosprite>;
+    internal var isoVisitedFlag:int;
+}
+</isosprite></pre>
+
+Now, on each frame the bounds of each sprite needs to be updated from model space to world space.
+
+<pre class="hljs">for (i = 0; i &lt; isoSpritesLength; ++i)
+{
+    sprite = _isoSprites[i];
+				
+    // Project sprite to screen coordinates
+    sprite.x = -_viewport.x + (sprite.isoX - sprite.isoY) * _halfTileWidth;
+    sprite.y = -_viewport.y + (sprite.isoX + sprite.isoY - sprite.isoZ) * _halfTileHeight;
+				
+    // Update bounds
+    sprite.minX = sprite.isoX + sprite.minXRelative;
+    sprite.maxX = sprite.isoX + sprite.maxXRelative;
+    sprite.minY = sprite.isoY + sprite.minYRelative;
+    sprite.maxY = sprite.isoY + sprite.maxYRelative;
+    sprite.minZ = sprite.isoZ + sprite.minZRelative;
+    sprite.maxZ = sprite.isoZ + sprite.maxZRelative;
+}
+</pre>
+
+In the next step, the dependencies between the iso sprites are determined. Currently all sprites needs to be compared to each other, which leads to a complexity of O(n^2). So for 100 sprites, 10.000 comparisons are necessary. This is where the public member variables of the sprite class become absolutely necessary for the fastest acceess possible. Also, I am re-using the behind vector and avoid function calls like push! If you are resetting the length for the behind vector to 0 and then pushing sprites on it every every frame, you get a LOT of unneccessary memory allocations in the inner loop and that will drain your framerate, especially on mobile!
+
+<pre class="hljs">// Determine dependencies for the topological graph sort
+var a:IsoSprite;
+var b:IsoSprite;
+var i:int;
+var j:int;
+var behindIndex:int;
+const isoSpritesLength:int = _isoSprites.length;
+for (i = 0; i &lt; isoSpritesLength; ++i)
+{
+    a = _isoSprites[i];
+    behindIndex = 0;
+				
+    for (j = 0; j &lt; isoSpritesLength; ++j)
+    {
+        if (i != j)
+        {
+            b = _isoSprites[j];
+						
+            if (b.minX &lt; a.maxX &amp;&amp; b.minY &lt; a.maxY &amp;&amp; b.minZ &lt; a.maxZ)
+            {
+                a.isoSpritesBehind[behindIndex++] = b;
+            }
+        }
+    }
+				
+    a.isoVisitedFlag = 0;
+}
+</pre>
+
+That was already the most expensive step in the whole process. Of course you should only process the sprites that are currently visible in the viewport, so some viewport culling should take place before. I haven't implemented this yet, so I might add another blogpost about it, when it is done. If you have a better solution for the dependency graph creation, that processes faster then O(n^2), it would be really nice if you could drop me a short comment about it!
+
+In the next step we do the real topological sort on the graph we just created!
+
+<pre class="hljs">// Do a topological sort on the dependency graph.
+_sortDepth = 0;
+for (i = 0; i &lt; isoSpritesLength; ++i)
+{
+    visitNode(_isoSprites[i]);
+}
+</pre>
+
+Where visitNode is the following method:
+
+<pre class="hljs">private function visitNode(n:IsoSprite):void
+{
+    if (n.isoVisitedFlag == 0)
+    {
+        n.isoVisitedFlag = 1;
+				
+        const spritesBehindLength:int = n.isoSpritesBehind.length;
+        for (var i:int = 0; i &lt; spritesBehindLength; ++i)
+        {
+            if (n.isoSpritesBehind[i] == null)
+            {
+                break;
+            }
+            else
+            {
+                visitNode(n.isoSpritesBehind[i]);
+                n.isoSpritesBehind[i] = null;
+            }
+        }
+				
+        n.isoDepth = _sortDepth++;
+    }
+}
+</pre>
+
+That's it basically! We now have a topological order of the nodes in our graph, specified by the "isoDepth" integer value! The only thing that is left to do is to sort the display list. This is done the same way as in the first implementation, by the sortChildren method of Starlings DisplayObjectContainer class:
+
+<pre class="hljs">// Sort
+sortChildren(sortByIsoDepth);
+</pre>
+
+<a href="https://mazebert.com/wp-content/uploads/2013/04/iso-tiles-topo-sorted.png"><img src="./Isometric depth sorting_files/iso-tiles-topo-sorted-200x300.png" alt="iso-tiles-topo-sorted" width="200" height="300" class="alignright size-medium wp-image-59"></a>
+
+And here we go. Now creeps, towers and projectiles are sorted in a nice and stable way, without rendering glitches! And on iOS the App is still running with 60fps!
+
+Thanks for reading so far. Please drop me a note if you have improvements, suggestions or questions about the isometric depth sort!</span>
+
+    <button data-playerid="115" data-postid="4675" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Unknown Wizard" src="./Isometric depth sorting_files/avatar" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Unknown Wizard</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1366528973">7 years ago</div>
+    </div>
+
+
+    <a id="4969"></a>
+
+    <span class="post-content-text">Thanks for sharing!</span>
+
+    <button data-playerid="0" data-postid="4969" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Andy" src="./Isometric depth sorting_files/5bf536d27c50cc30a6945c1d63f48535.jpeg" height="80" width="80">
+            <div class="badge-wrapper">
+                <span class="level">40</span>
+                <img alt="Supporter Level 40" src="./Isometric depth sorting_files/supporter-level-bg.png" srcset="https://mazebert.com/assets/images/supporter-level-bg@2x.png?t=1617270641 2x">
+            </div>
+        </div>
+        <div class="profile-content">
+            <h4><a href="https://mazebert.com/player/115/">Andy</a></h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;109<br>
+                Rank:&nbsp;145<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1366554565">7 years ago</div>
+        <a href="https://mazebert.com/supporters/rise-of-cthulhu-supporter-pack/">
+            <img alt="Rise of Cthulhu Supporter" style="float: right;" src="./Isometric depth sorting_files/roc-supporter-badge.png" srcset="https://mazebert.com/assets/images/roc-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+        <a href="https://mazebert.com/supporters/dawn-of-light-supporter-pack/">
+            <img alt="Dawn of Light Supporter" style="float: right;" src="./Isometric depth sorting_files/dol-supporter-badge.png" srcset="https://mazebert.com/assets/images/dol-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+    </div>
+
+
+    <a id="4970"></a>
+
+    <span class="post-content-text">No worries! Hope it was helpful to you.</span>
+
+    <button data-playerid="115" data-postid="4970" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Murdoch" src="./Isometric depth sorting_files/c59be64ea4c2d4ee91497cdc7de6107b.jpeg" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Murdoch</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1372218367">7 years ago</div>
+    </div>
+
+
+    <a id="4971"></a>
+
+    <span class="post-content-text">Awesome, thanks for this. Do you know the limitations of this approach? How many IsoSprites can be on screen at once until it slows down?</span>
+
+    <button data-playerid="0" data-postid="4971" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Andy" src="./Isometric depth sorting_files/5bf536d27c50cc30a6945c1d63f48535.jpeg" height="80" width="80">
+            <div class="badge-wrapper">
+                <span class="level">40</span>
+                <img alt="Supporter Level 40" src="./Isometric depth sorting_files/supporter-level-bg.png" srcset="https://mazebert.com/assets/images/supporter-level-bg@2x.png?t=1617270641 2x">
+            </div>
+        </div>
+        <div class="profile-content">
+            <h4><a href="https://mazebert.com/player/115/">Andy</a></h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;109<br>
+                Rank:&nbsp;145<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1372873073">7 years ago</div>
+        <a href="https://mazebert.com/supporters/rise-of-cthulhu-supporter-pack/">
+            <img alt="Rise of Cthulhu Supporter" style="float: right;" src="./Isometric depth sorting_files/roc-supporter-badge.png" srcset="https://mazebert.com/assets/images/roc-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+        <a href="https://mazebert.com/supporters/dawn-of-light-supporter-pack/">
+            <img alt="Dawn of Light Supporter" style="float: right;" src="./Isometric depth sorting_files/dol-supporter-badge.png" srcset="https://mazebert.com/assets/images/dol-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+    </div>
+
+
+    <a id="4972"></a>
+
+    <span class="post-content-text">Hi Murdoch, thanks for the heads up! I think it really depends on your use case. Currently I am profiling on an iPhone 5 with about 100 to 200 Iso Sprites (depending how many creeps are running around at once), and there according to Adobe Scout 1 to 5 milliseconds are spent for the isometric sorting. So I'm still at 60fps here. But with sorting runtime of O(n^2) it probably gets worse very fast if you add more and more sprites.
+
+Another bottleneck I noted about sorting, was that (at least in starling) you could run into a lot of GPU draw call state changes if you use different blend modes for iso sprites, because due to the sorting, sprites with the same blend mode can't be drawed after each other anymore. Last week I got a huge performance increase due to changing the iso blood particles back to child sprites of the dead creeps :-)
+
+Also, adding  viewport culling to the renderer was a big performance gain as well!</span>
+
+    <button data-playerid="115" data-postid="4972" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Unknown Wizard" src="./Isometric depth sorting_files/avatar" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Unknown Wizard</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1379090197">7 years ago</div>
+    </div>
+
+
+    <a id="4990"></a>
+
+    <span class="post-content-text">[…] situated in the lower portion. After searching some more, I found that Andreas Hager posted a great article about topological graph sorting, which I tried out. Care had to be taken when sorting the enemies, […]</span>
+
+    <button data-playerid="0" data-postid="4990" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="GameDev" src="./Isometric depth sorting_files/2af7ae6fcc5baeb1c1ef588952978f57" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>GameDev</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1386751998">7 years ago</div>
+    </div>
+
+
+    <a id="5051"></a>
+
+    <span class="post-content-text">Very good post!
+
+I have thought similar idea.
+But only I have considered a x-y plane.
+When I saw your blog, this idea is became perfectly.
+
+Thank you for sharing. ^^</span>
+
+    <button data-playerid="0" data-postid="5051" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="parser" src="./Isometric depth sorting_files/4fefe148379f667877e5c049774d3edd" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>parser</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1387572942">7 years ago</div>
+    </div>
+
+
+    <a id="5055"></a>
+
+    <span class="post-content-text">to optimize determining dependencies you need sort object before on some axis (where most objects preferably) and than sort until you max x value is less than next object min value</span>
+
+    <button data-playerid="0" data-postid="5055" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Dani" src="./Isometric depth sorting_files/2c12d1e2c286463c11ea6e1258bb58b3" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Dani</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1390816199">7 years ago</div>
+    </div>
+
+
+    <a id="5078"></a>
+
+    <span class="post-content-text">Thanks a lot for sharing this!!!. 
+
+After a week of trying to figure this out on my own with different approaches and many, many failures (and near misses too) I finally finished a c++ implementation based on your code. There's some things to polish and somethings I'd like to try to speed up the process but so far I am getting good results with fixed size tiles and game actors smaller than those. Very much appreciated.</span>
+
+    <button data-playerid="0" data-postid="5078" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Zyblade" src="./Isometric depth sorting_files/2ed1f8e5d5e92539187ad89d45bc7d6a.jpeg" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Zyblade</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1393276899">7 years ago</div>
+    </div>
+
+
+    <a id="5124"></a>
+
+    <span class="post-content-text">Hey Andy,
+
+I've got a couple of questions related to isometric sorting and would be happy to email with you.
+I already tryin' to setup a good isometric sorting algo for month's and longer :S.
+
+Thanks in advance :)
+
+Rob</span>
+
+    <button data-playerid="0" data-postid="5124" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Andy" src="./Isometric depth sorting_files/5bf536d27c50cc30a6945c1d63f48535.jpeg" height="80" width="80">
+            <div class="badge-wrapper">
+                <span class="level">40</span>
+                <img alt="Supporter Level 40" src="./Isometric depth sorting_files/supporter-level-bg.png" srcset="https://mazebert.com/assets/images/supporter-level-bg@2x.png?t=1617270641 2x">
+            </div>
+        </div>
+        <div class="profile-content">
+            <h4><a href="https://mazebert.com/player/115/">Andy</a></h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;109<br>
+                Rank:&nbsp;145<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1393279028">7 years ago</div>
+        <a href="https://mazebert.com/supporters/rise-of-cthulhu-supporter-pack/">
+            <img alt="Rise of Cthulhu Supporter" style="float: right;" src="./Isometric depth sorting_files/roc-supporter-badge.png" srcset="https://mazebert.com/assets/images/roc-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+        <a href="https://mazebert.com/supporters/dawn-of-light-supporter-pack/">
+            <img alt="Dawn of Light Supporter" style="float: right;" src="./Isometric depth sorting_files/dol-supporter-badge.png" srcset="https://mazebert.com/assets/images/dol-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+    </div>
+
+
+    <a id="5126"></a>
+
+    <span class="post-content-text">No probs :-) I sent you a mail at the address you registered in wordpress with.</span>
+
+    <button data-playerid="115" data-postid="5126" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Lukasz" src="./Isometric depth sorting_files/c5a228fca87c0a085d75bd7b874ac2fa" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Lukasz</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1396098542">7 years ago</div>
+    </div>
+
+
+    <a id="5163"></a>
+
+    <span class="post-content-text">I think there is no need to compare all entries to all entries. To do it you would need a correct data structure, that works somewhat like a binary tree. What I actually have in mind, is that if I was to do it for example in Java, I would put the entities in a   <a href="http://docs.oracle.com/javase/7/docs/api/java/util/TreeMap.html" title="Java treemap specification" rel="nofollow"> TreeMap</a>. provided an appropriate Comparator object (see the docs).
+
+It would work by clearing the map entirely at the start of rendering call and fill it with entities that fall into the rendering viewport. The map sorts itself automatically, so the next with to do would be to just render each entity from that map linearly.</span>
+
+    <button data-playerid="0" data-postid="5163" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Edvin Holm" src="./Isometric depth sorting_files/b61d1a5ba5e2bd89a9114f5538794eca" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Edvin Holm</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1397442054">6 years ago</div>
+    </div>
+
+
+    <a id="5197"></a>
+
+    <span class="post-content-text">Thank you, this was very helpful!</span>
+
+    <button data-playerid="0" data-postid="5197" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="TheRod" src="./Isometric depth sorting_files/4fb4a5cab67cf7cd5a7776b429c05763" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>TheRod</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1397499839">6 years ago</div>
+    </div>
+
+
+    <a id="5202"></a>
+
+    <span class="post-content-text">Hi! Thanks for sharing your solutions! I'm looking for this but for cocos2dx, does anybody tried this on cocos?</span>
+
+    <button data-playerid="0" data-postid="5202" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Unknown Wizard" src="./Isometric depth sorting_files/avatar" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Unknown Wizard</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1398167302">6 years ago</div>
+    </div>
+
+
+    <a id="5237"></a>
+
+    <span class="post-content-text">"which leads to a complexity of O(n^2). So for 100 sprites, 10.000 comparisons are necessary. "
+
+what about spatial partitioning and only update segments that actually changed?</span>
+
+    <button data-playerid="0" data-postid="5237" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Stephen Hamilton" src="./Isometric depth sorting_files/371ac1b579c8b66d5b307111365401fa" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Stephen Hamilton</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1399295941">6 years ago</div>
+    </div>
+
+
+    <a id="5264"></a>
+
+    <span class="post-content-text">Really interesting solution which might answer a problem I posted on StackOverflow a while ago: 
+
+http://gamedev.stackexchange.com/questions/49226/3d-isometric-depth-sorting
+
+Although, I couldn't understand where the following variables come from:
+
+minXRelative
+maxXRelative
+minYRelative
+maxYRelative
+minZRelative
+maxZRelative
+
+Do I have to statically determine these values for each object? Or can I deduce these values from the physical width/height of the sprite?
+
+Also, in the following code, is this meant to use the isometric point (isoX) or an absolute pixel value?
+
+sprite.minX = sprite.isoX + sprite.minXRelative;
+
+Please email me for more info</span>
+
+    <button data-playerid="0" data-postid="5264" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Andy" src="./Isometric depth sorting_files/5bf536d27c50cc30a6945c1d63f48535.jpeg" height="80" width="80">
+            <div class="badge-wrapper">
+                <span class="level">40</span>
+                <img alt="Supporter Level 40" src="./Isometric depth sorting_files/supporter-level-bg.png" srcset="https://mazebert.com/assets/images/supporter-level-bg@2x.png?t=1617270641 2x">
+            </div>
+        </div>
+        <div class="profile-content">
+            <h4><a href="https://mazebert.com/player/115/">Andy</a></h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;109<br>
+                Rank:&nbsp;145<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1399419369">6 years ago</div>
+        <a href="https://mazebert.com/supporters/rise-of-cthulhu-supporter-pack/">
+            <img alt="Rise of Cthulhu Supporter" style="float: right;" src="./Isometric depth sorting_files/roc-supporter-badge.png" srcset="https://mazebert.com/assets/images/roc-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+        <a href="https://mazebert.com/supporters/dawn-of-light-supporter-pack/">
+            <img alt="Dawn of Light Supporter" style="float: right;" src="./Isometric depth sorting_files/dol-supporter-badge.png" srcset="https://mazebert.com/assets/images/dol-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+    </div>
+
+
+    <a id="5267"></a>
+
+    <span class="post-content-text">Hi thanks for the follow up.
+
+The min/max relative coordinates describe an axis aligned bounding box (AABB) in isometric space. So for instance if an isometric object like a character would be 0,5x0,25 iso blocks wide and 1 iso block high you need to set those values accordingly so that the sort engine can place this character correctly in the world.
+
+And yes you are right, the code you mentioned is in isometric space, not screen space.
+
+Cheers!</span>
+
+    <button data-playerid="115" data-postid="5267" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Andrew" src="./Isometric depth sorting_files/783bb22941d549dd8cd92bb8198cae37" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Andrew</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1399523427">6 years ago</div>
+    </div>
+
+
+    <a id="5269"></a>
+
+    <span class="post-content-text">Thanks for sharing, Andy!
+
+I've gone ahead and implemented your solution in C++ as a RenderGraph class found here (<a href="http://pastebin.com/YeJkC0Lp" rel="nofollow">RenderGraph.hpp</a> / <a href="http://pastebin.com/Dr1MAsX2" rel="nofollow">RenderGraph.cpp</a> ).
+
+Entity::GetMinMax() just returns a struct with two 3D vectors, `min` and `max`.
+
+Usage is as follows:
+<code>    std::vector renderQueue;
+    RenderGraph renderGraph;
+
+    renderGraph.SetEntities( entities_ ); // tells the render graph which entities to sort
+    renderGraph.CalculateDependencies();
+    renderGraph.Sort( renderQueue ); // pushes the entities from each node into  `renderQueue`
+
+    for ( unsigned int i = 0; i &lt; renderQueue.size(); ++i ) {
+        // Render( renderQueue[ i ] );
+    };
+</code>
+
+Hope this is of some help to others!</span>
+
+    <button data-playerid="0" data-postid="5269" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Andrew" src="./Isometric depth sorting_files/783bb22941d549dd8cd92bb8198cae37" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Andrew</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1399524391">6 years ago</div>
+    </div>
+
+
+    <a id="5270"></a>
+
+    <span class="post-content-text">Just a quick edit, I've added in a visited flag to the RenderGraph::Node struct to prevent any stack overflows, I thought the isoDepth &lt; 0 check would have been enough but if two entities are dependent on each other it would cause an overflow.
+
+New source can be found here:
+<a href="http://pastebin.com/dTjA0DdA" rel="nofollow">renderGraph.hpp</a>
+<a href="http://pastebin.com/PwM3JFTC" rel="nofollow">renderGraph.cpp</a></span>
+
+    <button data-playerid="0" data-postid="5270" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Andy" src="./Isometric depth sorting_files/5bf536d27c50cc30a6945c1d63f48535.jpeg" height="80" width="80">
+            <div class="badge-wrapper">
+                <span class="level">40</span>
+                <img alt="Supporter Level 40" src="./Isometric depth sorting_files/supporter-level-bg.png" srcset="https://mazebert.com/assets/images/supporter-level-bg@2x.png?t=1617270641 2x">
+            </div>
+        </div>
+        <div class="profile-content">
+            <h4><a href="https://mazebert.com/player/115/">Andy</a></h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;109<br>
+                Rank:&nbsp;145<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1399935560">6 years ago</div>
+        <a href="https://mazebert.com/supporters/rise-of-cthulhu-supporter-pack/">
+            <img alt="Rise of Cthulhu Supporter" style="float: right;" src="./Isometric depth sorting_files/roc-supporter-badge.png" srcset="https://mazebert.com/assets/images/roc-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+        <a href="https://mazebert.com/supporters/dawn-of-light-supporter-pack/">
+            <img alt="Dawn of Light Supporter" style="float: right;" src="./Isometric depth sorting_files/dol-supporter-badge.png" srcset="https://mazebert.com/assets/images/dol-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+    </div>
+
+
+    <a id="5274"></a>
+
+    <span class="post-content-text">Lovely! Thanks for sharing this :-) Also, C++ ftw!</span>
+
+    <button data-playerid="115" data-postid="5274" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Unknown Wizard" src="./Isometric depth sorting_files/avatar" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Unknown Wizard</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1408608025">6 years ago</div>
+    </div>
+
+
+    <a id="5576"></a>
+
+    <span class="post-content-text">[…] This tutorial defines tiles as any other sprite and then uses a topology algorithm to sort the scene every frame. […]</span>
+
+    <button data-playerid="0" data-postid="5576" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Danny" src="./Isometric depth sorting_files/bda80e5c520af8a00cfb094b7d108ab7" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Danny</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1413869293">6 years ago</div>
+    </div>
+
+
+    <a id="5634"></a>
+
+    <span class="post-content-text">Hi, great tutorial, it really helped me understand some issues with depth sorting.
+I do not seem to understand how are we adding the sprites or changing the sprite index from the display list after the sorting. Will this be done in a loop after sortChildren(sortByIsoDepth)?
+Please email me if possible, I will really appreciate it.</span>
+
+    <button data-playerid="0" data-postid="5634" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Andy" src="./Isometric depth sorting_files/5bf536d27c50cc30a6945c1d63f48535.jpeg" height="80" width="80">
+            <div class="badge-wrapper">
+                <span class="level">40</span>
+                <img alt="Supporter Level 40" src="./Isometric depth sorting_files/supporter-level-bg.png" srcset="https://mazebert.com/assets/images/supporter-level-bg@2x.png?t=1617270641 2x">
+            </div>
+        </div>
+        <div class="profile-content">
+            <h4><a href="https://mazebert.com/player/115/">Andy</a></h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;109<br>
+                Rank:&nbsp;145<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1414345445">6 years ago</div>
+        <a href="https://mazebert.com/supporters/rise-of-cthulhu-supporter-pack/">
+            <img alt="Rise of Cthulhu Supporter" style="float: right;" src="./Isometric depth sorting_files/roc-supporter-badge.png" srcset="https://mazebert.com/assets/images/roc-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+        <a href="https://mazebert.com/supporters/dawn-of-light-supporter-pack/">
+            <img alt="Dawn of Light Supporter" style="float: right;" src="./Isometric depth sorting_files/dol-supporter-badge.png" srcset="https://mazebert.com/assets/images/dol-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+    </div>
+
+
+    <a id="5635"></a>
+
+    <span class="post-content-text">Hi Danny,
+
+I'm glad the tutorial helped you!
+
+Yes I'm sorting the iso sprites attached to my iso renderer by a call to sortChildren. This function is provided by the starling framework's DisplayObjectContainer:
+public function sortChildren(compareFunction:Function):void
+
+As parameter it takes a compareFunction, which - in my case - is sortByIsoDepth. It uses the previously computed depth. Here is the function for completeness:
+
+private function sortByIsoDepth(a:IsoSprite, b:IsoSprite):int
+{
+  if (a.isoDepth &gt; b.isoDepth)
+  {
+    return 1;
+  }
+  else if (a.isoDepth &lt; b.isoDepth)
+  {
+    return -1;
+  }
+  return 0;
+}</span>
+
+    <button data-playerid="115" data-postid="5635" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Carlos Lopez" src="./Isometric depth sorting_files/8ecba61c00bf6ea10093e32602fd06a5" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Carlos Lopez</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1420802738">6 years ago</div>
+    </div>
+
+
+    <a id="5726"></a>
+
+    <span class="post-content-text">Hi,
+After 2 (hard) months of analisys of 2.5D tile order rendering I finally determinated the correct algorithm. 
+I am using it actually in a cocos2d-js tile-based game.
+Algorithm cosists in determinating and mapping "tiles back, behind and front each tile". Once that mapping you must follow a simple "recursive" function for drawing them.
+
+Regards</span>
+
+    <button data-playerid="0" data-postid="5726" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Carlos Lopez" src="./Isometric depth sorting_files/394d3b50de9dbb75ef9802f120cc9de4" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Carlos Lopez</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1421403646">6 years ago</div>
+    </div>
+
+
+    <a id="5744"></a>
+
+    <span class="post-content-text">You will need 2^n comparisions (for back,front,top,... tile list for each tile) but you can avoid a lot of elements in ordering process.</span>
+
+    <button data-playerid="0" data-postid="5744" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Lummox JR" src="./Isometric depth sorting_files/215598dabb58fe31279f52495e3580a6.png" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Lummox JR</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1426666196">6 years ago</div>
+    </div>
+
+
+    <a id="5819"></a>
+
+    <span class="post-content-text">I've been tinkering with isometric sort models on and off for some time. In the model I've been working with, Z position isn't really a thing (though it probably should be), and I realized some time ago I'll never have a perfect solution without topological sorting. The O(N^2) complexity is a problem though.
+
+Not too long ago I had an epiphany: The sort can be broken up into stages, calving away huge chunks of the map where there are no creeps by finding natural split lines. Divide-and-conquer should, in general cases, reduce any topological sorts to much smaller blocks. As I understand your coordinate system, lower y values are further back for the same x, and vice-versa. This is how the natural split optimization would look:
+
+Step 1: Sort the array of objects by minX, then by minY. Set P=item[0].maxX, and then traverse the array starting at index 1. If item[index].minX = P, then every item from 0 to index-1 is behind eery item from index onward. Recurse for those items (if more than 1 of them), starting on step 2. Then set a new P=item[index].maxX and continue.
+
+Step 2: Same as step 1, but switch X and Y. If recursing, start on step 1. When finished with this step, jump to step 1 if we didn't start on that step, or if any splits were found on this step.
+
+Step 3: At this point a much smaller number of tiles can be sorted topologically. The topological sort can be done from the front and the back simultaneously, reducing the concern of cycles in the graph.
+
+The choice of sort algorithm may matter a lot. With Timsort for instance, which loves partially-sorted data, when you alternate between step 1 and step 2 the array may well be in an ideal state already. For instance, if the leftmost column can be split off, and it contains no creeps, all the minX and maxX values will match and it will already be sorted by minY. Therefore large sections with nothing but well-behaved tiles and no creeps are dealt with quickly.
+
+Pathological cases may be harder to crack and would want more advanced tools, like splitting along jagged lines, or checking to see if a creep straddling a line that might otherwise split can be kept with the near group instead.</span>
+
+    <button data-playerid="0" data-postid="5819" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="bunny" src="./Isometric depth sorting_files/9498da34f569beac65f652fc80dab6bf" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>bunny</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1434134418">5 years ago</div>
+    </div>
+
+
+    <a id="5838"></a>
+
+    <span class="post-content-text">You are doing one thing - very wrong. You are polluting objects with fields that are used in sorting algorithm. This could have been avoided . For example you keep an array "isoSpritesBehind" in your IsoSprite class and you write this vector on each sorting iteration. This could cause a lot of garbage memory, when some sprites get out of screen, when they're not sorted and dont use this field. I guess the solution would be to keep the elements in some kind of Map that maps from an IsoSprite to List of IsoSprites.</span>
+
+    <button data-playerid="0" data-postid="5838" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Andy" src="./Isometric depth sorting_files/5bf536d27c50cc30a6945c1d63f48535.jpeg" height="80" width="80">
+            <div class="badge-wrapper">
+                <span class="level">40</span>
+                <img alt="Supporter Level 40" src="./Isometric depth sorting_files/supporter-level-bg.png" srcset="https://mazebert.com/assets/images/supporter-level-bg@2x.png?t=1617270641 2x">
+            </div>
+        </div>
+        <div class="profile-content">
+            <h4><a href="https://mazebert.com/player/115/">Andy</a></h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;109<br>
+                Rank:&nbsp;145<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1434278470">5 years ago</div>
+        <a href="https://mazebert.com/supporters/rise-of-cthulhu-supporter-pack/">
+            <img alt="Rise of Cthulhu Supporter" style="float: right;" src="./Isometric depth sorting_files/roc-supporter-badge.png" srcset="https://mazebert.com/assets/images/roc-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+        <a href="https://mazebert.com/supporters/dawn-of-light-supporter-pack/">
+            <img alt="Dawn of Light Supporter" style="float: right;" src="./Isometric depth sorting_files/dol-supporter-badge.png" srcset="https://mazebert.com/assets/images/dol-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+    </div>
+
+
+    <a id="5839"></a>
+
+    <span class="post-content-text">Well, the same amount of object references would then be stored in that map. Except that you have to do one extra map lookup, when you already have the iso sprite you're interested in. Maybe I miss something here, but I don't see any benefit in using a map.</span>
+
+    <button data-playerid="115" data-postid="5839" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Unknown Wizard" src="./Isometric depth sorting_files/avatar" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Unknown Wizard</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1437601044">5 years ago</div>
+    </div>
+
+
+    <a id="5863"></a>
+
+    <span class="post-content-text">Hi Andy, thank you for your post!
+
+I've been stuck on depth sorting for days, but still can't figure out how to calculate aabb to get those variables for my sprites - 
+
+minXRelative
+maxXRelative
+minYRelative
+maxYRelative
+minZRelative
+maxZRelative
+
+Can you provide an examples how you did it?
+
+Like, for example, we have isometric tiles 64x32 and creeps 30x20 and their screen coordinates x and y. How do we translate them into min max xyz? 
+
+Thanks</span>
+
+    <button data-playerid="0" data-postid="5863" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Andy" src="./Isometric depth sorting_files/5bf536d27c50cc30a6945c1d63f48535.jpeg" height="80" width="80">
+            <div class="badge-wrapper">
+                <span class="level">40</span>
+                <img alt="Supporter Level 40" src="./Isometric depth sorting_files/supporter-level-bg.png" srcset="https://mazebert.com/assets/images/supporter-level-bg@2x.png?t=1617270641 2x">
+            </div>
+        </div>
+        <div class="profile-content">
+            <h4><a href="https://mazebert.com/player/115/">Andy</a></h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;109<br>
+                Rank:&nbsp;145<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1437640714">5 years ago</div>
+        <a href="https://mazebert.com/supporters/rise-of-cthulhu-supporter-pack/">
+            <img alt="Rise of Cthulhu Supporter" style="float: right;" src="./Isometric depth sorting_files/roc-supporter-badge.png" srcset="https://mazebert.com/assets/images/roc-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+        <a href="https://mazebert.com/supporters/dawn-of-light-supporter-pack/">
+            <img alt="Dawn of Light Supporter" style="float: right;" src="./Isometric depth sorting_files/dol-supporter-badge.png" srcset="https://mazebert.com/assets/images/dol-supporter-badge@2x.png?t=1617270641 2x">
+        </a><br>
+    </div>
+
+
+    <a id="5865"></a>
+
+    <span class="post-content-text">The aabb is usually calculated in model space. Think of it as your model is the center of the universe in this space. So (0, 0, 0) in this space is the pivot point of your model.
+
+Now it depends on where this pivot point is located, but let's assume it is in the center of the model. For a 64x32 tile the aabb would calculate the following way:
+
+minXRelative = -32
+maxXRelative = 32
+minYRelative = -16
+maxYRelative = 16
+minZRelative = 0
+maxZRelative = 0
+
+Z assumes this tile has no height.</span>
+
+    <button data-playerid="115" data-postid="5865" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Unknown Wizard" src="./Isometric depth sorting_files/avatar" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Unknown Wizard</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1437687403">5 years ago</div>
+    </div>
+
+
+    <a id="5866"></a>
+
+    <span class="post-content-text">Oh, I see now. Thank you!</span>
+
+    <button data-playerid="0" data-postid="5866" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Vincent" src="./Isometric depth sorting_files/b950ccfeffc7c2588ac724e6e3dba879" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Vincent</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1437967137">5 years ago</div>
+    </div>
+
+
+    <a id="5867"></a>
+
+    <span class="post-content-text">Hey great tutorial! I was a bit confused about the relative min/max as well but this cleared it up. Just a couple questions though, is it ok to set min and max z to 0 for a sprite or do I need to change it depending on the height of the sprite? Also when you say isoX and Y do you mean tile coordinates (what tile the sprite is on) or just plain isometric coordinates?</span>
+
+    <button data-playerid="0" data-postid="5867" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Iman" src="./Isometric depth sorting_files/6c7350b93a90caceef5392ca291b9247" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Iman</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1442158744">5 years ago</div>
+    </div>
+
+
+    <a id="5893"></a>
+
+    <span class="post-content-text">This algorithm just work for static sprites than don’t move. if they do, then all the sprites have to be one by one tile and not bigger since the zbuffering will results wrong.
+Why didn’t you set zPosition = Xtile+YTile and let the SpriteKit handle the rest? to just need to set zPosition and it will care about the rest.
+Maybe I have got the purpose of writing this aricle the wrong way.
+
+However my problem is that I have some sprite bigger than one by one (mostly two by two) and I have to correct the zPositions set by xtile+ytile when a one by one character is going to move throgh the big sprites at behind tiles that are zdepthed higher than they deserve because I had to assign a zPosition for a Sprite and it will be worked for all of its tiles.
+Regards,
+Iman</span>
+
+    <button data-playerid="0" data-postid="5893" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="kik hacker real" src="./Isometric depth sorting_files/eb8d2d9977ee73181b3ba25d37f110fa" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>kik hacker real</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1443777569">5 years ago</div>
+    </div>
+
+
+    <a id="5922"></a>
+
+    <span class="post-content-text">Any help would be greatly appreciated!</span>
+
+    <button data-playerid="0" data-postid="5922" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="bunny" src="./Isometric depth sorting_files/9498da34f569beac65f652fc80dab6bf" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>bunny</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1451492677">5 years ago</div>
+    </div>
+
+
+    <a id="6023"></a>
+
+    <span class="post-content-text">After some work done on the issue - looking for a way to render isometric scene - I've found out that this is perhaps the best solution as - as you've said it keeps the alpha intact without glitching in comparison to rendering on the GPU and using depth buffer. 
+
+What I've found though was the poor performance - as this algorithm in its pure form is O(n^2) made impossible to build something real. So I've researched on the topic and found out that using spatial indexing solves a big part of the issue. What I did was dividing the screen into a grid of cells and putting all the sprites into the cells which they belong. For that I used screen-projected bounds of each sprite (a rectangle) and compared it with the grid's cells. If the cell (also a ractangle) intersected with these bounds - then I've put it in that cell. This resulted in a situation where I needed only to evaluate order per cell basis. As you may guess - amount of sprites per cell is much less than per whole screen (this actually depends on the resolution of the screen grid). 
+So, as I needed to compare only sprites that fell into a cell - the performance grown 15 times. I can easily sort about 700 sprites in 8 miliseconds on my 8 years old Core2 DUO E8200 CPU.  
+
+Take a look at the screenshot to see what I mean:
+http://imgur.com/hfvvMBU      (dont bother the framerate on the screen - it's limited intentionally)
+
+Another thing I did was moving the sorting to a different thread. Soriting doesn't actually need to be performed each frame. I quess, that even if you do it once 100 miliseconds - it will be almost unrecognizable. So the sorting sits on it's own thread and the main thread only asks it about if it has completed the sorting while rendering what it has from previous sort. 
+
+If you are curious about the code (in Java) take a look at this github pages:
+https://github.com/lukasz1985/IsometricEngine/blob/master/src/game/screen/Viewport.java
+https://github.com/lukasz1985/IsometricEngine/blob/master/src/game/screen/Grid.java
+... and off course the whole repository if you want to get a better point of view.
+
+Also a thing to consider - as somebody mentioned - you are polluting the instances of your IsoSprite instances with the references to the sprites that are behind them. This isn't so bad in your case, where you have only a few sprites on the scene, but doing this on a large scale scenes could eat some more memory if you didn't take care for zeroing/nulling those references. This is also addressed in my code.</span>
+
+    <button data-playerid="0" data-postid="6023" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="bazkie" src="./Isometric depth sorting_files/9e64e9b88cd58a01d5739fabb929c395.png" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>bazkie</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1476455866">4 years ago</div>
+    </div>
+
+
+    <a id="6138"></a>
+
+    <span class="post-content-text">Thanks for your insights! Very helpful :) (also thanks to the author of the blogpost!)</span>
+
+    <button data-playerid="0" data-postid="6138" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Debrah" src="./Isometric depth sorting_files/62caa902a6448502ffaeb652739caf51" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Debrah</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1476950480">4 years ago</div>
+    </div>
+
+
+    <a id="6139"></a>
+
+    <span class="post-content-text">It's great to read something that's both enjoyable and provides prasiatmgdc solutions.</span>
+
+    <button data-playerid="0" data-postid="6139" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Ryan" src="./Isometric depth sorting_files/136f4191ccbdd246102d0f1094a0f337" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Ryan</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1483112007">4 years ago</div>
+    </div>
+
+
+    <a id="6148"></a>
+
+    <span class="post-content-text">This line doesn't make sense. If all the tiles are on the ground level (like in your screen shots)  they should all have min/max z values of 0 and therefore the condition will never be met. Does your z coord not mean vertical level? In my code tiles can be on top of each other and that vertical level is "z", which is pretty typical I thought.
+
+What am I missing?
+
+if (b.minX &lt; a.maxX &amp;&amp; b.minY &lt; a.maxY &amp;&amp; b.minZ &lt; a.maxZ)
+            {
+                a.isoSpritesBehind[behindIndex++] = b;
+            }</span>
+
+    <button data-playerid="0" data-postid="6148" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Ryan" src="./Isometric depth sorting_files/136f4191ccbdd246102d0f1094a0f337" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Ryan</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1483114463">4 years ago</div>
+    </div>
+
+
+    <a id="6149"></a>
+
+    <span class="post-content-text">Thanks for the great idea.
+
+If you have all your sprites in a quad tree structure which is useful for viewport culling anyways then you could probably build the graph by take chunks of sprites by diving the view port into regions. It's like the method you mentioned but works with an existing data type you probably need anyways if your game world is larger than 1 screen.
+
+I haven't tried this yet but it sounds like it should work given you don't process duplicate sprites that overlap multiple regions.</span>
+
+    <button data-playerid="0" data-postid="6149" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Zyblade" src="./Isometric depth sorting_files/2ed1f8e5d5e92539187ad89d45bc7d6a.jpeg" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Zyblade</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1483181697">4 years ago</div>
+    </div>
+
+
+    <a id="6150"></a>
+
+    <span class="post-content-text">@Lukasz
+Hey, would you mind, sending me your java example? The links seem to be expired :/
+
+Thanks a bunch =)</span>
+
+    <button data-playerid="0" data-postid="6150" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Krumelur" src="./Isometric depth sorting_files/a21028a7240fe7a9ad350d80b040cf7f.jpeg" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Krumelur</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1483667921">4 years ago</div>
+    </div>
+
+
+    <a id="6151"></a>
+
+    <span class="post-content-text">Your array "isoSprites": does that include everything (tiles + creeps), or just creeps?
+I was wondering if it is enough to compare each creep against each tile instead of everything against each other, because the tiles are already painted correctly because of the painters algorithm.</span>
+
+    <button data-playerid="0" data-postid="6151" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+        
+<div class="post-content">
+    <div class="post-author">
+        <div class="profile-picture">
+            <img class="shadow" alt="Krumelur" src="./Isometric depth sorting_files/a21028a7240fe7a9ad350d80b040cf7f.jpeg" height="80" width="80">
+        </div>
+        <div class="profile-content">
+            <h4>Krumelur</h4>
+
+            <h5 class="subtitle">
+                Level:&nbsp;-<br>
+                Rank:&nbsp;-<br><br>
+            </h5>
+        </div>
+        <div class="profile-more-content post-created" data-ts="1483668252">4 years ago</div>
+    </div>
+
+
+    <a id="6152"></a><a id="latest"></a>
+
+    <span class="post-content-text">My understanding: minZ and maxZ are representing the actual height of the tile (or better: of the texture) relative to the tile height. So a solid cube would occupy 100% x 100% x 100% (x, y, z) of a tile.</span>
+
+    <button data-playerid="0" data-postid="6152" class="edit-post-button">Edit</button>
+</div>
+<hr>
+
+
+        <div>
+            <textarea id="reply" placeholder="Reply" class="auto-resize"></textarea>
+            <button id="preview">Preview</button>
+            <button id="submit">Submit</button>
+        </div>
+
+        <div id="preview-content" style="display: none;">
+            <hr>
+            <span class="post-content-text"></span>
+            <hr>
+        </div>
+    </div>
+
+    <script>
+   $('textarea.auto-resize').on('input', function (event) {
+        var field = event.target;
+
+        field.style.height = 'inherit';
+
+        var computed = window.getComputedStyle(field);
+        var height = parseInt(computed.getPropertyValue('border-top-width'), 0)
+            + parseInt(computed.getPropertyValue('padding-top'), 0)
+            + field.scrollHeight
+            + parseInt(computed.getPropertyValue('padding-bottom'), 0)
+            + parseInt(computed.getPropertyValue('border-bottom-width'), 0);
+
+        field.style.height = height + 'px';
+    });
+</script>
+    <script>
+    var formatTimeDelta = {
+        ONE_MINUTE: 60,
+        ONE_HOUR: 3600,
+        ONE_DAY: 86400,
+        ONE_MONTH: 2592000,
+        ONE_YEAR: 31536000,
+
+        formatTimeValueSuffix: function (value, unit, suffix) {
+            value = Math.floor(value);
+            if (value < 1 || value > 1) {
+                unit += "s";
+            }
+            return value + " " + unit + suffix;
+        },
+
+        formatTimeValue: function (value, unit) {
+            return this.formatTimeValueSuffix(value, unit, " ago");
+        },
+
+        formatYears: function (delta) {
+            return this.formatTimeValue(delta / this.ONE_YEAR, "year");
+        },
+
+        formatMonths: function (delta) {
+            return this.formatTimeValue(delta / this.ONE_MONTH, "month");
+        },
+
+        formatDays: function (delta) {
+            return this.formatTimeValue(delta / this.ONE_DAY, "day");
+        },
+
+        formatHours: function (delta) {
+            return this.formatTimeValue(delta / this.ONE_HOUR, "hour");
+        },
+
+        formatMinutes: function (delta) {
+            return this.formatTimeValue(delta / this.ONE_MINUTE, "minute");
+        },
+
+        formatSeconds: function (delta) {
+            return this.formatTimeValue(delta, "second");
+        },
+
+        formatDelta: function (delta) {
+            if (delta <= 0) {
+                return 'now';
+            }
+
+            if (delta < this.ONE_MINUTE) return this.formatSeconds(delta);
+            if (delta < this.ONE_HOUR) return this.formatMinutes(delta);
+            if (delta < this.ONE_DAY) return this.formatHours(delta);
+            if (delta < this.ONE_MONTH) return this.formatDays(delta);
+            if (delta < this.ONE_YEAR) return this.formatMonths(delta);
+            return this.formatYears(delta);
+        },
+
+        formatDeltaVerbose: function(delta) {
+            if (delta < 0) {
+                delta = 0;
+            }
+
+            return this.formatTimeValueSuffix(delta / this.ONE_DAY, 'day', ', ') +
+                   this.formatTimeValueSuffix((delta % this.ONE_DAY) / this.ONE_HOUR, 'hour', ', ') +
+                   this.formatTimeValueSuffix((delta % this.ONE_HOUR) / this.ONE_MINUTE, 'minute', ', ') +
+                   this.formatTimeValueSuffix(Math.floor(delta) % this.ONE_MINUTE, 'second', '');
+        },
+
+        formatElement: function($element) {
+            var delta = (Date.now() / 1000) - $element.data('ts');
+            $element.html(this.formatDelta(delta));
+
+            return delta;
+        },
+
+        format: function($selector) {
+            var that = this;
+            var elementsToRefresh = [];
+
+            $selector.each(function() {
+                var delta = that.formatElement($(this));
+
+                if (delta < that.ONE_HOUR) {
+                    elementsToRefresh[elementsToRefresh.length] = $(this);
+                }
+            });
+
+            if (elementsToRefresh.length > 0) {
+                setInterval(function(){
+                    for (var i = 0; i < elementsToRefresh.length; ++i) {
+                        that.formatElement(elementsToRefresh[i]);
+                    }
+                }, 1000);
+            }
+        },
+    }
+</script>
+    <script>
+        $(document).ready(function() {
+            formatTimeDelta.format($('.post-created'));
+
+            $('.edit-post-button').each(function () {
+                if ($(this).data('playerid') == mb.loggedInPlayerId) {
+                    $(this).css('display', 'block');
+                    $(this).click(function () {
+                        window.location.href = 'https:\/\/mazebert.com\/forum\/edit\-post\/?id=' + $(this).data('postid');
+                    });
+                }
+            });
+
+            $('#preview').click(function () {
+                if (!mb.loggedIn) {
+                    showLogin();
+                } else {
+                    $("#preview").attr("disabled", true);
+                    $.postJson('https:\/\/mazebert.com\/rest\/forum\/create\-post', {
+                        threadId: 775,
+                        content: $('#reply').val(),
+                        preview: true
+                    }, function (data) {
+                        $('#preview-content').show();
+                        $('#preview-content .post-content-text').html(data.post.content);
+                    }).always(function () {
+                        $("#preview").attr("disabled", false);
+                    });
+                }
+            });
+
+            $('#submit').click(function() {
+                if (!mb.loggedIn) {
+                    showLogin();
+                } else {
+                    $("#submit").attr("disabled", true);
+                    $.postJson('https:\/\/mazebert.com\/rest\/forum\/create\-post', {
+                        threadId: 775,
+                        content: $('#reply').val()
+                    }, function () {
+                        window.location.reload();
+                    }).always(function () {
+                        $("#submit").attr("disabled", false);
+                    });
+                }
+            });
+
+        });
+    </script>
+
+            <div id="card-preview" style="position: absolute; display: none; top: 0; left: 0;">
+    <img src="https://mazebert.com/forum/news/isometric-depth-sorting--id775/" srcset="" alt="Preview">
+</div>
+
+<script>
+$(document).ready(function() {
+    var CardInfo = function() {
+        this.id = 0;
+        this.type = null;
+    };
+
+    var CardPreview = function() {
+
+        this.calculateCardTypePrefix = function(type) {
+            if (type === 'hero') return 'heroes/golden/Hero';
+            if (type === 'tower') return 'towers/golden/Tower';
+            if (type === 'item') return 'items/golden/Item';
+            if (type === 'potion') return 'potions/golden/Potion';
+            return '';
+        };
+
+        this.calculateImagePath = function(cardInfo) {
+            var path = 'https://mazebert.com/wp-content/themes/twentytwelve/images/';
+            path += this.calculateCardTypePrefix(cardInfo.type);
+            path += '-' + cardInfo.id + '-card-preview.png';
+
+            return path;
+        };
+
+        this.calculateImagePath2x = function(cardInfo) {
+            var path = 'https://mazebert.com/wp-content/themes/twentytwelve/images/';
+            path += this.calculateCardTypePrefix(cardInfo.type);
+            path += '-' + cardInfo.id + '-card.png';
+
+            return path;
+        };
+
+        this.show = function(cardInfo) {
+            var image = $('#card-preview img');
+            image.attr('src', this.calculateImagePath(cardInfo));
+            image.attr('srcset', this.calculateImagePath2x(cardInfo) + " 2x");
+            $('#card-preview').show();
+        };
+
+        this.hide = function() {
+            $('#card-preview').hide();
+        };
+
+        this.update = function(x, y) {
+            var offsetX = 60;
+            if (x > $(document).width() / 2) {
+                offsetX = -320 - 30;
+            }
+            $('#card-preview').css('left', x + offsetX).css('top', y - 212);
+        };
+    };
+
+    var CardInfoParser = function() {
+
+        this.parseCssInfo = function(cssClass, classPrefix, defaultValue) {
+            if (cssClass.indexOf(classPrefix) === 0) {
+                return cssClass.substr(classPrefix.length);
+            } else {
+                return defaultValue;
+            }
+        };
+
+        this.parseCardInfo = function(classes) {
+            var cardInfo = new CardInfo();
+            classes = classes.split(' ');
+
+            for (var i = 0, length = classes.length; i < length; ++i) {
+                cardInfo.id = this.parseCssInfo(classes[i], 'card-id-', cardInfo.id);
+                cardInfo.type = this.parseCssInfo(classes[i], 'card-type-', cardInfo.type);
+            }
+
+            return cardInfo;
+        };
+    };
+
+    var cardPreview = new CardPreview();
+    var cardInfoParser = new CardInfoParser();
+
+    $('span.card-info').mouseenter(function() {
+        var classes = $(this).attr('class');
+        cardPreview.show(cardInfoParser.parseCardInfo(classes));
+    }).mouseleave(function() {
+        cardPreview.hide();
+    }).mousemove(function(event) {
+        var relX = event.pageX;
+        var relY = event.pageY;
+
+        cardPreview.update(relX, relY);
+    });
+});
+</script>
+        </main>
+
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Mazebert TD</strong> by Andreas Hager.<br>
+                    <a href="https://mazebert.com/privacy-policy/">Privacy</a>. <a href="https://mazebert.com/legal-notice/">Legal notice</a>.
+                </p>
+            </div>
+        </footer>
+        <div id="admin-controls" style="display: none; background-color: #7c1b0e; text-align: center;">
+            <a id="app-news" href="https://mazebert.com/forum/news/isometric-depth-sorting--id775/">Make app news</a>
+        </div>
+
+        <div id="login-layer" class="modal">
+            <div class="modal-content">
+                <span id="login-close" class="close">×</span>
+                <h3>Welcome back, wizard.</h3>
+                <form id="login-form">
+                    <input id="login-email" type="text" placeholder="Name or email" required="">
+                    <input id="login-password" type="password" placeholder="Savecode" required="">
+                    <button id="login-button" type="submit">Log in</button>
+                </form>
+                <h4>How can I register?</h4>
+                <p>Play the game! Complete your first game and your wizard earns a name, a savecode and write access in the forum.</p>
+            </div>
+        </div>
+
+        
+<script>
+    $(document).ready(function() {
+        window.onMbLoginSuccess = null;
+        var $loginLayer = $('#login-layer');
+        var $loginToggle = $("#login-toggle");
+
+        var updateLogin = function(isLoggedIn, reload) {
+            if (reload && window.onMbLoginSuccess === null) {
+                window.location.reload();
+                return;
+            }
+
+            mb.loggedIn = isLoggedIn;
+            if (mb.loggedIn) {
+                $loginToggle.html('Log out');
+
+                if (window.onMbLoginSuccess !== null) {
+                    window.onMbLoginSuccess();
+                    window.onMbLoginSuccess = null;
+                }
+            } else {
+                $loginToggle.html('Log in');
+            }
+        };
+
+        updateLogin(mb.loggedIn, false);
+
+        $loginToggle.click(function () {
+            if (mb.loggedIn) {
+                $.postJson('https:\/\/mazebert.com\/rest\/player\/logout', {}, function () {
+                    updateLogin(false, true);
+                });
+            } else {
+                showLogin();
+            }
+        });
+        $('#login-close').click(function () {
+            $loginLayer.removeClass('show');
+        });
+        $(document).keydown(function(e) {
+            if (e.keyCode === 27) {
+                $loginLayer.removeClass('show');
+            }
+        });
+        $('#login-form').submit(function (e) {
+            e.preventDefault();
+            hideError();
+
+            let $button = $('#login-button');
+            $button.attr("disabled", true);
+
+            let $email = $('#login-email');
+            let $password = $('#login-password');
+            $.postJson('https:\/\/mazebert.com\/rest\/player\/login', {
+                email: $email.val(),
+                key: $password.val()
+            }, function () {
+                $loginLayer.removeClass('show');
+                $email.val('');
+                $password.val('');
+                updateLogin(true, true);
+            }).always(function () {
+                $button.attr("disabled", false);
+            });
+        });
+    });
+</script>
+
+        <script>
+            $(document).ready(function() {
+
+                $('.nav-mobile').click(function(){
+                    $('#nav-icon').toggleClass('open');
+                    $('.nav-menu').toggleClass('open');
+                });
+
+                $('#error-notification .close').click(function () {
+                    hideError();
+                });
+
+                var invalidClassName = 'invalid';
+                var inputs = document.querySelectorAll('input, select, textarea');
+                inputs.forEach(function (input) {
+                    input.addEventListener('invalid', function () {
+                        input.classList.add(invalidClassName);
+                    });
+
+                    input.addEventListener('input', function () {
+                        if (input.validity.valid) {
+                            input.classList.remove(invalidClassName);
+                        }
+                    });
+                });
+
+                if (mb.loggedInPlayerId === '115') {
+                    $('#admin-controls').show();
+                    $('#app-news').click(function(e) {
+                        e.preventDefault();
+                        var title = prompt("Title:", "Isometric depth sorting");
+                        if (title !== null) {
+                            $.postJson('https:\/\/mazebert.com\/rest\/forum\/make\-app\-news', {title: title, url: window.location.href});
+                        }
+                    });
+                }
+
+            });
+        </script>
+
+    
+
+
+</body></html>
