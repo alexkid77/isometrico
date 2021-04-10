@@ -287,7 +287,7 @@ void CWorld::ProcesaDepthSprites()
             if((s->PosProj.x+this->orig.x-offsetx)<=screen_w
                     && (s->PosProj.y+this->orig.y-offsety)<=screen_h
                     && (s->PosProj.x+this->orig.x-offsetx+64)>=0
-                    && (s->PosProj.y+this->orig.y-offsety+80)>=0
+                    && (s->PosProj.y+this->orig.y-offsety+128)>=0
               )
 
                 this->vVisible.push_back(s);
@@ -383,6 +383,7 @@ void CWorld::PreSortByXY(vector<CSprite*> &v)
 
 ViewPort  CWorld::GetViewPort(int width,int height)
 {
+    int tilesDeMas=3;
     ViewPort viewport;
     int screen_w=this->engine->vidSys->getWidth();
     int screen_h=this->engine->vidSys->getHeight();
@@ -391,12 +392,12 @@ ViewPort  CWorld::GetViewPort(int width,int height)
     int offsetx=(this->engine->player->PosProj.x);
 
     Vec2D pos0;
-    pos0.x=screen_w-orig.x-80+offsetx;
+    pos0.x=screen_w-orig.x-128+offsetx;
     pos0.y=screen_h-orig.y-32+offsety;
     pos0=utils::twoDToIso(&pos0); //hay que corregir el nombre esta mal
 
-    pos0.y=pos0.y/32+1;
-    pos0.x=pos0.x/32+1;
+    pos0.y=pos0.y/32+2;
+    pos0.x=pos0.x/32+2;
 
     if(pos0.x>width)
         pos0.x=width;
@@ -407,8 +408,8 @@ ViewPort  CWorld::GetViewPort(int width,int height)
     pos1.x=0-orig.x+offsetx;
     pos1.y=screen_h-orig.y-32+offsety;
     pos1=utils::twoDToIso(&pos1);
-    pos1.y=pos1.y/32+1;
-    pos1.x=pos1.x/32+1;
+    pos1.y=pos1.y/32+tilesDeMas;
+    pos1.x=pos1.x/32+tilesDeMas;
 
     if(pos1.y>height)
         pos1.y=height;
@@ -417,8 +418,8 @@ ViewPort  CWorld::GetViewPort(int width,int height)
     pos2.x=0-orig.x+offsetx;
     pos2.y=0-orig.y+offsety;
     pos2=utils::twoDToIso(&pos2);
-    pos2.y=pos2.y/32-2;
-    pos2.x=pos2.x/32-2;
+    pos2.y=pos2.y/32-tilesDeMas;
+    pos2.x=pos2.x/32-tilesDeMas;
     if(pos2.x<0)
         pos2.x=0;
     if(pos2.y<0)
@@ -429,8 +430,8 @@ ViewPort  CWorld::GetViewPort(int width,int height)
     pos3.x=screen_w-orig.x+offsetx;
     pos3.y=0-orig.y+offsety;
     pos3=utils::twoDToIso(&pos3);
-    pos3.y=pos3.y/32-1;
-    pos3.x=pos3.x/32-1;
+    pos3.y=pos3.y/32-tilesDeMas;
+    pos3.x=pos3.x/32-tilesDeMas;
     if(pos3.x<0)
         pos3.x=0;
     if(pos3.y<0)
