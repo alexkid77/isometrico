@@ -1,0 +1,8 @@
+C:/Users/Alex/Documents/isometrico/prueba/prueba/src/tmxparser/tmxparser.cpp:328: warning: no matching file member found for 
+TmxReturn tmxparser::_parsePropertyNode(tinyxml2::XMLElement *element, std::map< TKey, TValue > *outPropertyMap)
+Possible candidates:
+ 'TmxReturn _parsePropertyNode(tinyxml2::XMLElement *element, TmxPropertyMap_t *outPropertyMap)' at line 328 of file C:/Users/Alex/Documents/isometrico/prueba/prueba/src/tmxparser/tmxparser.cpp
+
+C:/Users/Alex/Documents/isometrico/prueba/prueba/include/CWorld.h:18: warning: documented empty return type of CWorld::Render
+C:/Users/Alex/Documents/isometrico/prueba/prueba/include/CWorld.h:17: warning: documented empty return type of CWorld::Update
+C:/Users/Alex/Documents/isometrico/prueba/prueba/include/tmxparser/tinyxml2.h:1091: warning: unexpected command endverbatim

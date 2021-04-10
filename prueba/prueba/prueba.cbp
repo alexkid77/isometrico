@@ -42,7 +42,6 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="include/CEngine.h" />
 		<Unit filename="include/CEntity.h" />
 		<Unit filename="include/CItemPushable.h" />
 		<Unit filename="include/CLayer.h" />
@@ -55,6 +54,7 @@
 		<Unit filename="include/ITimer.h" />
 		<Unit filename="include/ITimerWindows.h" />
 		<Unit filename="include/IVideoSystem.h" />
+		<Unit filename="include/cEngine.h" />
 		<Unit filename="include/cVideo.h" />
 		<Unit filename="include/comun.h" />
 		<Unit filename="include/tmxparser/base64.h" />
@@ -79,6 +79,16 @@
 		<Unit filename="src/tmxparser/tinyxml2.cpp" />
 		<Unit filename="src/tmxparser/tmxparser.cpp" />
 		<Unit filename="src/utils.cpp" />
-		<Extensions />
+		<Extensions>
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project output_language="Spanish" />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
