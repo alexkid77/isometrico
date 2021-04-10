@@ -3,6 +3,11 @@
 #include <cstdio>
 #include <CItemPushable.h>
 #include <allegro.h>
+/** \brief Constructor del mundo, se para de parametro un Objeto CEngine
+ *
+ * \param engine CEngine*
+ *
+ */
 CWorld::CWorld(CEngine *engine)
 {
 
@@ -25,6 +30,12 @@ CWorld::CWorld(CEngine *engine)
 
 
 }
+/** \brief Carga el mapa de tiled devuelve un CTileMap que es la abstracción del mapa de este engine
+ *
+ * \param file string
+ * \return CTileMap*
+ *
+ */
 CTileMap * CWorld::LoadTmx(string file)
 {
     CTileMap *tilemap=new CTileMap(file);
@@ -35,6 +46,12 @@ CWorld::~CWorld()
 {
     //dtor
 }
+/** \brief se llama en cada frame, se pasa el deltaTime de cada instante, en este caso actualiza las entidades y procesa el teclado
+ *
+ * \param deltaTime double
+ * \return void
+ *
+ */
 void CWorld::Update(double deltaTime)
 {
 
@@ -69,6 +86,11 @@ void CWorld::Update(double deltaTime)
 
 }
 
+/** \brief Procesa las colisiones de las entidades
+ *
+ * \return void
+ *
+ */
 void CWorld::ProcesaCollisiones()
 {
 
@@ -135,6 +157,11 @@ void CWorld::ProcesaCollisiones()
     }
 }
 
+/** \brief Se llama en cada frame para renderizar el mapa
+ *
+ * \return void
+ *
+ */
 void CWorld::Render()
 {
 
@@ -216,6 +243,13 @@ void CWorld::Render()
 
 }
 
+/** \brief metodo recursivo se utiliza para el ordenamiento topologico, determina que entidades se solapan con una para establecer el orden de dibujado
+ *
+ * \param ent CSprite*
+ * \param sortDepth int*
+ * \return void
+ *
+ */
 void CWorld::VisitNode(CSprite *ent,int *sortDepth)
 {
     if(!ent->visitado)
@@ -261,6 +295,13 @@ void CWorld::InitSprites()
     this->childs.push_back(this->engine->player);
 
 }
+/** \brief Procesa los sprites, primero selecciona los sprites que se van a ver y despues los ordena topologicamente
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 
 void CWorld::ProcesaDepthSprites()
 {
@@ -303,6 +344,12 @@ void CWorld::ProcesaDepthSprites()
 
 }
 
+/** \brief Ordena topologicamente  los objetos que se van a mostrar en pantalla, me he basado en este tutorial https://mazebert.com/forum/news/isometric-depth-sorting--id775/
+ *  este metodo ordena solo los objetos dinamicos tiene un cost O(N)
+ *
+ * \return void
+ *
+ */
 void CWorld::OrdenaTopologicamente()
 {
     int tam=this->vVisible.size();
@@ -338,6 +385,12 @@ void CWorld::OrdenaTopologicamente()
 
 }
 
+/** \brief Ordena topologicamente  los objetos que se van a mostrar en pantalla, me he basado en este tutorial https://mazebert.com/forum/news/isometric-depth-sorting--id775/
+ *  este metodo ordena todos los objetos independientemente si son dinamicos o no. tiene un coste casi O(N^2)
+
+ * \return void
+ *
+ */
 void CWorld::OrdenaTopologicamente2()
 {
     int tam=vVisible.size();
@@ -373,6 +426,12 @@ void CWorld::OrdenaTopologicamente2()
     });
 
 }
+/** \brief hace un ordenamiento de los sprites por x e y
+ *
+ * \param v vector<CSprite*>&
+ * \return void
+ *
+ */
 void CWorld::PreSortByXY(vector<CSprite*> &v)
 {
     sort(  v.begin( ),  v.end( ), [ ]( const CSprite* lhs, const CSprite* rhs )
@@ -381,9 +440,20 @@ void CWorld::PreSortByXY(vector<CSprite*> &v)
     });
 }
 
+/** \brief Devuelve un objeto ViewPort con las coordenadas del area que se ve en pantalla.
+ *  se utiliza para saber que objetos deben ser dibujados o no
+ * para ello se calcula las 4 esquinas de la pantalla, se convierte sus coordenas a isometrico
+ *
+ * \param width int
+ * \param height int
+ * \return ViewPort
+ *
+ */
 ViewPort  CWorld::GetViewPort(int width,int height)
 {
+    //esto es un offset para coger tiles mas alla del viewport y evitar huecos en el dibujado
     int tilesDeMas=3;
+
     ViewPort viewport;
     int screen_w=this->engine->vidSys->getWidth();
     int screen_h=this->engine->vidSys->getHeight();
@@ -392,8 +462,8 @@ ViewPort  CWorld::GetViewPort(int width,int height)
     int offsetx=(this->engine->player->PosProj.x);
 
     Vec2D pos0;
-    pos0.x=screen_w-orig.x-128+offsetx;
-    pos0.y=screen_h-orig.y-32+offsety;
+    pos0.x=screen_w-orig.x-this->engine->tileH+offsetx;
+    pos0.y=screen_h-orig.y-this->engine->tileW/2+offsety;
     pos0=utils::twoDToIso(&pos0); //hay que corregir el nombre esta mal
 
     pos0.y=pos0.y/32+2;

@@ -10,6 +10,11 @@ CTileMap::~CTileMap()
     //dtor
 }
 
+/** \brief Carga un mapa de un fichero tmx, primero carga las propiedades del mapa, y despues las capas con sus tiles
+ *
+ * \param file string
+ *
+ */
 CTileMap::CTileMap(string file)
 {
     string tileset=".";
