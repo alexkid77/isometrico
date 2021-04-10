@@ -6,7 +6,7 @@
 CWorld::CWorld(CEngine *engine)
 {
 
-    this->tilemap=this->LoadTmx("mapa3.tmx");
+    this->tilemap=this->LoadTmx("mapaAlex.tmx");
     this->tileGridH= engine->tileGridH;
     this->tileGridW= engine->tileGridW;
     this->orig=engine->orig;
@@ -180,7 +180,7 @@ void CWorld::Render()
             Rect Dest(e->PosProj.x+this->orig.x-offsetx,e->PosProj.y+this->orig.y-offsety,this->engine->tileW,this->engine->tileH);
             Rect Src(0,0,this->engine->tileW,this->engine->tileH);
 
-            vid->Blit(0,Src,Dest);
+            vid->Blit(5,Src,Dest);
 
             char tempStr2 [100];
             //snprintf ( tempStr2, 100, "(%d,%d)", t->j,  t->i );

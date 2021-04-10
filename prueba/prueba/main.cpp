@@ -17,7 +17,7 @@ int main(void)
     install_mouse();
 
     select_mouse_cursor(MOUSE_CURSOR_ARROW);
-    aa->LoadTiles(64,80);
+    aa->LoadTiles(64,128);
     IVideoSystem *vid=static_cast<IVideoSystem *>(aa);
     ITimer *timer=new ITimerWindows();
     CEngine *engine=new CEngine(vid,timer);

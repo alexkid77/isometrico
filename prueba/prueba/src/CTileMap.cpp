@@ -16,6 +16,32 @@ CTileMap::CTileMap(string file)
     tmxparser::TmxMap map;
     tmxparser::TmxReturn error = tmxparser::parseFromFile(file, &map,tileset);
     int tileSize=map.tileWidth/2;
+
+vector< STileProperties*> propiedades;
+    for (auto it =   map.tilesetCollection.begin(); it !=   map.tilesetCollection.end(); ++it)
+    {
+        for (auto it2 = it->tileDefinitions.begin(); it2 != it->tileDefinitions.end(); ++it2)
+        {
+
+            STileProperties *prop=new STileProperties();
+           string kk= it2->second.propertyMap["alto"];
+            printf("id:%d val:%s\n",it2->second.id,kk.c_str());
+            prop->Alto=stoi(it2->second.propertyMap["alto"]);
+            prop->Ancho=stoi(it2->second.propertyMap["ancho"]);
+            prop->Largo=stoi(it2->second.propertyMap["largo"]);
+            prop->Indice=it2->second.id;
+            propiedades.push_back(prop);
+
+      //  printf("id:%d val:%s\n",it2->second.id,val.c_str());
+//            x++;
+        }
+    }
+
+       sort( propiedades.begin( ), propiedades.end( ), [ ]( const STileProperties* lhs, const STileProperties* rhs )
+    {
+        return lhs->Indice <rhs->Indice;
+    });
+
     for (auto it = map.layerCollection.begin(); it != map.layerCollection.end(); ++it)
     {
         CLayer *capa=new CLayer();
@@ -34,10 +60,11 @@ CTileMap::CTileMap(string file)
             vtemp.y=i*tileSize;
             vtemp.x=j*tileSize;
             vtemp=utils::IsoTo2D(&vtemp);
+
             int x = vtemp.x;
             int y = vtemp.y;
-
-            Vec3D boxSize=it2->tileFlatIndex==1?Vec3D(32,32,1):Vec3D(32,32,44);
+             STileProperties *prop=propiedades[it2->tileFlatIndex];
+            Vec3D boxSize=Vec3D(prop->Ancho,prop->Largo,prop->Alto);
             CTile *t=new CTile(tileSize,tileSize,tileSize,boxSize);
             t->indiceTile=it2->tileFlatIndex;
             t->Pos.x=j*tileSize;

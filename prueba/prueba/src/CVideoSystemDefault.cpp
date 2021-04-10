@@ -42,11 +42,11 @@ void CVideoSystemDefault::ToScreen()
 }
 void CVideoSystemDefault::LoadTiles(int tileW,int tileH)
 {
-    this->tiles=new BITMAP*[5];
-    BITMAP *tilesRaw=load_bmp("tile2.bmp", 0);
+    this->tiles=new BITMAP*[9];
+    BITMAP *tilesRaw=load_bmp("tileAlex.bmp", 0);
     int c=0;
-    for( int y=0; y<1; y++)
-        for(int x=0; x<5; x++)
+    for( int y=0; y<3; y++)
+        for(int x=0; x<3; x++)
         {
             tiles[c]= create_bitmap(tileW, tileH);
             BITMAP *tile=tiles[c];

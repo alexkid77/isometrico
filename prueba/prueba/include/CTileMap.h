@@ -20,4 +20,11 @@ protected:
 private:
 };
 
+struct STileProperties
+{
+    int Ancho;
+    int Alto;
+    int Largo;
+    int Indice;
+};
 #endif // CTILEMAP_H

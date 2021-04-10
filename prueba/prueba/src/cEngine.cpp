@@ -7,7 +7,7 @@ CEngine::CEngine(IVideoSystem *vidSystem,ITimer *timer)
     this->vidSys=vidSystem;
     this->timer=timer;
 
-    this->tileH=80;
+    this->tileH=128;
     this->tileW=64;
     this->tileSize=32;
     this->tileGridH= this->tileH/2;
