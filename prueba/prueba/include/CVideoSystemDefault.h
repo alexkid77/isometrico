@@ -4,6 +4,8 @@
 #include <IVideoSystem.h>
 #include <comun.h>
 
+/** \brief Implementacion del sistema de video para allegro 4
+ */
 class CVideoSystemDefault:public IVideoSystem
 {
 public:

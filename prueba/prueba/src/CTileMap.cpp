@@ -22,14 +22,14 @@ CTileMap::CTileMap(string file)
     tmxparser::TmxReturn error = tmxparser::parseFromFile(file, &map,tileset);
     int tileSize=map.tileWidth/2;
 
-vector< STileProperties*> propiedades;
+    vector< STileProperties*> propiedades;
     for (auto it =   map.tilesetCollection.begin(); it !=   map.tilesetCollection.end(); ++it)
     {
         for (auto it2 = it->tileDefinitions.begin(); it2 != it->tileDefinitions.end(); ++it2)
         {
 
             STileProperties *prop=new STileProperties();
-           string kk= it2->second.propertyMap["alto"];
+            string kk= it2->second.propertyMap["alto"];
             printf("id:%d val:%s\n",it2->second.id,kk.c_str());
             prop->Alto=stoi(it2->second.propertyMap["alto"]);
             prop->Ancho=stoi(it2->second.propertyMap["ancho"]);
@@ -37,12 +37,12 @@ vector< STileProperties*> propiedades;
             prop->Indice=it2->second.id;
             propiedades.push_back(prop);
 
-      //  printf("id:%d val:%s\n",it2->second.id,val.c_str());
+            //  printf("id:%d val:%s\n",it2->second.id,val.c_str());
 //            x++;
         }
     }
 
-       sort( propiedades.begin( ), propiedades.end( ), [ ]( const STileProperties* lhs, const STileProperties* rhs )
+    sort( propiedades.begin( ), propiedades.end( ), [ ]( const STileProperties* lhs, const STileProperties* rhs )
     {
         return lhs->Indice <rhs->Indice;
     });
@@ -68,7 +68,7 @@ vector< STileProperties*> propiedades;
 
             int x = vtemp.x;
             int y = vtemp.y;
-             STileProperties *prop=propiedades[it2->tileFlatIndex];
+            STileProperties *prop=propiedades[it2->tileFlatIndex];
             Vec3D boxSize=Vec3D(prop->Ancho,prop->Largo,prop->Alto);
             CTile *t=new CTile(tileSize,tileSize,tileSize,boxSize);
             t->indiceTile=it2->tileFlatIndex;

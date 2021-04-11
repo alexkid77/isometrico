@@ -5,4 +5,5 @@ Possible candidates:
 
 C:/Users/Alex/Documents/isometrico/prueba/prueba/include/CWorld.h:18: warning: documented empty return type of CWorld::Render
 C:/Users/Alex/Documents/isometrico/prueba/prueba/include/CWorld.h:17: warning: documented empty return type of CWorld::Update
+C:/Users/Alex/Documents/isometrico/prueba/prueba/include/ITimer.h:6: warning: unexpected token in comment block while parsing the argument of command param
 C:/Users/Alex/Documents/isometrico/prueba/prueba/include/tmxparser/tinyxml2.h:1091: warning: unexpected command endverbatim

@@ -184,6 +184,8 @@ void CWorld::Render()
     int offsety=this->engine->player->PosProj.y;
     int tamVisible=this->vVisible.size();
     IVideoSystem *vid=this->engine->vidSys;
+
+    /*aqui se renderiza todo*/
     for(uint16_t  i=0; i<tamVisible; i++)
     {
         CSprite * e=(this->vVisible[i]);

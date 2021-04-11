@@ -1,6 +1,8 @@
 #ifndef STRUCTURES_H_INCLUDED
 #define STRUCTURES_H_INCLUDED
 #include <chrono>
+/** \brief vector en 3d con enteros
+ */
 struct Vec3D
 {
     int x;
@@ -56,6 +58,8 @@ struct Vec3D
     }
 };
 
+/** \brief Vector en 3d flotante
+ */
 struct Vec3Df
 {
     float x;
@@ -115,6 +119,8 @@ struct Vec3Df
 
 };
 
+/** \brief Vector en 2D
+ */
 struct Vec2D
 {
     int x;
@@ -138,6 +144,8 @@ struct Vec2D
 
 
 
+/** \brief area de visualizacion
+ */
 struct ViewPort
 {
     Vec2D p1;
@@ -145,6 +153,8 @@ struct ViewPort
 
 };
 
+/** \brief rectangulo
+ */
 struct Rect
 {
     Rect()
@@ -163,6 +173,8 @@ struct Rect
     Vec2D sizes;
 };
 
+/** \brief structura para la definicion de colores RGB
+ */
 struct sRGB
 {
     int r,g,b;

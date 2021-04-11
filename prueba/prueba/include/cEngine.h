@@ -37,12 +37,12 @@ private:
 
     CPlayer *player;
     bool debug;
-    int tileH;
-    int tileW;
-    int tileGridH;
-    int tileGridW;
+    int tileH;/**< tamaño del bitmap Alto */
+    int tileW;/**< tamaño del bitmap Ancho */
+    int tileGridH;/**< tamaño grid alto sera normalmente 32 */
+    int tileGridW;/**< tamaño grid ancho sera normalmente 32 */
     int tileSize;
-    Vec2D orig;
+    Vec2D orig;/**< origen de coordenadas*/
 
     int fpsCount;
     double tFpsAnt;

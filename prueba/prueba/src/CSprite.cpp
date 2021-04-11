@@ -90,6 +90,12 @@ void CSprite::onCollision(CEntity *ent)
 
 }
 
+/** \brief indica si dos sprites colisionan comparando sus boundingbox
+ *
+ * \param ent CEntity*
+ * \return bool
+ *
+ */
 bool CSprite::hasCollision(CEntity *ent)
 {
 

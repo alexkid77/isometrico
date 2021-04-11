@@ -1,6 +1,13 @@
 #ifndef ITIMER_H
 #define ITIMER_H
 
+/** \brief Abstracion del temporizador
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 
 class ITimer
 {

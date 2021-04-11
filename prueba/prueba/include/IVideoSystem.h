@@ -2,6 +2,8 @@
 #define IVIDEOSYSTEM_H
 
 #include <comun.h>
+/** \brief Abstraccion del sistema de video
+ */
 class IVideoSystem
 {
 public:

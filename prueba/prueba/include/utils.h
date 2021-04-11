@@ -9,6 +9,13 @@
 class utils
 {
 public:
+
+    /** \brief convierte coordenadas isometricas a coordenadas de pantalla
+     *
+     * \param vec Vec2D*
+     * \return Vec2D
+     *
+     */
     static Vec2D IsoTo2D(Vec2D *vec)
     {
 
@@ -19,6 +26,12 @@ public:
 
     }
 
+    /** \brief convierte coordenadas isometricas a coordenadas de pantalla
+     *
+     * \param vec Vec3D*
+     * \return Vec2D
+     *
+     */
     static Vec2D IsoTo2D(Vec3D *vec)
     {
 
@@ -28,6 +41,12 @@ public:
         return val;
     }
 
+    /** \brief convierte coordenadas de de panatalla a isometricas
+     *
+     * \param vec Vec2D*
+     * \return Vec2D
+     *
+     */
     static Vec2D twoDToIso(Vec2D *vec)
     {
         Vec2D val;
@@ -36,7 +55,16 @@ public:
         return val;
     }
 
-    /*obtiene el tile desde una coordenada projectada */
+
+    /** \brief obtiene el tile desde una coordenada projectada
+     *
+     * \param tileGridW int
+     * \param tileGridH int
+     * \param x int
+     * \param y int
+     * \return Vec2D
+     *
+     */
     static Vec2D GetTileWithPos(int tileGridW,int tileGridH,int x,int y)
     {
 

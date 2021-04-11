@@ -2,6 +2,8 @@
 #define CENTITY_H
 
 #include <comun.h>
+/** \brief Entidad basica
+ */
 class CEntity
 {
 public:
@@ -18,7 +20,15 @@ public:
     Vec2D PosProj;
     CEntity();
     virtual ~CEntity();
+
     virtual void Update(double deltaTime)=0;
+
+    /** \brief evento on colision el parametro el la entidad contra la que colisiona
+     *
+     * \param ent CEntity*
+     * \return virtual void
+     *
+     */
     virtual void onCollision(CEntity *ent)=0;
 
 protected:
