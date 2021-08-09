@@ -6,6 +6,7 @@ I wanted it to work in ms-dos ;) ).
 * Load tmx maps from tiled.
 * Topology sorting of tiles.
 * Some optimizations, collisions and tile clipping.
+* Documentation in Doxygen
 
 ## Capture
 ![1](https://github.com/alexkid77/isometrico/blob/master/captura.png)
